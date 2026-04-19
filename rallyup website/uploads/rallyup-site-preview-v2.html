@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rallyup — the content system for busy b2b execs (v2, CRO-optimized)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ru-blue: #3d68f5;
+    --ru-blue-dark: #2a3ad8;
+    --ru-blue-deep: #1e3a8a;
+    --ru-yellow: #DDFF4D;
+    --ru-ink: #0b1020;
+    --ru-gray: #6b7280;
+    --ru-bg: #ffffff;
+    --ru-bg-soft: #f7f8fb;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--ru-ink);
+    background: var(--ru-bg);
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+  }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; }
+  .text-ru-blue { color: var(--ru-blue); }
+  .text-ru-blue-dark { color: var(--ru-blue-dark); }
+  .bg-ru-blue { background-color: var(--ru-blue); }
+  .bg-ru-blue-dark { background-color: var(--ru-blue-dark); }
+  .bg-ru-yellow { background-color: var(--ru-yellow); }
+  .bg-ru-soft { background-color: var(--ru-bg-soft); }
+  .border-ru-blue { border-color: var(--ru-blue); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 14px 24px; border-radius: 999px;
+    font-weight: 600; font-size: 15px; letter-spacing: -0.01em;
+    transition: all 0.18s ease; cursor: pointer; white-space: nowrap;
+  }
+  .btn-primary { background: var(--ru-blue); color: white; }
+  .btn-primary:hover { background: var(--ru-blue-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(61,104,245,0.3); }
+  .btn-ghost { background: transparent; color: var(--ru-ink); border: 1.5px solid rgba(11,16,32,0.12); }
+  .btn-ghost:hover { border-color: var(--ru-blue); color: var(--ru-blue); }
+  .btn-yellow { background: var(--ru-yellow); color: var(--ru-blue-dark); }
+  .btn-yellow:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(221,255,77,0.4); }
+
+  .gradient-underline {
+    background-image: linear-gradient(transparent 70%, rgba(221,255,77,0.65) 70%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0 4px;
+  }
+  .card-lift { transition: all 0.22s ease; }
+  .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(11,16,32,0.08); }
+
+  details { border-bottom: 1px solid rgba(11,16,32,0.08); }
+  details > summary { list-style: none; cursor: pointer; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; font-weight: 600; font-size: 18px; }
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary::after { content: '+'; font-size: 28px; font-weight: 300; color: var(--ru-blue); transition: transform 0.2s ease; }
+  details[open] > summary::after { content: '–'; }
+  details > div { padding: 0 0 24px; color: var(--ru-gray); font-size: 17px; line-height: 1.65; max-width: 800px; }
+
+  .dot-pattern { background-image: radial-gradient(circle, rgba(61,104,245,0.12) 1px, transparent 1px); background-size: 22px 22px; }
+  .post-preview { box-shadow: 0 30px 60px rgba(11,16,32,0.12), 0 8px 20px rgba(11,16,32,0.06); }
+  .step-num { width: 48px; height: 48px; border-radius: 14px; background: var(--ru-blue); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; }
+  .logo-box { width: 36px; height: 36px; border-radius: 9px; background: linear-gradient(135deg, #6a7ff0 0%, #3a4fd8 100%); display: flex; align-items: center; justify-content: center; }
+
+  .version-banner {
+    position: fixed; top: 12px; right: 12px; z-index: 100;
+    background: #000; color: #DDFF4D; padding: 8px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  /* Included list check icon */
+  .check-circle { width: 24px; height: 24px; min-width: 24px; border-radius: 50%; background: var(--ru-yellow); display: flex; align-items: center; justify-content: center; color: var(--ru-blue-dark); font-weight: 900; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="version-banner">v2 · CRO-optimized</div>
+
+<!-- ========= NAV ========= -->
+<nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-black/5">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2.5">
+      <div class="logo-box">
+        <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+          <path d="M25 40 L25 60 Q25 63 28 63 L33 63 L33 37 L28 37 Q25 37 25 40 Z" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/>
+          <path d="M33 35 L78 22 Q82 21 82 25 L82 75 Q82 79 78 78 L33 65 Z" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <span class="font-black text-xl tracking-tight text-ru-blue-dark">rallyup</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#how-it-works" class="text-sm font-medium text-gray-700 hover:text-ru-blue">how it works</a>
+      <a href="#whats-included" class="text-sm font-medium text-gray-700 hover:text-ru-blue">what's included</a>
+      <a href="#proof" class="text-sm font-medium text-gray-700 hover:text-ru-blue">results</a>
+      <a href="#faq" class="text-sm font-medium text-gray-700 hover:text-ru-blue">faq</a>
+    </div>
+    <a href="https://intakeform-smoky.vercel.app/" class="btn btn-primary text-sm py-2.5 px-5">scope my rollout →</a>
+  </div>
+</nav>
+
+<!-- ========= HERO (rewritten — outcome-led) ========= -->
+<section class="relative overflow-hidden">
+  <div class="dot-pattern absolute inset-0 opacity-70"></div>
+  <div class="relative max-w-7xl mx-auto px-6 pt-20 pb-24 md:pt-28 md:pb-32">
+    <div class="grid md:grid-cols-5 gap-14 items-center">
+      <div class="md:col-span-3">
+        <div class="inline-flex items-center gap-2 bg-ru-yellow/60 border border-ru-yellow px-3 py-1.5 rounded-full text-xs font-semibold text-ru-blue-dark mb-7">
+          <span class="w-2 h-2 rounded-full bg-ru-blue-dark animate-pulse"></span>
+          a content system for busy b2b execs
+        </div>
+
+        <!-- NEW HEADLINE: outcome-led, visitor POV -->
+        <h1 class="text-5xl md:text-7xl font-black leading-[0.95] tracking-tight text-ru-blue-dark mb-7">
+          <span class="gradient-underline">75,000</span> linkedin impressions a month.
+          <br><span class="serif text-5xl md:text-7xl text-ru-blue">30 seconds of your exec's time.</span>
+        </h1>
+
+        <p class="text-lg text-gray-600 max-w-xl mb-4 leading-relaxed">
+          your execs know they should be posting. none of them have 10 hours a week to do it.
+        </p>
+        <p class="text-lg text-gray-600 max-w-xl mb-9 leading-relaxed">
+          we run a content system for busy b2b executives. we learn how they think, draft posts in their actual voice, and ship them in slack. they approve in 30 seconds. consistent, high-quality content — no ghostwriter tax, no chatgpt slop.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <a href="https://intakeform-smoky.vercel.app/" class="btn btn-primary text-base py-4 px-7">scope my rollout →</a>
+          <a href="#how-it-works" class="btn btn-ghost text-base py-4 px-7">see how it works</a>
+        </div>
+
+        <!-- NEW: credibility strip -->
+        <p class="text-sm text-gray-500 leading-relaxed max-w-xl">
+          built by a team that's grown linkedin audiences from zero for founders, ceos, and cmos.
+          <span class="text-gray-400">·</span>
+          <span class="font-medium text-gray-600">ex-beehiiv</span>
+          <span class="text-gray-400">·</span>
+          <span class="font-medium text-gray-600">ex-ramp</span>
+        </p>
+      </div>
+
+      <!-- Post preview mockup -->
+      <div class="md:col-span-2">
+        <div class="post-preview bg-white rounded-2xl p-6 max-w-sm mx-auto rotate-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold">JD</div>
+            <div>
+              <div class="font-bold text-sm">jane delaney</div>
+              <div class="text-xs text-gray-500">CEO at acme · 2nd</div>
+              <div class="text-xs text-gray-500">3h · 🌐</div>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed mb-3 text-gray-800">we killed our top-performing feature last month.</p>
+          <p class="text-sm leading-relaxed mb-3 text-gray-800">it drove 40% of engagement. customers loved it.</p>
+          <p class="text-sm leading-relaxed mb-3 text-gray-800">but it made new users feel stupid.</p>
+          <p class="text-sm leading-relaxed mb-4 text-gray-800">here's what happened next...</p>
+          <div class="flex items-center justify-between pt-3 border-t border-gray-100 text-xs text-gray-500">
+            <span>💙 2,847 · 412 comments</span>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center justify-center gap-2 text-xs text-gray-500">
+          <span class="inline-block w-8 h-px bg-gray-300"></span>
+          <span class="font-medium">approved in slack · 28s</span>
+          <span class="inline-block w-8 h-px bg-gray-300"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= LOGO BAR ========= -->
+<section class="bg-ru-soft py-10 border-y border-black/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-center text-xs uppercase tracking-widest text-gray-500 font-semibold mb-6">trusted by teams who stopped treating linkedin like an afterthought</p>
+    <div class="flex flex-wrap justify-center items-center gap-x-14 gap-y-5 opacity-70">
+      <span class="font-bold text-xl tracking-tight">pandadoc</span>
+      <span class="font-bold text-xl tracking-tight">freightos</span>
+      <span class="font-bold text-xl tracking-tight">boompop</span>
+      <span class="font-bold text-xl tracking-tight">flexcharge</span>
+      <span class="font-bold text-xl tracking-tight">neuefische</span>
+    </div>
+    <p class="text-center text-xs text-gray-400 italic mt-4">note: replace with real logos before launch</p>
+  </div>
+</section>
+
+<!-- ========= PROBLEM ========= -->
+<section class="py-24 md:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-3xl mb-16">
+      <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-4">the problem</p>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight text-ru-blue-dark leading-tight mb-4">
+        why most execs give up on linkedin.
+      </h2>
+      <p class="text-lg text-gray-600 serif">
+        (and why the content they do post sounds like a press release wrote a linkedin post.)
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-ru-soft rounded-3xl p-8 md:p-10 border border-black/5">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center"><span class="text-red-500 text-lg">✕</span></div>
+          <h3 class="font-bold text-xl">the old way</h3>
+        </div>
+        <ul class="space-y-6">
+          <li><p class="font-bold mb-1">you write it yourself.</p><p class="text-gray-600 text-[15px] leading-relaxed">you don't. you're running a company.</p></li>
+          <li><p class="font-bold mb-1">you hire a ghostwriter.</p><p class="text-gray-600 text-[15px] leading-relaxed">slow, expensive, and the posts sound like someone pretending to be you.</p></li>
+          <li><p class="font-bold mb-1">you use chatgpt.</p><p class="text-gray-600 text-[15px] leading-relaxed">fast, free, reads like a linkedin mad libs.</p></li>
+          <li><p class="font-bold mb-1">you post once, go quiet for 6 weeks.</p><p class="text-gray-600 text-[15px] leading-relaxed">the algorithm forgets you exist.</p></li>
+        </ul>
+      </div>
+      <div class="bg-ru-blue-dark text-white rounded-3xl p-8 md:p-10 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-40 h-40 bg-ru-yellow/20 rounded-full blur-3xl"></div>
+        <div class="relative">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-full bg-ru-yellow flex items-center justify-center"><span class="text-ru-blue-dark text-lg font-bold">✓</span></div>
+            <h3 class="font-bold text-xl">the rallyup way</h3>
+          </div>
+          <ul class="space-y-6">
+            <li><p class="font-bold mb-1">we map your voice first.</p><p class="text-white/70 text-[15px] leading-relaxed">45-min interview. we learn how you actually talk.</p></li>
+            <li><p class="font-bold mb-1">our system drafts 2–5 posts a week.</p><p class="text-white/70 text-[15px] leading-relaxed">trained on your voice, your opinions, your wins and losses.</p></li>
+            <li><p class="font-bold mb-1">a human editor tunes every post.</p><p class="text-white/70 text-[15px] leading-relaxed">against what's actually working on linkedin right now.</p></li>
+            <li><p class="font-bold mb-1">you approve in slack in 30 seconds.</p><p class="text-white/70 text-[15px] leading-relaxed">we handle scheduling. you focus on running the company.</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= HOW IT WORKS ========= -->
+<section id="how-it-works" class="py-24 md:py-32 bg-ru-soft">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-3xl mb-16">
+      <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-4">how it works</p>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight text-ru-blue-dark leading-tight">three steps. no ghostwriter drama.</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-3xl p-8 card-lift">
+        <div class="step-num mb-6">1</div>
+        <h3 class="font-black text-2xl mb-3 text-ru-blue-dark">we map your voice.</h3>
+        <p class="text-gray-600 leading-relaxed">a 45-minute interview + your last 12 months of posts, docs, and talks. we build a living voice profile — how you open, how you argue, which phrases are yours, which topics you'll never touch. it's the foundation everything else runs on.</p>
+      </div>
+      <div class="bg-white rounded-3xl p-8 card-lift">
+        <div class="step-num mb-6">2</div>
+        <h3 class="font-black text-2xl mb-3 text-ru-blue-dark">we draft in your voice.</h3>
+        <p class="text-gray-600 leading-relaxed">our system writes 2–5 posts a week pulled from your actual point of view. a human editor reviews every post against what's performing on linkedin this week. no chatgpt defaults. no generic "thought leadership."</p>
+      </div>
+      <div class="bg-white rounded-3xl p-8 card-lift">
+        <div class="step-num mb-6">3</div>
+        <h3 class="font-black text-2xl mb-3 text-ru-blue-dark">you approve in slack.</h3>
+        <p class="text-gray-600 leading-relaxed">posts land in your slack dm. thumbs up, thumbs down, or request an edit. 30 seconds. we schedule, post, and track performance. you stay focused on the business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= NEW: WHAT'S INCLUDED ========= -->
+<section id="whats-included" class="py-24 md:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-4">what's included</p>
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight text-ru-blue-dark leading-tight mb-5">
+          every engagement, every exec.
+        </h2>
+        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+          no tiered gotchas. no "upgrade for more." one flat system per exec — run it for your ceo, your cmo, your full leadership team, or all of the above.
+        </p>
+        <a href="https://intakeform-smoky.vercel.app/" class="btn btn-primary text-base py-4 px-7">scope my rollout →</a>
+      </div>
+
+      <div class="bg-ru-soft rounded-3xl p-8 md:p-10 border border-black/5">
+        <ul class="space-y-5">
+          <li class="flex items-start gap-4">
+            <div class="check-circle">✓</div>
+            <div>
+              <p class="font-bold text-ru-blue-dark">45-min voice onboarding</p>
+              <p class="text-gray-600 text-sm">deep interview + analysis of your last 12 months of content</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="check-circle">✓</div>
+            <div>
+              <p class="font-bold text-ru-blue-dark">2–5 posts per week</p>
+              <p class="text-gray-600 text-sm">drafted by our system, edited by a human before you see it</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="check-circle">✓</div>
+            <div>
+              <p class="font-bold text-ru-blue-dark">slack approval flow</p>
+              <p class="text-gray-600 text-sm">30 seconds per post. thumbs up, down, or edit request</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="check-circle">✓</div>
+            <div>
+              <p class="font-bold text-ru-blue-dark">scheduling + posting handled</p>
+              <p class="text-gray-600 text-sm">we hit publish at the right time. you don't touch anything</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="check-circle">✓</div>
+            <div>
+              <p class="font-bold text-ru-blue-dark">monthly performance report</p>
+              <p class="text-gray-600 text-sm">impressions, engagement, profile views, inbound by ICP</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="check-circle">✓</div>
+            <div>
+              <p class="font-bold text-ru-blue-dark">dedicated content strategist</p>
+              <p class="text-gray-600 text-sm">one human owns your account. not a pod, not a queue</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="check-circle">✓</div>
+            <div>
+              <p class="font-bold text-ru-blue-dark">3-month minimum</p>
+              <p class="text-gray-600 text-sm">linkedin isn't a one-post strategy. results compound</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= PROOF (with testimonial added) ========= -->
+<section id="proof" class="py-24 md:py-32 bg-ru-soft">
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-4 text-center">a recent rollout</p>
+    <div class="max-w-5xl mx-auto text-center mb-12">
+      <p class="text-2xl md:text-3xl text-gray-500 font-medium mb-4 serif">from</p>
+      <h2 class="text-6xl md:text-8xl font-black tracking-tight text-ru-blue-dark leading-none mb-4">0 → 75,000</h2>
+      <p class="text-xl md:text-2xl font-bold text-ru-blue-dark mb-6">impressions per month. in under 30 days.</p>
+      <div class="inline-block bg-ru-yellow px-4 py-2 rounded-full text-sm font-semibold text-ru-blue-dark">$100M+ ARR ceo · 1 post/quarter → 3 posts/week</div>
+    </div>
+
+    <!-- NEW: testimonial pull quote -->
+    <div class="max-w-3xl mx-auto bg-white rounded-3xl p-8 md:p-10 border border-black/5 mb-12">
+      <p class="serif text-2xl md:text-3xl text-ru-blue-dark leading-snug mb-5">
+        "i finally sound like me on linkedin — without the 10 hours a week. my inbound pipeline is the busiest it's ever been."
+      </p>
+      <p class="text-sm text-gray-500 font-medium">
+        — ceo, $100M+ ARR b2b saas company <span class="text-gray-400 italic">(name shared on request)</span>
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="bg-white rounded-2xl p-6 text-center">
+        <div class="text-4xl font-black text-ru-blue-dark mb-1">+4,200%</div>
+        <p class="text-sm text-gray-600">impression growth</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center">
+        <div class="text-4xl font-black text-ru-blue-dark mb-1">12×</div>
+        <p class="text-sm text-gray-600">posting frequency</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center">
+        <div class="text-4xl font-black text-ru-blue-dark mb-1">30s</div>
+        <p class="text-sm text-gray-600">of ceo's time per post</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= WHO IT'S FOR (cards + concrete scenarios) ========= -->
+<section id="who-its-for" class="py-24 md:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-3xl mb-16">
+      <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-4">who it's for</p>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight text-ru-blue-dark leading-tight mb-4">if one of these is on your team, this is for you.</h2>
+      <p class="text-lg text-gray-600">each engagement is one exec. run it for one. run it for your whole leadership team. it compounds.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-ru-soft rounded-3xl p-8 card-lift border border-black/5">
+        <div class="w-12 h-12 rounded-xl bg-ru-blue/10 flex items-center justify-center mb-6">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-ru-blue"><path d="M12 2l3 6 6 1-4.5 4 1 6L12 16l-5.5 3 1-6L3 9l6-1z"/></svg>
+        </div>
+        <p class="serif text-lg text-gray-500 mb-2">"i know i should be posting."</p>
+        <h3 class="font-black text-2xl mb-4 text-ru-blue-dark">founders & ceos.</h3>
+        <p class="text-gray-600 leading-relaxed mb-4">you're the most credible voice at the company. posting consistently = inbound leads, easier hiring, warmer fundraising conversations. we handle everything except the 30-second slack approval.</p>
+        <p class="text-sm font-semibold text-ru-blue bg-ru-yellow/30 rounded-xl px-4 py-3">if you're raising in the next 12 months, this is the cheapest insurance policy you can buy.</p>
+      </div>
+      <div class="bg-ru-soft rounded-3xl p-8 card-lift border border-black/5">
+        <div class="w-12 h-12 rounded-xl bg-ru-blue/10 flex items-center justify-center mb-6">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-ru-blue"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
+        </div>
+        <p class="serif text-lg text-gray-500 mb-2">"i want my leadership team posting."</p>
+        <h3 class="font-black text-2xl mb-4 text-ru-blue-dark">cmos & marketing leaders.</h3>
+        <p class="text-gray-600 leading-relaxed mb-4">one exec posting is good. five execs posting is a demand gen channel. we onboard each exec in 45 min and run them in parallel. your content calendar runs itself.</p>
+        <p class="text-sm font-semibold text-ru-blue bg-ru-yellow/30 rounded-xl px-4 py-3">if your ceo keeps asking why the company isn't more "known" in the category — fix this.</p>
+      </div>
+      <div class="bg-ru-soft rounded-3xl p-8 card-lift border border-black/5">
+        <div class="w-12 h-12 rounded-xl bg-ru-blue/10 flex items-center justify-center mb-6">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-ru-blue"><path d="M3 3v18h18M7 14l4-4 4 4 6-6"/></svg>
+        </div>
+        <p class="serif text-lg text-gray-500 mb-2">"i want my team warming up accounts."</p>
+        <h3 class="font-black text-2xl mb-4 text-ru-blue-dark">vps of sales & revenue leaders.</h3>
+        <p class="text-gray-600 leading-relaxed mb-4">when your vp of sales has a thoughtful post every 3 days, her 500 prospect connections read it. cold outreach stops being cold. trust compounds before the first call.</p>
+        <p class="text-sm font-semibold text-ru-blue bg-ru-yellow/30 rounded-xl px-4 py-3">if your SDRs are cold-calling accounts where no one's heard of your execs, fix this first.</p>
+      </div>
+    </div>
+    <div class="text-center mt-14">
+      <a href="https://intakeform-smoky.vercel.app/" class="btn btn-primary text-base py-4 px-8">scope my rollout →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========= NEW: FOUNDER SECTION ========= -->
+<section class="py-24 md:py-32 bg-ru-soft">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-10 items-center">
+      <div class="md:col-span-1">
+        <div class="aspect-square rounded-3xl bg-gradient-to-br from-ru-blue to-ru-blue-dark flex items-center justify-center text-white text-8xl font-black">
+          a
+        </div>
+        <p class="text-xs text-gray-400 italic mt-3 text-center">replace with real photo</p>
+      </div>
+      <div class="md:col-span-2">
+        <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-4">who's behind this</p>
+        <h2 class="text-3xl md:text-4xl font-black tracking-tight text-ru-blue-dark leading-tight mb-5">built by alec kremins.</h2>
+        <p class="text-lg text-gray-600 leading-relaxed mb-4">
+          ex-beehiiv. ex-ramp. raised a pre-seed round for rallyup 14 days after getting fired — from people he'd never met in person, most of whom found him through linkedin.
+        </p>
+        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+          posting on linkedin changed his life. now he builds the system that does the same for busy b2b execs.
+        </p>
+        <div class="flex items-center gap-4">
+          <a href="https://linkedin.com/in/aleckremins" class="text-sm font-semibold text-ru-blue hover:text-ru-blue-dark">alec on linkedin →</a>
+          <span class="text-gray-300">·</span>
+          <a href="https://firedtoacquired.com" class="text-sm font-semibold text-ru-blue hover:text-ru-blue-dark">the newsletter →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= FAQ (pricing q added) ========= -->
+<section id="faq" class="py-24 md:py-32 bg-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="mb-12">
+      <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-4">faq</p>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight text-ru-blue-dark leading-tight">questions we get a lot.</h2>
+    </div>
+    <div>
+      <details>
+        <summary>how much does this cost?</summary>
+        <div>engagements start at $999/month per exec, scaling up based on volume and team size. we'll scope your rollout on the call. no surprises, no contracts you can't get out of.</div>
+      </details>
+      <details>
+        <summary>how much of my time does this actually take?</summary>
+        <div>45 min to set up your voice profile. after that, 30 seconds per post to approve in slack. that's it. you're not writing, editing, or scheduling.</div>
+      </details>
+      <details>
+        <summary>does it actually sound like me, or is this just chatgpt with better packaging?</summary>
+        <div>no. our system is trained on your voice, and a human editor reviews every post before it hits your slack. if you wouldn't say it, we don't send it. you get veto power on every single post.</div>
+      </details>
+      <details>
+        <summary>what if i've never posted on linkedin before?</summary>
+        <div>that's most of our clients. we handle positioning, topics, cadence, and what the algorithm's rewarding this week. you just approve posts. consistent posting is how you build the habit — we just make consistent possible.</div>
+      </details>
+      <details>
+        <summary>can i run this for one exec, or does it have to be a whole team?</summary>
+        <div>either. solo exec is our most common start. a lot of ceos bring us in for themselves, see the result, then roll it out to their full leadership team.</div>
+      </details>
+      <details>
+        <summary>how do you measure results?</summary>
+        <div>we track everything — impressions, engagement rate, profile views, inbound dms, connection requests from icp. you get a monthly report. most clients see 5–10x their baseline impressions within 30 days.</div>
+      </details>
+      <details>
+        <summary>what's the commitment, and what if it doesn't work?</summary>
+        <div>3-month minimum. if we haven't meaningfully grown your exec's profile by day 90, month 4 is on us. linkedin isn't a one-post strategy — the algorithm and your audience both need time to learn your voice.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========= FINAL CTA (with risk reversal) ========= -->
+<section class="relative overflow-hidden py-24 md:py-32" style="background: linear-gradient(135deg, #3d68f5 0%, #1e3a8a 100%);">
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 28px 28px;"></div>
+  <div class="absolute top-10 right-10 w-32 h-32 bg-ru-yellow/30 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-10 left-10 w-40 h-40 bg-ru-yellow/20 rounded-full blur-3xl"></div>
+  <div class="relative max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-5xl md:text-7xl font-black tracking-tight text-white leading-[0.95] mb-6">your execs should be posting <span class="text-ru-yellow">this week.</span></h2>
+    <p class="text-xl md:text-2xl text-white/80 mb-8 serif">they won't, because they're busy. we fix that.</p>
+
+    <!-- NEW: risk reversal above button -->
+    <p class="text-base text-white/70 max-w-xl mx-auto mb-8 leading-relaxed">
+      worst case: you get a free 30-min breakdown of why your execs aren't posting and what to do about it.
+    </p>
+
+    <a href="https://intakeform-smoky.vercel.app/" class="btn btn-yellow text-lg py-5 px-10 font-bold">scope my rollout →</a>
+    <p class="text-white/60 text-sm mt-5">30 min · no pitch deck · we'll tell you if we're the right fit</p>
+  </div>
+</section>
+
+<!-- ========= FOOTER ========= -->
+<footer class="bg-ru-blue-dark text-white pt-20 pb-10">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 mb-14">
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="logo-box">
+            <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+              <path d="M25 40 L25 60 Q25 63 28 63 L33 63 L33 37 L28 37 Q25 37 25 40 Z" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/>
+              <path d="M33 35 L78 22 Q82 21 82 25 L82 75 Q82 79 78 78 L33 65 Z" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <span class="font-black text-xl tracking-tight">rallyup</span>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed">made by people who actually like posting on linkedin.</p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-widest text-white/50 font-bold mb-4">product</p>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#whats-included" class="text-white/80 hover:text-ru-yellow">what's included</a></li>
+          <li><a href="/case-studies" class="text-white/80 hover:text-ru-yellow">case studies</a></li>
+          <li><a href="https://intakeform-smoky.vercel.app/" class="text-white/80 hover:text-ru-yellow">scope my rollout</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-widest text-white/50 font-bold mb-4">company</p>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/about" class="text-white/80 hover:text-ru-yellow">about us</a></li>
+          <li><a href="/contact" class="text-white/80 hover:text-ru-yellow">contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-widest text-white/50 font-bold mb-4">resources</p>
+        <ul class="space-y-3 text-sm">
+          <li><a href="https://firedtoacquired.com" class="text-white/80 hover:text-ru-yellow">newsletter</a></li>
+          <li><a href="#" class="text-white/80 hover:text-ru-yellow">the free setup guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-5">
+      <p class="text-white/50 text-xs">rallyup © 2026, all rights reserved.</p>
+      <div class="flex items-center gap-6 text-xs text-white/60">
+        <a href="#" class="hover:text-ru-yellow">privacy policy</a>
+        <a href="#" class="hover:text-ru-yellow">terms of use</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://linkedin.com/company/rallyup" class="text-white/60 hover:text-ru-yellow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+        </a>
+        <a href="https://x.com/rallyup" class="text-white/60 hover:text-ru-yellow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

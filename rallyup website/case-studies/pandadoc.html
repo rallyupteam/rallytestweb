@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pandadoc case study · rallyup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --ru-blue:#3d68f5; --ru-blue-dark:#2a3ad8; --ru-yellow:#DDFF4D; --ru-ink:#0b1020; --ru-bg-soft:#f7f8fb; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: var(--ru-ink); letter-spacing: -0.01em; }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; }
+  .bg-ru-soft { background: var(--ru-bg-soft); }
+  .text-ru-blue-dark { color: var(--ru-blue-dark); }
+  .text-ru-blue { color: var(--ru-blue); }
+  .bg-ru-blue { background: var(--ru-blue); }
+  .bg-ru-yellow { background: var(--ru-yellow); }
+  .btn { display:inline-flex; align-items:center; justify-content:center; padding:14px 24px; border-radius:999px; font-weight:600; font-size:15px; background: var(--ru-blue); color:white; transition: all .2s ease; }
+  .btn:hover { background: var(--ru-blue-dark); transform: translateY(-1px); box-shadow: 0 12px 28px rgba(61,104,245,0.35); }
+  .logo-box { width:36px; height:36px; border-radius:9px; background: linear-gradient(135deg, #6a7ff0 0%, #3a4fd8 100%); display:flex; align-items:center; justify-content:center; }
+  .placeholder { background: repeating-linear-gradient(45deg, rgba(11,16,32,0.03) 0 10px, rgba(11,16,32,0.05) 10px 20px); border: 2px dashed rgba(11,16,32,0.1); border-radius: 20px; padding: 40px; text-align: center; color: rgba(11,16,32,0.4); font-weight: 500; }
+</style>
+</head>
+<body class="bg-white">
+
+<nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-black/5">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="../Rallyup Landing.html" class="flex items-center gap-2.5">
+      <div class="logo-box">
+        <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+          <path d="M25 40 L25 60 Q25 63 28 63 L33 63 L33 37 L28 37 Q25 37 25 40 Z" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/>
+          <path d="M33 35 L78 22 Q82 21 82 25 L82 75 Q82 79 78 78 L33 65 Z" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <span class="font-black text-xl tracking-tight text-ru-blue-dark">rallyup</span>
+    </a>
+    <a href="../Rallyup Landing.html" class="text-sm font-medium text-gray-700 hover:text-ru-blue">← back to rallyup</a>
+  </div>
+</nav>
+
+<section class="max-w-5xl mx-auto px-6 pt-20 pb-16">
+  <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-5">case study · pandadoc</p>
+  <h1 class="text-5xl md:text-7xl font-black tracking-tight text-ru-blue-dark leading-[0.98] mb-6">
+    how pandadoc turned linkedin into <span class="serif text-ru-blue">a demand channel.</span>
+  </h1>
+  <p class="text-xl text-gray-600 max-w-2xl leading-relaxed mb-8">
+    placeholder case study. drop in real numbers, quotes, screenshots, and posts here.
+  </p>
+  <div class="flex items-center gap-6 flex-wrap">
+    <img src="../assets/logos/pandadoc.png" alt="pandadoc" class="h-14 w-auto rounded-xl"/>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="text-gray-500">industry</span>
+      <span class="font-semibold">b2b saas · docs + e-signature</span>
+    </div>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="text-gray-500">rolled out</span>
+      <span class="font-semibold">ceo + cmo</span>
+    </div>
+  </div>
+</section>
+
+<section class="bg-ru-soft py-16">
+  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+    <div class="bg-white rounded-2xl p-7 border border-black/5">
+      <p class="text-xs uppercase tracking-widest text-ru-blue font-bold mb-3">impressions</p>
+      <p class="text-4xl font-black text-ru-blue-dark mb-1">— × baseline</p>
+      <p class="text-sm text-gray-500">add real growth figure here</p>
+    </div>
+    <div class="bg-white rounded-2xl p-7 border border-black/5">
+      <p class="text-xs uppercase tracking-widest text-ru-blue font-bold mb-3">inbound</p>
+      <p class="text-4xl font-black text-ru-blue-dark mb-1">— deals</p>
+      <p class="text-sm text-gray-500">sourced directly from posts</p>
+    </div>
+    <div class="bg-white rounded-2xl p-7 border border-black/5">
+      <p class="text-xs uppercase tracking-widest text-ru-blue font-bold mb-3">time per post</p>
+      <p class="text-4xl font-black text-ru-blue-dark mb-1">30s</p>
+      <p class="text-sm text-gray-500">slack approval only</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-20">
+  <div class="max-w-3xl mx-auto px-6 space-y-10">
+    <div>
+      <h2 class="text-3xl font-black text-ru-blue-dark mb-4">the starting point</h2>
+      <div class="placeholder">add context: what was the state of their linkedin before rallyup? what were they trying to fix?</div>
+    </div>
+    <div>
+      <h2 class="text-3xl font-black text-ru-blue-dark mb-4">what we did</h2>
+      <div class="placeholder">add the engagement shape: which execs, what cadence, how the context graph was built.</div>
+    </div>
+    <div>
+      <h2 class="text-3xl font-black text-ru-blue-dark mb-4">best-performing post</h2>
+      <div class="placeholder">embed a screenshot or transcript of the single best post + why it worked.</div>
+    </div>
+    <div>
+      <h2 class="text-3xl font-black text-ru-blue-dark mb-4">in their own words</h2>
+      <div class="bg-ru-soft border border-black/5 rounded-3xl p-8">
+        <p class="serif text-2xl md:text-3xl text-ru-blue-dark leading-snug mb-5">"pull quote from the client goes here."</p>
+        <p class="text-sm text-gray-500 font-medium">— name, title, pandadoc</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-ru-blue text-white py-20">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h2 class="text-4xl md:text-5xl font-black leading-tight mb-6">want results like this?</h2>
+    <a href="https://intakeform-smoky.vercel.app/" class="btn bg-ru-yellow text-ru-blue-dark hover:bg-white">see if you qualify →</a>
+    <p class="text-white/70 text-sm mt-4">3 questions · 60 seconds</p>
+  </div>
+</section>
+
+<footer class="bg-ru-blue-dark text-white py-8">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-white/50">rallyup © 2026.</div>
+</footer>
+
+</body>
+</html>
