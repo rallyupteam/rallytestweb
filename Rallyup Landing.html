@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rallyup. your execs should be posting on linkedin. we make it take 30 seconds.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ru-blue: #3d68f5;
+    --ru-blue-dark: #2a3ad8;
+    --ru-blue-deep: #1e3a8a;
+    --ru-yellow: #DDFF4D;
+    --ru-ink: #0b1020;
+    --ru-gray: #6b7280;
+    --ru-bg: #ffffff;
+    --ru-bg-soft: #f7f8fb;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--ru-ink);
+    background: var(--ru-bg);
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+  }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .text-ru-blue { color: var(--ru-blue); }
+  .text-ru-blue-dark { color: var(--ru-blue-dark); }
+  .bg-ru-blue { background-color: var(--ru-blue); }
+  .bg-ru-blue-dark { background-color: var(--ru-blue-dark); }
+  .bg-ru-yellow { background-color: var(--ru-yellow); }
+  .bg-ru-soft { background-color: var(--ru-bg-soft); }
+
+  .btn {
+    position: relative;
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 14px 24px; border-radius: 999px;
+    font-weight: 600; font-size: 15px; letter-spacing: -0.01em;
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    cursor: pointer; white-space: nowrap;
+    will-change: transform;
+  }
+  .btn-primary { background: var(--ru-blue); color: white; }
+  .btn-primary:hover { background: var(--ru-blue-dark); box-shadow: 0 12px 28px rgba(61,104,245,0.35); }
+  .btn-yellow { background: var(--ru-yellow); color: var(--ru-blue-dark); }
+  .btn-yellow:hover { box-shadow: 0 12px 28px rgba(221,255,77,0.45); }
+  .btn .btn-label { display: inline-block; transition: transform 0.25s cubic-bezier(.2,.8,.2,1); }
+
+  .gradient-underline {
+    background-image: linear-gradient(transparent 70%, rgba(221,255,77,0.65) 70%);
+    background-repeat: no-repeat; background-size: 100% 100%; padding: 0 4px;
+  }
+  .card-lift { transition: transform 0.22s ease, box-shadow 0.22s ease; }
+  .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(11,16,32,0.08); }
+
+  details { border-bottom: 1px solid rgba(11,16,32,0.08); }
+  details > summary { list-style: none; cursor: pointer; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; font-weight: 600; font-size: 18px; }
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary::after { content: '+'; font-size: 28px; font-weight: 300; color: var(--ru-blue); transition: transform 0.2s ease; }
+  details[open] > summary::after { content: '–'; }
+  details > div { padding: 0 0 24px; color: var(--ru-gray); font-size: 17px; line-height: 1.65; max-width: 800px; }
+
+  .dot-pattern { background-image: radial-gradient(circle, rgba(61,104,245,0.12) 1px, transparent 1px); background-size: 22px 22px; }
+  .post-preview { box-shadow: 0 30px 60px rgba(11,16,32,0.12), 0 8px 20px rgba(11,16,32,0.06); }
+  .logo-box { width: 36px; height: 36px; border-radius: 9px; background: linear-gradient(135deg, #6a7ff0 0%, #3a4fd8 100%); display: flex; align-items: center; justify-content: center; }
+  .check-circle { width: 24px; height: 24px; min-width: 24px; border-radius: 50%; background: var(--ru-yellow); display: flex; align-items: center; justify-content: center; color: var(--ru-blue-dark); font-weight: 900; font-size: 13px; }
+
+  .caret { display: inline-block; width: 2px; height: 1em; background: var(--ru-blue); margin-left: 2px; vertical-align: -2px; animation: caret-blink 1s steps(1, end) infinite; }
+  @keyframes caret-blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+  .chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(221,255,77,0.5); border: 1px solid rgba(221,255,77,0.9); color: var(--ru-blue-dark); padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .chip .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--ru-blue-dark); animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+  .marquee-xl { overflow: hidden; mask-image: linear-gradient(90deg, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%); }
+  .marquee-xl .marquee-item { padding: 0 60px; }
+  .marquee-xl .marquee-item img { height: 72px; }
+  .marquee-xl .marquee-item .lm-name { font-size: 28px; font-weight: 800; }
+  @media (max-width: 768px) {
+    .marquee-xl .marquee-item { padding: 0 30px; }
+    .marquee-xl .marquee-item img { height: 44px; }
+    .marquee-xl .marquee-item .lm-name { font-size: 20px; }
+  }
+  /* Logo marquee */
+  .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); }
+  .marquee-inline .marquee-item { padding: 0 28px; }
+  .marquee-inline .marquee-item img { height: 30px; }
+  .marquee-inline .marquee-item .lm-name { font-size: 15px; }
+  .marquee-track { display: flex; width: max-content; animation: marquee-scroll 38s linear infinite; align-items: center; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-item { flex: 0 0 auto; padding: 0 44px; display: flex; align-items: center; gap: 14px; opacity: 0.75; transition: opacity 0.2s ease, transform 0.2s ease; }
+  .marquee-item img { height: 42px; width: auto; object-fit: contain; }
+  .marquee-item .lm-name { font-weight: 700; font-size: 18px; letter-spacing: -0.02em; color: rgba(11,16,32,0.7); }
+  .marquee-item.clickable { cursor: pointer; }
+  .marquee-item.clickable:hover { opacity: 1; transform: translateY(-2px); }
+  .marquee-item.clickable::after { content: attr(data-badge); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--ru-yellow); color: var(--ru-blue-dark); padding: 3px 8px; border-radius: 999px; margin-left: 4px; white-space: nowrap; }
+  @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal[data-delay="1"] { transition-delay: 0.08s; }
+  .reveal[data-delay="2"] { transition-delay: 0.16s; }
+  .reveal[data-delay="3"] { transition-delay: 0.24s; }
+
+  .stat-num { font-variant-numeric: tabular-nums; }
+
+  /* ====== Hero 3-step scene ====== */
+  .scene-frame {
+    position: relative;
+    aspect-ratio: 4 / 5.4;
+    max-width: 440px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 24px;
+    background: white;
+    box-shadow: 0 30px 60px rgba(11,16,32,0.12), 0 8px 20px rgba(11,16,32,0.06);
+    overflow: hidden;
+  }
+  .scene-stage { position: absolute; inset: 0; padding: 22px; display: flex; flex-direction: column; }
+  .scene { position: absolute; inset: 0; padding: 22px; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; display: flex; flex-direction: column; }
+  .scene.active { opacity: 1; pointer-events: auto; }
+
+  .scene-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .step-badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px; background: rgba(61,104,245,0.08); border: 1px solid rgba(61,104,245,0.18); font-size: 11px; font-weight: 700; color: var(--ru-blue-dark); text-transform: uppercase; letter-spacing: 0.08em; }
+  .step-badge .sb-num { width: 18px; height: 18px; border-radius: 999px; background: var(--ru-blue); color: white; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; }
+  .scene-title { font-weight: 800; color: var(--ru-blue-dark); font-size: 15px; }
+
+  /* Scene 1: Context graph */
+  .graph-wrap { position: relative; flex: 1; border-radius: 14px; background: #0b1020; overflow: hidden; }
+  .graph-wrap::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 16px 16px; opacity: 0.6; }
+  .graph-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .graph-node { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 4px; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.5s ease; }
+  .graph-node.in { opacity: 1; }
+  .graph-node .dot { width: 14px; height: 14px; border-radius: 999px; background: var(--ru-blue); box-shadow: 0 0 0 4px rgba(61,104,245,0.18), 0 0 16px rgba(61,104,245,0.5); }
+  .graph-node.center .dot { width: 22px; height: 22px; background: var(--ru-yellow); box-shadow: 0 0 0 6px rgba(221,255,77,0.2), 0 0 20px rgba(221,255,77,0.6); }
+  .graph-node .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 600; color: rgba(255,255,255,0.82); background: rgba(11,16,32,0.7); padding: 2px 6px; border-radius: 4px; white-space: nowrap; border: 1px solid rgba(255,255,255,0.08); }
+  .graph-node.center .lbl { color: var(--ru-yellow); background: rgba(221,255,77,0.08); border-color: rgba(221,255,77,0.3); font-size: 10px; font-weight: 700; }
+  .graph-node.drift { animation: drift 8s ease-in-out infinite; }
+  @keyframes drift { 0%,100% { transform: translate(-50%, -50%) translate(0, 0); } 50% { transform: translate(-50%, -50%) translate(3px, -2px); } }
+  .graph-line { stroke: rgba(61,104,245,0.45); stroke-width: 1.2; fill: none; stroke-dasharray: 200; stroke-dashoffset: 200; transition: stroke-dashoffset 0.8s ease; }
+  .graph-line.in { stroke-dashoffset: 0; }
+
+  /* Scene 2: Intake form */
+  .form-wrap { flex: 1; border-radius: 14px; background: var(--ru-bg-soft); padding: 16px; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(11,16,32,0.05); }
+  .form-progress { height: 6px; background: rgba(11,16,32,0.08); border-radius: 999px; overflow: hidden; position: relative; }
+  .form-progress > span { position: absolute; inset: 0; background: var(--ru-blue); border-radius: 999px; width: 0%; transition: width 0.8s cubic-bezier(.2,.8,.2,1); }
+  .form-meta { display: flex; justify-content: space-between; font-size: 10px; color: var(--ru-gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+  .form-q { background: white; border: 1px solid rgba(11,16,32,0.06); border-radius: 10px; padding: 10px 12px; opacity: 0; transform: translateY(6px); transition: opacity 0.4s ease, transform 0.4s ease; }
+  .form-q.in { opacity: 1; transform: none; }
+  .form-q .q-label { font-size: 10px; font-weight: 700; color: var(--ru-blue-dark); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .form-q .q-text { font-size: 12.5px; color: var(--ru-ink); font-weight: 500; margin-bottom: 6px; line-height: 1.4; }
+  .form-q .q-answer { font-size: 12px; color: var(--ru-blue-dark); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .form-q .q-answer .tick { width: 14px; height: 14px; border-radius: 999px; background: var(--ru-yellow); color: var(--ru-blue-dark); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; }
+  .form-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: var(--ru-gray); }
+  .form-foot .pill { background: var(--ru-yellow); color: var(--ru-blue-dark); padding: 4px 10px; border-radius: 999px; font-weight: 700; font-size: 10px; }
+
+  /* Scene 3: Slack + LinkedIn */
+  .slack-scene { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .post-card { background: white; border: 1px solid rgba(11,16,32,0.08); border-radius: 12px; padding: 12px; }
+  .post-card .head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .post-card .avt { width: 32px; height: 32px; border-radius: 999px; background: linear-gradient(135deg, #6a7ff0, #3a4fd8); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 12px; }
+  .post-card .name { font-size: 12px; font-weight: 700; color: var(--ru-ink); }
+  .post-card .title { font-size: 10px; color: var(--ru-gray); }
+  .post-card .body { font-size: 12px; color: var(--ru-ink); line-height: 1.55; white-space: pre-line; min-height: 72px; }
+  .slack-row { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 10px; background: #f5f6f8; font-size: 11px; font-weight: 500; border: 1px solid rgba(11,16,32,0.05); }
+  .slack-reaction { display: inline-flex; align-items: center; gap: 3px; padding: 3px 7px; border-radius: 999px; background: white; border: 1px solid rgba(11,16,32,0.08); font-size: 11px; }
+  .slack-reaction.active { background: #e8f0ff; border-color: #3d68f5; color: #2a3ad8; }
+  .slack-status { font-size: 10px; color: var(--ru-gray); text-align: center; font-weight: 600; }
+
+  /* Step progress indicator */
+  .step-dots { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
+  .step-dot { width: 26px; height: 4px; border-radius: 999px; background: rgba(11,16,32,0.12); transition: background 0.3s ease, width 0.3s ease; cursor: pointer; }
+  .step-dot.active { background: var(--ru-blue); width: 40px; }
+
+  /* ====== Pair table (problem → fix) ====== */
+  .pair-table { position: relative; }
+  .pair-header {
+    display: grid;
+    grid-template-columns: 72px 1fr 72px 1fr;
+    align-items: center;
+    padding: 0 12px 18px;
+    border-bottom: 1px solid rgba(11,16,32,0.08);
+  }
+  .pair-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+  .pair-eyebrow-pain { color: rgba(11,16,32,0.45); }
+  .pair-eyebrow-fix { color: var(--ru-blue); }
+
+  .pair-row {
+    display: grid;
+    grid-template-columns: 72px 1fr 72px 1fr;
+    align-items: center;
+    padding: 28px 12px;
+    border-bottom: 1px solid rgba(11,16,32,0.08);
+    position: relative;
+    transition: background 0.3s ease;
+  }
+  .pair-row:last-child { border-bottom: none; }
+  .pair-row::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    width: 3px; height: 0;
+    background: var(--ru-yellow);
+    border-radius: 0 3px 3px 0;
+    transform: translateY(-50%);
+    transition: height 0.35s cubic-bezier(.2,.8,.2,1);
+  }
+  .pair-row:hover::before { height: 70%; }
+
+  .pair-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    color: rgba(61,104,245,0.55);
+    letter-spacing: 0.02em;
+  }
+  .pair-text {
+    font-size: 21px; font-weight: 600;
+    letter-spacing: -0.012em;
+    line-height: 1.3;
+    padding-right: 24px;
+  }
+  .pair-pain {
+    color: rgba(11,16,32,0.55);
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  .pair-row:hover .pair-pain { color: rgba(11,16,32,0.75); }
+  .pair-fix {
+    color: var(--ru-blue-dark);
+    padding-right: 0;
+  }
+  .pair-fix .serif { font-style: italic; font-weight: 500; }
+
+  /* Arrow in the middle — grows on hover */
+  .pair-arrow {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 999px;
+    background: white;
+    color: var(--ru-blue-dark);
+    border: 1.5px solid rgba(11,16,32,0.08);
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.35s cubic-bezier(.2,.8,.2,1);
+    position: relative;
+  }
+  .pair-row:hover .pair-arrow {
+    background: var(--ru-yellow);
+    border-color: var(--ru-yellow);
+    color: var(--ru-blue-dark);
+    transform: translateX(6px);
+  }
+  .pair-row:hover .arrow-icon { animation: arrow-nudge 0.7s ease; }
+  @keyframes arrow-nudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+  }
+
+  /* ------ Row 1: the demo moment ------ */
+  .pair-row-demo .pair-fix-wrap { position: relative; display: flex; flex-direction: column; gap: 6px; }
+  .pair-fix-static {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+  }
+  .pair-fix-demo {
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    transform: translateY(-50%) scale(0.94);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .pair-row-demo:hover .pair-fix-static { opacity: 0; transform: translateY(-4px); }
+  .pair-row-demo:hover .pair-fix-demo { opacity: 1; transform: translateY(-50%) scale(1); }
+
+  .pair-hint {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(61,104,245,0.6);
+    font-weight: 600;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+  }
+  .pair-row-demo:hover .pair-hint { opacity: 0; }
+
+  /* Slack-style demo bubble */
+  .sl-bubble {
+    display: inline-grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 12px;
+    align-items: center;
+    background: white;
+    border: 1px solid rgba(11,16,32,0.08);
+    border-radius: 14px;
+    padding: 10px 14px;
+    box-shadow: 0 12px 30px rgba(11,16,32,0.08), 0 2px 6px rgba(11,16,32,0.04);
+    max-width: 100%;
+  }
+  .sl-head { grid-column: 1 / -1; display: inline-flex; align-items: center; gap: 6px; font-size: 10px; color: rgba(11,16,32,0.55); font-weight: 700; letter-spacing: 0.03em; }
+  .sl-dot { width: 6px; height: 6px; border-radius: 999px; background: #4A154B; }
+  .sl-channel { font-family: 'JetBrains Mono', monospace; text-transform: lowercase; }
+  .sl-body { font-size: 13.5px; color: var(--ru-blue-dark); font-weight: 500; }
+  .sl-actions { display: inline-flex; gap: 6px; }
+  .sl-btn {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+  .sl-btn-approve { background: var(--ru-yellow); color: var(--ru-blue-dark); }
+  .sl-btn-edit { background: rgba(11,16,32,0.06); color: rgba(11,16,32,0.6); }
+  .sl-timer {
+    grid-column: 1 / -1;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10.5px;
+    color: #059669;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .sl-timer-dot { width: 6px; height: 6px; border-radius: 999px; background: #10b981; box-shadow: 0 0 0 4px rgba(16,185,129,0.18); }
+
+  @media (max-width: 900px) {
+    .pair-header { grid-template-columns: 48px 1fr; padding: 0 4px 14px; }
+    .pair-header > *:nth-child(3), .pair-header > *:nth-child(4) { display: none; }
+    .pair-row { grid-template-columns: 48px 1fr; grid-template-rows: auto auto; row-gap: 8px; padding: 22px 4px; }
+    .pair-num { grid-column: 1; grid-row: 1; align-self: start; }
+    .pair-row > .pair-pain { grid-column: 2; grid-row: 1; padding-right: 0; font-size: 18px; }
+    .pair-arrow { grid-column: 1; grid-row: 2; transform: rotate(90deg); width: 36px; height: 36px; justify-self: center; }
+    .pair-row:hover .pair-arrow { transform: rotate(90deg) translateY(-4px) scale(1.06); }
+    .pair-row > .pair-fix, .pair-row-demo .pair-fix-wrap { grid-column: 2; grid-row: 2; font-size: 18px; }
+    .pair-row-demo .pair-fix-wrap { min-height: 44px; }
+    .pair-hint { display: none; }
+  }
+
+  /* Pricing */
+  .check-circle-sm { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; background: var(--ru-yellow); display: flex; align-items: center; justify-content: center; color: var(--ru-blue-dark); font-weight: 900; font-size: 11px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    .caret { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .graph-node.drift { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========= NAV ========= -->
+<nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-black/5">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2.5">
+      <div class="logo-box">
+        <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+          <path d="M25 40 L25 60 Q25 63 28 63 L33 63 L33 37 L28 37 Q25 37 25 40 Z" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/>
+          <path d="M33 35 L78 22 Q82 21 82 25 L82 75 Q82 79 78 78 L33 65 Z" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <span class="font-black text-xl tracking-tight text-ru-blue-dark">rallyup</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#problem" class="text-sm font-medium text-gray-700 hover:text-ru-blue">the problem</a>
+      <a href="#proof" class="text-sm font-medium text-gray-700 hover:text-ru-blue">proof</a>
+      <a href="#pricing" class="text-sm font-medium text-gray-700 hover:text-ru-blue">pricing</a>
+      <a href="#faq" class="text-sm font-medium text-gray-700 hover:text-ru-blue">faq</a>
+    </div>
+    <a href="https://intakeform-smoky.vercel.app/" class="btn btn-yellow magnetic text-sm py-2.5 px-5"><span class="btn-label">see if you qualify →</span></a>
+  </div>
+</nav>
+
+<!-- ========= HERO ========= -->
+<section class="relative overflow-hidden">
+  <div class="dot-pattern absolute inset-0 opacity-70"></div>
+  <div class="relative max-w-7xl mx-auto px-6 pt-16 pb-6 md:pt-20 md:pb-8 text-center">
+
+    <h1 class="text-5xl md:text-[84px] font-black leading-[0.98] tracking-tight text-ru-blue-dark mb-8 reveal max-w-5xl mx-auto" data-delay="1">
+      your execs should own <span class="gradient-underline">LinkedIn</span>...
+      <br><span class="serif text-5xl md:text-[84px] text-ru-blue inline-block mt-5 md:mt-7">we handle it. &lt;5 mins / week.</span>
+    </h1>
+
+    <div class="flex justify-center reveal" data-delay="3">
+      <a href="https://intakeform-smoky.vercel.app/" class="btn btn-yellow magnetic text-base py-4 px-7"><span class="btn-label">here's how →</span></a>
+    </div>
+  </div>
+
+  <!-- Full-width logo marquee -->
+  <div class="reveal pt-6 pb-16 md:pb-20" data-delay="3">
+    <p class="text-center text-xs uppercase tracking-[0.25em] text-gray-500 font-bold mb-8">trusted by these b2b legends</p>
+    <div class="marquee marquee-xl">
+      <div class="marquee-track" id="marquee-track"></div>
+    </div>
+    <p class="text-center text-xs text-gray-400 italic mt-6">click a case-study logo to see how they scaled</p>
+  </div>
+</section>
+
+<!-- ========= LOGO MARQUEE (moved inline into hero) ========= -->
+
+<!-- ========= PROBLEM ========= -->
+<section id="problem" class="py-20 md:py-28 bg-ru-soft relative overflow-hidden">
+  <!-- soft ambient glow -->
+  <div class="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-ru-yellow/25 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-24 -left-24 w-[380px] h-[380px] rounded-full bg-ru-blue/10 blur-3xl pointer-events-none"></div>
+
+  <div class="relative max-w-6xl mx-auto px-6">
+    <div class="max-w-3xl mb-16">
+      <h2 class="text-4xl md:text-6xl font-black tracking-tight text-ru-blue-dark leading-[1.02] reveal">
+        your execs are not on linkedin.<br><span class="serif text-ru-blue">we solve that.</span>
+      </h2>
+    </div>
+
+    <!-- Pairwise grid: pain → fix -->
+    <div class="pair-table reveal">
+      <!-- header row -->
+      <div class="pair-header">
+        <div></div>
+        <p class="pair-eyebrow pair-eyebrow-pain">why they don't show up</p>
+        <div></div>
+        <p class="pair-eyebrow pair-eyebrow-fix">what we do</p>
+      </div>
+
+      <!-- Row 1 -->
+      <div class="pair-row" data-row="0">
+        <span class="pair-num">01</span>
+        <p class="pair-text pair-pain">it takes time they don't have.</p>
+        <span class="pair-arrow" aria-hidden="true">
+          <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+        <p class="pair-text pair-fix">personalized content delivered to each exec.</p>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="pair-row" data-row="1">
+        <span class="pair-num">02</span>
+        <p class="pair-text pair-pain">they don't understand what works.</p>
+        <span class="pair-arrow" aria-hidden="true">
+          <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+        <p class="pair-text pair-fix">our content engineers do.</p>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="pair-row" data-row="2">
+        <span class="pair-num">03</span>
+        <p class="pair-text pair-pain">ai generated slop damages your brand.</p>
+        <span class="pair-arrow" aria-hidden="true">
+          <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+        <p class="pair-text pair-fix">we hate slop and avoid it at all costs.</p>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="pair-row" data-row="3">
+        <span class="pair-num">04</span>
+        <p class="pair-text pair-pain">impossible to stay consistent.</p>
+        <span class="pair-arrow" aria-hidden="true">
+          <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+        <p class="pair-text pair-fix">the system keeps showing up.</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-14 reveal">
+      <a href="https://intakeform-smoky.vercel.app/" class="btn btn-yellow magnetic text-base py-4 px-8"><span class="btn-label">see if you qualify →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========= TESTIMONIAL / PROOF ========= -->
+<section id="proof" class="py-16 md:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-3xl mb-12">
+      <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-4 reveal">proof it works</p>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight text-ru-blue-dark leading-tight reveal" data-delay="1">
+        this ceo went from one post a month to <span class="serif text-ru-blue">100k+ impressions.</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1">
+      <!-- Quote card -->
+      <div class="bg-ru-soft rounded-3xl p-10 md:p-16 border border-black/5 flex flex-col reveal">
+        <svg class="text-ru-blue/20 mb-6" width="56" height="42" viewBox="0 0 42 32" fill="currentColor"><path d="M0 32V18C0 8 5 2 14 0l2 4C10 6 7 10 7 16h7v16H0zm24 0V18c0-10 5-16 14-18l2 4c-6 2-9 6-9 12h7v16H24z"/></svg>
+        <p class="text-3xl md:text-[40px] leading-[1.25] text-ru-blue-dark font-medium mb-8 max-w-5xl">
+          just want to give a shoutout to the rallyup team. my first post generated a <span class="gradient-underline">huge surge of impressions</span> (27k and counting).
+        </p>
+        <div class="mt-auto flex items-center gap-4 pt-8 border-t border-black/5">
+          <div class="w-14 h-14 rounded-xl bg-white border border-black/5 flex items-center justify-center shrink-0 overflow-hidden">
+            <img src="assets/logos/pandadoc.png" alt="pandadoc" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <div class="font-bold text-ru-blue-dark text-lg">pandadoc leadership</div>
+            <div class="text-sm text-gray-500">ceo, vp sales &amp; vp marketing · $100M+ ARR b2b saas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= PRICING ========= -->
+<section id="pricing" class="py-16 md:py-20 bg-ru-soft">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-3xl mx-auto text-center mb-14">
+      <div class="chip mb-5 reveal"><span class="pulse"></span>pricing</div>
+      <h2 class="text-4xl md:text-6xl font-black tracking-tight text-ru-blue-dark leading-[1.02] mb-5 reveal" data-delay="1">
+        how much is this <span class="serif text-ru-blue">gonna cost?</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <!-- SCALE -->
+      <div class="bg-white border border-black/5 rounded-3xl p-8 md:p-10 card-lift reveal flex flex-col">
+        <div class="flex items-center justify-between mb-4">
+          <p class="text-xs uppercase tracking-widest text-ru-blue font-bold">scale</p>
+          <span class="text-[10px] uppercase tracking-widest font-bold bg-ru-soft border border-black/10 text-gray-600 rounded-full px-3 py-1">where execs start</span>
+        </div>
+        <p class="text-gray-600 text-[15px] leading-relaxed mb-7">everything one executive needs to grow their audience and pipeline on linkedin.</p>
+        <div class="mb-3">
+          <span class="text-6xl font-black text-ru-blue-dark tracking-tight">$999</span>
+          <span class="text-gray-500 text-sm font-medium">/ exec / month</span>
+        </div>
+        <div class="inline-flex items-center gap-2 mb-5 bg-ru-yellow border border-ru-blue-dark/10 rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-ru-blue-dark"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>5× impression growth from baseline, guaranteed</div>
+        <p class="text-gray-500 text-[13px] leading-relaxed mb-7 max-w-sm">we only take on execs committed to <span class="font-semibold text-ru-blue-dark">90 days</span>, because that's when the compound kicks in. if you're looking for a trial, we're not the right fit.</p>
+        <a href="https://intakeform-smoky.vercel.app/" class="btn btn-yellow magnetic w-full text-base py-4"><span class="btn-label">see if you qualify →</span></a>
+        <div class="border-t border-black/10 mt-8 pt-6">
+          <p class="text-[11px] uppercase tracking-widest text-gray-500 font-bold mb-5">what's included</p>
+          <ul class="space-y-3.5">
+            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">3 posts per week:</span> consistent output that compounds into pipeline.</p></li>
+            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">context graph:</span> every post sounds exactly like your exec, not ai slop.</p></li>
+            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">slack-native delivery:</span> approvals in 30 seconds, not 3-day email chains.</p></li>
+            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">two-stage editorial review:</span> nothing ships without your approval.</p></li>
+            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">weekly performance report:</span> you always know what's working and why.</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CUSTOM -->
+      <div class="relative bg-ru-blue-dark text-white border border-ru-blue-dark rounded-3xl p-8 md:p-10 card-lift reveal flex flex-col overflow-hidden" data-delay="1">
+        <div class="absolute -top-16 -right-16 w-52 h-52 bg-ru-yellow/20 rounded-full blur-3xl"></div>
+        <div class="relative flex flex-col h-full">
+          <div class="flex items-center justify-between mb-4">
+            <p class="text-xs uppercase tracking-widest text-ru-yellow font-bold">custom</p>
+            <span class="text-[10px] uppercase tracking-widest font-bold bg-ru-yellow text-ru-blue-dark rounded-full px-3 py-1">most ambitious</span>
+          </div>
+          <p class="text-white/75 text-[15px] leading-relaxed mb-7">for executives and teams ready to turn linkedin into a full content and pipeline engine.</p>
+          <div class="mb-3">
+            <span class="text-white/60 text-sm font-medium mr-1">from</span>
+            <span class="text-6xl font-black tracking-tight">$2,499</span>
+            <span class="text-white/60 text-sm font-medium">/ exec / month</span>
+          </div>
+          <div class="inline-flex items-center gap-2 mb-5 bg-ru-yellow rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-ru-blue-dark"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>100k impressions in 90 days, guaranteed</div>
+          <p class="text-white/70 text-[13px] leading-relaxed mb-7">scoped to your goals. <span class="font-semibold text-white">multi-exec plans available.</span></p>
+          <a href="https://intakeform-smoky.vercel.app/" class="btn btn-yellow magnetic w-full text-base py-4"><span class="btn-label">see if you qualify →</span></a>
+          <div class="border-t border-white/15 mt-8 pt-6">
+            <p class="text-[11px] uppercase tracking-widest text-white/60 font-bold mb-5">everything in scale, plus</p>
+            <ul class="space-y-3.5">
+              <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-white/90"><span class="font-bold text-ru-yellow">5+ posts per week:</span> own the category your exec plays in.</p></li>
+              <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-white/90"><span class="font-bold text-ru-yellow">gated lead magnets:</span> turn every viral post into an email list.</p></li>
+              <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-white/90"><span class="font-bold text-ru-yellow">advanced custom visuals:</span> scroll-stopping carousels and thumbnails.</p></li>
+              <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-white/90"><span class="font-bold text-ru-yellow">dedicated content strategist:</span> a monthly call to pressure-test your narrative.</p></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========= FAQ ========= -->
+<section id="faq" class="py-16 md:py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="mb-12">
+      <p class="text-sm uppercase tracking-widest text-ru-blue font-bold mb-4 reveal">faq</p>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight text-ru-blue-dark leading-tight reveal" data-delay="1">questions we get a lot.</h2>
+    </div>
+    <div class="reveal">
+      <details>
+        <summary>does it really sound like me, or is this chatgpt in a hat?</summary>
+        <div>we train on your voice, and a human reviews every post before it hits slack. if you wouldn't say it, we don't send it. you have veto on every single post.</div>
+      </details>
+      <details>
+        <summary>what if i've never posted on linkedin before?</summary>
+        <div>no problem. we handle topics, cadence, and what the algorithm rewards this week. you just approve. we make "consistent" possible.</div>
+      </details>
+      <details>
+        <summary>can i run this for one exec, or does it have to be the whole team?</summary>
+        <div>either. most clients start solo, see it work, then roll it out to the rest of the leadership team.</div>
+      </details>
+      <details>
+        <summary>how do you measure results?</summary>
+        <div>impressions, engagement, profile views, inbound dms, icp connection requests. we send you a weekly digest with impressions, engagement, and top-performing posts across your exec team. every week, in your inbox. most clients see 5–10× baseline within 30 days.</div>
+      </details>
+      <details>
+        <summary>what's the commitment?</summary>
+        <div>we guarantee 100k impressions per month by month 3. if we fail, month 4 is on us and we get you there for free.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========= FINAL CTA ========= -->
+<section class="relative overflow-hidden py-16 md:py-24" style="background: linear-gradient(135deg, #3d68f5 0%, #1e3a8a 100%);">
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 28px 28px;"></div>
+  <div class="absolute top-10 right-10 w-32 h-32 bg-ru-yellow/30 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-10 left-10 w-40 h-40 bg-ru-yellow/20 rounded-full blur-3xl"></div>
+  <div class="relative max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-5xl md:text-7xl font-black tracking-tight text-white leading-[0.95] mb-6 reveal">your execs should be posting <span class="text-ru-yellow">this week.</span></h2>
+    <p class="text-xl md:text-2xl text-white/80 mb-8 serif reveal" data-delay="1">they won't, because they're busy. we fix that.</p>
+
+    <a href="https://intakeform-smoky.vercel.app/" class="btn btn-yellow magnetic text-lg py-5 px-10 font-bold reveal" data-delay="2"><span class="btn-label">see if you qualify →</span></a>
+  </div>
+</section>
+
+<!-- ========= FOOTER (minimal) ========= -->
+<footer class="bg-ru-blue-dark text-white py-10">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+    <a href="#" class="flex items-center gap-2.5">
+      <div class="logo-box">
+        <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+          <path d="M25 40 L25 60 Q25 63 28 63 L33 63 L33 37 L28 37 Q25 37 25 40 Z" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/>
+          <path d="M33 35 L78 22 Q82 21 82 25 L82 75 Q82 79 78 78 L33 65 Z" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <span class="font-black text-xl tracking-tight">rallyup</span>
+    </a>
+    <p class="text-white/50 text-xs order-3 md:order-2">rallyup © 2026. all rights reserved.</p>
+    <div class="flex items-center gap-4 order-2 md:order-3">
+      <a href="https://linkedin.com/company/rallyup" aria-label="linkedin" class="text-white/60 hover:text-ru-yellow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+      </a>
+      <a href="https://x.com/rallyup" aria-label="x" class="text-white/60 hover:text-ru-yellow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ========= Logo marquee ========= */
+const LOGOS = [
+  { name: 'pandadoc', src: 'assets/logos/pandadoc.png', caseStudy: 'case-studies/pandadoc.html', badge: 'case study coming soon' },
+  { name: 'freightos', src: 'assets/logos/freightos.png' },
+  { name: 'boompop', src: 'assets/logos/boompop.jpg' },
+  { name: 'flexcharge', src: 'assets/logos/flexcharge.png' },
+  { name: 'neuefische', src: 'assets/logos/neuefische.png' }
+];
+const track = document.getElementById('marquee-track');
+function renderLogo(l) {
+  const clickable = !!l.caseStudy;
+  const tag = clickable ? 'a' : 'div';
+  const href = clickable ? ` href="${l.caseStudy}"` : '';
+  const cls = `marquee-item${clickable ? ' clickable' : ''}`;
+  const badge = l.badge || 'case study →';
+  const badgeAttr = clickable ? ` data-badge="${badge}"` : '';
+  return `<${tag}${href}${badgeAttr} class="${cls}" aria-label="${l.name}"><img src="${l.src}" alt="${l.name} logo" loading="lazy"/><span class="lm-name">${l.name}</span></${tag}>`;
+}
+if (track) {
+  const html = LOGOS.map(renderLogo).join('');
+  track.innerHTML = html + html;
+}
+
+/* ========= Reveal on scroll ========= */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+/* ========= Animated counters ========= */
+const counterIO = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const to = parseInt(el.dataset.countTo, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(to * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    counterIO.unobserve(el);
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('[data-count-to]').forEach((c) => counterIO.observe(c));
+
+/* ========= Magnetic buttons ========= */
+const magnets = document.querySelectorAll('.magnetic');
+const MAG_STRENGTH = 0.3, MAG_RADIUS = 120;
+magnets.forEach((btn) => {
+  const label = btn.querySelector('.btn-label');
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const dx = e.clientX - (rect.left + rect.width/2);
+    const dy = e.clientY - (rect.top + rect.height/2);
+    if (Math.hypot(dx, dy) < MAG_RADIUS + Math.max(rect.width, rect.height)/2) {
+      btn.style.transform = `translate(${dx*MAG_STRENGTH}px, ${dy*MAG_STRENGTH}px)`;
+      if (label) label.style.transform = `translate(${dx*MAG_STRENGTH*0.5}px, ${dy*MAG_STRENGTH*0.5}px)`;
+    }
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; if (label) label.style.transform = ''; });
+});
+
+/* ========================================
+   HERO 3-STEP SCENE (removed)
+   ======================================== */
+</script>
+
+</body>
+</html>

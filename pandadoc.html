@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>pandadoc case study — coming soon · rallyup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ru-blue: #2a3ad8;
+    --ru-blue-dark: #0b1020;
+    --ru-yellow: #e2f264;
+    --ru-soft: #f5f3ec;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--ru-soft);
+    color: var(--ru-blue-dark);
+    text-transform: lowercase;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .serif { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; }
+  nav {
+    padding: 22px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .logo {
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--ru-blue-dark);
+    text-decoration: none;
+  }
+  .logo .dot { color: var(--ru-blue); }
+  .back {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(11,16,32,0.6);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+  }
+  .back:hover { color: var(--ru-blue-dark); }
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px 80px;
+  }
+  .card {
+    max-width: 780px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+  }
+  .logo-plate {
+    width: 96px;
+    height: 96px;
+    border-radius: 24px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 36px;
+    box-shadow: 0 24px 60px -30px rgba(11,16,32,0.25);
+  }
+  .logo-plate img { width: 72%; height: 72%; object-fit: contain; }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ru-yellow);
+    border: 1px solid rgba(11,16,32,0.08);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ru-blue-dark);
+    margin-bottom: 28px;
+  }
+  .chip .pulse {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--ru-blue);
+    box-shadow: 0 0 0 0 rgba(42,58,216,0.5);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(42,58,216,0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(42,58,216,0); }
+  }
+
+  h1 {
+    font-size: clamp(44px, 7vw, 84px);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin: 0 0 24px;
+    color: var(--ru-blue-dark);
+  }
+  h1 .accent { color: var(--ru-blue); }
+  .sub {
+    font-size: 18px;
+    line-height: 1.55;
+    color: rgba(11,16,32,0.65);
+    max-width: 540px;
+    margin: 0 auto 40px;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 48px;
+    padding: 28px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 20px;
+  }
+  .meta-item .k {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ru-blue);
+    margin-bottom: 6px;
+  }
+  .meta-item .v {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ru-blue-dark);
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ru-yellow);
+    color: var(--ru-blue-dark);
+    border: 1px solid rgba(11,16,32,0.1);
+    padding: 16px 28px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 30px -10px rgba(226,242,100,0.6);
+  }
+  .cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px -10px rgba(226,242,100,0.8);
+  }
+  .secondary {
+    margin-left: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(11,16,32,0.6);
+    text-decoration: none;
+  }
+  .secondary:hover { color: var(--ru-blue-dark); }
+
+  /* decorative wordmark behind */
+  .ghost {
+    position: absolute;
+    inset: 0;
+    top: -40px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(140px, 22vw, 280px);
+    font-weight: 500;
+    color: var(--ru-blue);
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: -1;
+    line-height: 1;
+    user-select: none;
+  }
+
+  footer {
+    padding: 24px 32px 32px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(11,16,32,0.4);
+  }
+
+  @media (max-width: 640px) {
+    .meta { gap: 24px; padding: 22px; }
+    .meta-item .v { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="../Rallyup Landing.html" class="logo">rallyup<span class="dot">.</span></a>
+    <a href="../Rallyup Landing.html" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      back to rallyup
+    </a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <span class="ghost">soon</span>
+
+      <div class="logo-plate">
+        <img src="../assets/logos/pandadoc.png" alt="pandadoc logo" />
+      </div>
+
+      <div class="chip"><span class="pulse"></span>case study · in progress</div>
+
+      <h1>
+        coming <span class="serif accent">soon.</span>
+      </h1>
+
+      <p class="sub">
+        we're finalizing the numbers with the pandadoc leadership team. the full case study — strategy, cadence, and 90-day results — drops here shortly.
+      </p>
+
+      <div class="meta">
+        <div class="meta-item">
+          <div class="k">client</div>
+          <div class="v">pandadoc leadership</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">segment</div>
+          <div class="v">$100m+ arr · b2b saas</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">status</div>
+          <div class="v">publishing soon</div>
+        </div>
+      </div>
+
+      <a href="https://intakeform-smoky.vercel.app/" class="cta">
+        see if your team qualifies
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="../Rallyup Landing.html" class="secondary">or go back →</a>
+    </div>
+  </main>
+
+  <footer>© rallyup · case study publishing soon</footer>
+</body>
+</html>
