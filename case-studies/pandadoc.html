@@ -4,6 +4,24 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>pandadoc case study — coming soon · rallyup</title>
+
+<!-- Google tag (gtag.js) - GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0KD96EK20Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0KD96EK20Z');
+</script>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "wfms73p8co");
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap" rel="stylesheet">
@@ -252,7 +270,7 @@
         </div>
       </div>
 
-      <a href="https://intakeform-smoky.vercel.app/" class="cta">
+      <a href="https://intakeform-smoky.vercel.app/" data-cta="qualify" data-cta-location="case_study_pandadoc" class="cta">
         see if your team qualifies
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
       </a>
@@ -261,5 +279,46 @@
   </main>
 
   <footer>© rallyup · case study publishing soon</footer>
+
+<script>
+/* ========= Analytics: CTA + scroll depth ========= */
+(function () {
+  function track(event, params) {
+    if (typeof gtag === 'function') gtag('event', event, params || {});
+    if (typeof clarity === 'function') {
+      try {
+        clarity('set', event, String(params && (params.cta_location || params.percent) || 'true'));
+      } catch (e) {}
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    const cta = e.target.closest('[data-cta]');
+    if (!cta) return;
+    track('cta_click', {
+      cta_name: cta.getAttribute('data-cta'),
+      cta_location: cta.getAttribute('data-cta-location') || 'unknown',
+      cta_text: (cta.textContent || '').trim().slice(0, 80),
+      cta_url: cta.getAttribute('href') || ''
+    });
+  });
+
+  const marks = [25, 50, 75, 100];
+  const hit = new Set();
+  function onScroll() {
+    const doc = document.documentElement;
+    const scrolled = (window.scrollY + window.innerHeight) / doc.scrollHeight * 100;
+    marks.forEach((m) => {
+      if (scrolled >= m && !hit.has(m)) {
+        hit.add(m);
+        track('scroll_depth', { percent: m });
+      }
+    });
+    if (hit.size === marks.length) window.removeEventListener('scroll', onScroll);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>
