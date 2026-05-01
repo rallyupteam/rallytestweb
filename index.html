@@ -419,7 +419,8 @@
     <div class="marquee marquee-xl">
       <div class="marquee-track" id="marquee-track"></div>
     </div>
-    <p class="text-center text-xs text-gray-400 italic mt-6">click a case-study logo to see how they scaled</p>
+    <!-- original hint hidden because the only clickable case-study logo (pandadoc) is currently hidden -->
+    <!-- <p class="text-center text-xs text-gray-400 italic mt-6">click a case-study logo to see how they scaled</p> -->
   </div>
 </section>
 
@@ -513,11 +514,26 @@
           just want to give a shoutout to the rallyup team. my first post generated a <span class="gradient-underline">huge surge of impressions</span> (27k and counting).
         </p>
         <div class="mt-auto flex items-center gap-4 pt-8 border-t border-black/5">
+          <!-- pandadoc identifiers hidden per client request — preserved below for easy restoration -->
+          <!--
           <div class="w-14 h-14 rounded-xl bg-white border border-black/5 flex items-center justify-center shrink-0 overflow-hidden">
             <img src="assets/logos/pandadoc.png" alt="pandadoc" class="w-full h-full object-contain">
           </div>
           <div>
             <div class="font-bold text-ru-blue-dark text-lg">pandadoc leadership</div>
+            <div class="text-sm text-gray-500">ceo, vp sales &amp; vp marketing · $100M+ ARR b2b saas</div>
+          </div>
+          -->
+          <div class="w-14 h-14 rounded-xl bg-ru-blue-dark/5 border border-black/5 flex items-center justify-center shrink-0 overflow-hidden text-ru-blue-dark">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21V7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v14"/>
+              <path d="M16 11h3a2 2 0 0 1 2 2v8"/>
+              <path d="M2 21h20"/>
+              <path d="M7 9h2M7 13h2M7 17h2M12 9h.01M12 13h.01M12 17h.01"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-bold text-ru-blue-dark text-lg">b2b saas leadership team</div>
             <div class="text-sm text-gray-500">ceo, vp sales &amp; vp marketing · $100M+ ARR b2b saas</div>
           </div>
         </div>
@@ -668,7 +684,8 @@
 <script>
 /* ========= Logo marquee ========= */
 const LOGOS = [
-  { name: 'pandadoc', src: 'assets/logos/pandadoc.png', caseStudy: 'case-studies/pandadoc.html', badge: 'case study coming soon' },
+  // pandadoc hidden per client request — restore the line below to re-enable
+  // { name: 'pandadoc', src: 'assets/logos/pandadoc.png', caseStudy: 'case-studies/pandadoc.html', badge: 'case study coming soon' },
   { name: 'freightos', src: 'assets/logos/freightos.png' },
   { name: 'boompop', src: 'assets/logos/boompop.jpg' },
   { name: 'flexcharge', src: 'assets/logos/flexcharge.png' },
