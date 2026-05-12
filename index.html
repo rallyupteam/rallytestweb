@@ -363,9 +363,6 @@
     .pair-hint { display: none; }
   }
 
-  /* Pricing */
-  .check-circle-sm { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; background: var(--ru-yellow); display: flex; align-items: center; justify-content: center; color: var(--ru-blue-dark); font-weight: 900; font-size: 11px; }
-
   @media (prefers-reduced-motion: reduce) {
     .marquee-track { animation: none; }
     .caret { animation: none; }
@@ -375,6 +372,7 @@
 </style>
 </head>
 <body>
+<span aria-hidden="true" style="position:fixed;top:2px;right:3px;font-size:6px;line-height:1;color:#ffffff;z-index:9999;pointer-events:none;user-select:text;-webkit-user-select:text;">בס״ד</span>
 
 <!-- ========= NAV ========= -->
 <nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-black/5">
@@ -391,7 +389,6 @@
     <div class="hidden md:flex items-center gap-8">
       <a href="#problem" class="text-sm font-medium text-gray-700 hover:text-ru-blue">the problem</a>
       <a href="#proof" class="text-sm font-medium text-gray-700 hover:text-ru-blue">proof</a>
-      <a href="#pricing" class="text-sm font-medium text-gray-700 hover:text-ru-blue">pricing</a>
       <a href="#faq" class="text-sm font-medium text-gray-700 hover:text-ru-blue">faq</a>
     </div>
     <a href="https://intake.rallyup.team" data-cta="qualify" data-cta-location="nav" class="btn btn-yellow magnetic text-sm py-2.5 px-5"><span class="btn-label">see if you qualify →</span></a>
@@ -539,76 +536,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ========= PRICING ========= -->
-<section id="pricing" class="py-16 md:py-20 bg-ru-soft">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="max-w-3xl mx-auto text-center mb-14">
-      <div class="chip mb-5 reveal"><span class="pulse"></span>pricing</div>
-      <h2 class="text-4xl md:text-6xl font-black tracking-tight text-ru-blue-dark leading-[1.02] mb-5 reveal" data-delay="1">
-        how much is this <span class="serif text-ru-blue">gonna cost?</span>
-      </h2>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-      <!-- SCALE -->
-      <div class="bg-white border border-black/5 rounded-3xl p-8 md:p-10 card-lift reveal flex flex-col">
-        <div class="flex items-center justify-between mb-4">
-          <p class="text-xs uppercase tracking-widest text-ru-blue font-bold">scale</p>
-          <span class="text-[10px] uppercase tracking-widest font-bold bg-ru-soft border border-black/10 text-gray-600 rounded-full px-3 py-1">where execs start</span>
-        </div>
-        <p class="text-gray-600 text-[15px] leading-relaxed mb-7">everything one executive needs to grow their audience and pipeline on linkedin.</p>
-        <div class="mb-3">
-          <span class="text-6xl font-black text-ru-blue-dark tracking-tight">$1,999</span>
-          <span class="text-gray-500 text-sm font-medium">/ exec / month</span>
-        </div>
-        <div class="inline-flex items-center gap-2 mb-5 bg-ru-yellow border border-ru-blue-dark/10 rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-ru-blue-dark"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>5× impression growth from baseline, guaranteed</div>
-        <p class="text-gray-500 text-[13px] leading-relaxed mb-7 max-w-sm">we only take on execs committed to <span class="font-semibold text-ru-blue-dark">90 days</span>, because that's when the compound kicks in. if you're looking for a trial, we're not the right fit.</p>
-        <a href="https://intake.rallyup.team" data-cta="qualify" data-cta-location="pricing_scale" class="btn btn-yellow magnetic w-full text-base py-4"><span class="btn-label">see if you qualify →</span></a>
-        <div class="border-t border-black/10 mt-8 pt-6">
-          <p class="text-[11px] uppercase tracking-widest text-gray-500 font-bold mb-5">what's included</p>
-          <ul class="space-y-3.5">
-            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">3 posts per week:</span> consistent output that compounds into pipeline.</p></li>
-            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">human writers + ai research:</span> real writers draft every post in your exec's voice, fueled by ai research on your industry and top-performing content.</p></li>
-            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">slack-native delivery:</span> approvals in 30 seconds, not 3-day email chains.</p></li>
-            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">two-stage editorial review:</span> nothing ships without your approval.</p></li>
-            <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-gray-700"><span class="font-bold text-ru-blue-dark">weekly performance report:</span> you always know what's working and why.</p></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- CUSTOM -->
-      <div class="relative bg-ru-blue-dark text-white border border-ru-blue-dark rounded-3xl p-8 md:p-10 card-lift reveal flex flex-col overflow-hidden" data-delay="1">
-        <div class="absolute -top-16 -right-16 w-52 h-52 bg-ru-yellow/20 rounded-full blur-3xl"></div>
-        <div class="relative flex flex-col h-full">
-          <div class="flex items-center justify-between mb-4">
-            <p class="text-xs uppercase tracking-widest text-ru-yellow font-bold">custom</p>
-            <span class="text-[10px] uppercase tracking-widest font-bold bg-ru-yellow text-ru-blue-dark rounded-full px-3 py-1">most ambitious</span>
-          </div>
-          <p class="text-white/75 text-[15px] leading-relaxed mb-7">for executives and teams ready to turn linkedin into a full content and pipeline engine.</p>
-          <div class="mb-3">
-            <span class="text-white/60 text-sm font-medium mr-1">from</span>
-            <span class="text-6xl font-black tracking-tight">$2,499</span>
-            <span class="text-white/60 text-sm font-medium">/ exec / month</span>
-          </div>
-          <div class="inline-flex items-center gap-2 mb-5 bg-ru-yellow rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-ru-blue-dark"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>100k impressions in 90 days, guaranteed</div>
-          <p class="text-white/70 text-[13px] leading-relaxed mb-7">scoped to your goals. <span class="font-semibold text-white">multi-exec plans available.</span></p>
-          <a href="https://intake.rallyup.team" data-cta="qualify" data-cta-location="pricing_custom" class="btn btn-yellow magnetic w-full text-base py-4"><span class="btn-label">see if you qualify →</span></a>
-          <div class="border-t border-white/15 mt-8 pt-6">
-            <p class="text-[11px] uppercase tracking-widest text-white/60 font-bold mb-5">everything in scale, plus</p>
-            <ul class="space-y-3.5">
-              <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-white/90"><span class="font-bold text-ru-yellow">5+ posts per week:</span> own the category your exec plays in.</p></li>
-              <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-white/90"><span class="font-bold text-ru-yellow">gated lead magnets:</span> turn every viral post into an email list.</p></li>
-              <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-white/90"><span class="font-bold text-ru-yellow">advanced custom visuals:</span> scroll-stopping carousels and thumbnails.</p></li>
-              <li class="flex items-start gap-3"><div class="check-circle-sm mt-0.5">✓</div><p class="text-[14px] leading-relaxed text-white/90"><span class="font-bold text-ru-yellow">dedicated content strategist:</span> a monthly call to pressure-test your narrative.</p></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
