@@ -10,6 +10,18 @@
     <loc>https://rallyup.team/case-studies/pandadoc.html</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rallyup.team/blog/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rallyup.team/blog/best-linkedin-ghostwriting-agencies-2026.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
