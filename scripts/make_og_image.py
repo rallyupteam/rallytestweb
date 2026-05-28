@@ -2,7 +2,10 @@
 """Generate the Open Graph share image for rallyup.team (1200x630).
 
 Matches the site's brand: blue gradient (#3d68f5 -> #1e3a8a), dot texture,
-lowercase wordmark, and a yellow (#DDFF4D) accent. Run: python3 scripts/make_og_image.py
+lowercase wordmark, and a yellow (#DDFF4D) accent. Headline reflects the
+current "linkedin audience building for b2b founders & execs" positioning.
+
+Run: python3 scripts/make_og_image.py
 """
 from PIL import Image, ImageDraw, ImageFont
 
@@ -14,6 +17,7 @@ WHITE = (255, 255, 255)
 
 ARIAL_BOLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
 ARIAL = "/System/Library/Fonts/Supplemental/Arial.ttf"
+TIMES_ITALIC = "/System/Library/Fonts/Supplemental/Times New Roman Italic.ttf"
 
 
 def font(path, size):
@@ -68,9 +72,9 @@ dot_x = bx + bsz + 18 + ww + 4
 draw.ellipse([dot_x, by + 40, dot_x + 12, by + 52], fill=YELLOW)
 
 # --- headline (auto-fit two lines within content width) ---
-lines = ["linkedin ghostwriting", "agency for executives"]
+lines = ["linkedin audience building", "for b2b founders & execs."]
 max_w = W - 2 * PAD
-size = 96
+size = 92
 while size > 40:
     hf = font(ARIAL_BOLD, size)
     if max(draw.textlength(l, font=hf) for l in lines) <= max_w:
@@ -78,32 +82,25 @@ while size > 40:
     size -= 2
 hf = font(ARIAL_BOLD, size)
 line_h = size + 12
-y = 232
+y = 230
 for i, line in enumerate(lines):
     draw.text((PAD, y + i * line_h), line, font=hf, fill=WHITE)
 
-# yellow underline beneath "ghostwriting" on line 1
+# yellow underline beneath "audience building" on line 1
 pre = draw.textlength("linkedin ", font=hf)
-gw = draw.textlength("ghostwriting", font=hf)
+phrase_w = draw.textlength("audience building", font=hf)
 uy = y + size + 4
-draw.rounded_rectangle([PAD + pre, uy, PAD + pre + gw, uy + 9], radius=4, fill=YELLOW)
+draw.rounded_rectangle([PAD + pre, uy, PAD + pre + phrase_w, uy + 9],
+                       radius=4, fill=YELLOW)
 
-# --- tagline ---
-tf = font(ARIAL, 32)
-ty = y + 2 * line_h + 26
-draw.text((PAD, ty), "real writers craft every post in your voice — while you build.",
-          font=tf, fill=(255, 255, 255, 220))
+# --- tagline (serif italic) ---
+tf = font(TIMES_ITALIC, 36)
+ty = y + 2 * line_h + 30
+draw.text((PAD, ty), "we are storytellers.", font=tf, fill=(255, 255, 255, 230))
 
-# --- footer: domain (left) + guarantee chip (right) ---
+# --- footer: domain (left) ---
 df = font(ARIAL_BOLD, 30)
 draw.text((PAD, H - PAD - 22), "rallyup.team", font=df, fill=WHITE)
-
-chip = "100k+ impressions / mo, guaranteed"
-cf = font(ARIAL_BOLD, 24)
-cw = draw.textlength(chip, font=cf)
-cx1, cy1 = W - PAD - cw - 44, H - PAD - 40
-draw.rounded_rectangle([cx1, cy1, W - PAD, cy1 + 48], radius=24, fill=YELLOW)
-draw.text((cx1 + 22, cy1 + 11), chip, font=cf, fill=DEEP)
 
 img.save("assets/og-image.png", "PNG", optimize=True)
 print(f"wrote assets/og-image.png ({img.size[0]}x{img.size[1]})")
