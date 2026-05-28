@@ -198,13 +198,13 @@
   @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
 
   .marquee-xl { overflow: hidden; mask-image: linear-gradient(90deg, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%); }
-  .marquee-xl .marquee-item { padding: 0 60px; }
-  .marquee-xl .marquee-item img { height: 72px; }
-  .marquee-xl .marquee-item .lm-name { font-size: 28px; font-weight: 800; }
+  .marquee-xl .marquee-item { padding: 0 72px; }
+  .marquee-xl .marquee-item img { height: 92px; }
+  .marquee-xl .marquee-item .lm-name { font-size: 34px; font-weight: 800; }
   @media (max-width: 768px) {
-    .marquee-xl .marquee-item { padding: 0 30px; }
-    .marquee-xl .marquee-item img { height: 44px; }
-    .marquee-xl .marquee-item .lm-name { font-size: 20px; }
+    .marquee-xl .marquee-item { padding: 0 36px; }
+    .marquee-xl .marquee-item img { height: 56px; }
+    .marquee-xl .marquee-item .lm-name { font-size: 24px; }
   }
   /* Logo marquee */
   .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); }
@@ -498,13 +498,13 @@
 </nav>
 
 <!-- ========= HERO ========= -->
-<section class="relative overflow-hidden min-h-screen flex flex-col justify-center gap-12 md:gap-16">
+<section class="relative overflow-hidden min-h-screen flex flex-col justify-center gap-20 md:gap-24">
   <div class="dot-pattern absolute inset-0 opacity-70"></div>
   <div class="relative max-w-7xl mx-auto px-6 w-full text-center">
 
-    <h1 class="text-4xl md:text-7xl font-black leading-[0.98] tracking-tight text-ru-blue-dark mb-7 md:mb-9 reveal max-w-5xl mx-auto" data-delay="1">
+    <h1 class="text-4xl md:text-7xl font-black leading-[0.98] tracking-tight text-ru-blue-dark mb-10 md:mb-14 reveal max-w-5xl mx-auto" data-delay="1">
       your execs should own <span class="gradient-underline">linkedin</span>.
-      <br><span class="serif text-3xl md:text-6xl text-ru-blue inline-block mt-3 md:mt-5">you build the company.<br>we build your audience.</span>
+      <br><span class="serif text-3xl md:text-6xl text-ru-blue inline-block mt-4 md:mt-6">you build the company.<br>we build your audience.</span>
     </h1>
 
     <p class="text-lg md:text-2xl text-gray-500 max-w-2xl mx-auto reveal" data-delay="2">
@@ -514,7 +514,7 @@
 
   <!-- Full-width logo marquee -->
   <div class="relative reveal pb-8 md:pb-10" data-delay="3">
-    <p class="text-center text-xs uppercase tracking-[0.25em] text-gray-500 font-bold mb-4">trusted by</p>
+    <p class="text-center text-sm md:text-lg uppercase tracking-[0.22em] text-gray-500 font-bold mb-6 md:mb-8">trusted by</p>
     <div class="marquee marquee-xl">
       <div class="marquee-track" id="marquee-track"></div>
     </div>
@@ -684,8 +684,9 @@
 </section>
 
 <!-- ========= FOOTER (minimal) ========= -->
-<footer class="bg-ru-blue-dark text-white py-10">
-  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+<footer class="relative overflow-hidden bg-ru-blue-dark text-white py-10">
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 28px 28px;"></div>
+  <div class="relative max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
     <a href="#" class="flex items-center gap-2.5">
       <div class="logo-box">
         <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
