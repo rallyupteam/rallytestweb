@@ -3,37 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Swan analytics -->
-<script>
-  (function () {
-    var w = window;
-    var swan = (w.swan = w.swan || []);
-    if (swan.isLoaded) return;
-    swan.isLoaded = true;
-    swan.pk = 'cmevnk77u0005l70537an0s07';
-    var sidKey = 'swan.sid';
-    var sid;
-    try {
-      sid = w.localStorage.getItem(sidKey);
-      if (!sid) {
-        sid = w.crypto && w.crypto.randomUUID
-          ? w.crypto.randomUUID()
-          : Date.now().toString(36) + Math.random().toString(36).slice(2);
-        w.localStorage.setItem(sidKey, sid);
-      }
-    } catch (e) {
-      sid = Date.now().toString(36) + Math.random().toString(36).slice(2);
-    }
-    swan.sid = sid;
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    script.src = "https://script.getswan.com?pk=cmevnk77u0005l70537an0s07&sid=" + encodeURIComponent(sid);
-    if (swan.eId) { script.src += "&eId=" + encodeURIComponent(swan.eId); }
-    var head = document.getElementsByTagName('head')[0];
-    head.appendChild(script);
-  })();
-</script>
+<!-- Cookie consent + Swan analytics (Swan loads only after consent) -->
+<script src="/assets/consent.js" defer></script>
 <title>rallyup blog: linkedin audience building for b2b execs</title>
 <meta name="description" content="Guides and case studies on LinkedIn audience building, exec-generated content, and building a B2B leadership presence on LinkedIn, from the rallyup team.">
 <link rel="canonical" href="https://rallyup.team/blog/">
@@ -158,7 +129,7 @@
       <div class="logo-box"><svg width="22" height="22" viewBox="0 0 100 100" fill="none"><path d="M25 40 L25 60 Q25 63 28 63 L33 63 L33 37 L28 37 Q25 37 25 40 Z" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/><path d="M33 35 L78 22 Q82 21 82 25 L82 75 Q82 79 78 78 L33 65 Z" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" fill="none"/></svg></div>
       <span class="font-black text-xl tracking-tight">rallyup</span>
     </a>
-    <p class="text-white/50 text-xs">rallyup © 2026. all rights reserved.</p>
+    <p class="text-white/50 text-xs"><a href="/privacy.html" class="hover:text-ru-yellow">privacy policy</a> · rallyup © 2026. all rights reserved.</p>
     <a href="../index.html" class="text-white/60 hover:text-ru-yellow text-sm font-medium">← back to rallyup.team</a>
   </div>
 </footer>

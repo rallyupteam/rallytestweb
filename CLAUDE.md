@@ -3,47 +3,37 @@
 Static HTML site (no framework/build step). Each page is a standalone `.html` file.
 Hosted on AWS Amplify — every push to `main` auto-deploys.
 
-## Required: Swan analytics on every page
+## Required on every page: analytics + consent
 
-**Every new HTML page MUST include the Swan analytics snippet in its `<head>`**,
-placed immediately after the `<meta charset>` / `<meta viewport>` tags. This is how
-we track visitors across the whole site, so a page without it is a gap in analytics.
+Analytics (Swan) is loaded through a shared, consent-gated loader in
+[assets/consent.js](assets/consent.js). It renders the cookie-consent banner and
+only loads Swan **after** the visitor clicks "accept" (declining keeps it off).
+Do NOT inline the raw Swan snippet on pages — always go through the shared file so
+consent gating stays uniform.
 
-When creating any new page, paste this exact snippet into the `<head>`:
+**Every new HTML page MUST include**, in the `<head>` (right after the
+`<meta charset>` / `<meta viewport>` tags):
 
 ```html
-<!-- Swan analytics -->
-<script>
-  (function () {
-    var w = window;
-    var swan = (w.swan = w.swan || []);
-    if (swan.isLoaded) return;
-    swan.isLoaded = true;
-    swan.pk = 'cmevnk77u0005l70537an0s07';
-    var sidKey = 'swan.sid';
-    var sid;
-    try {
-      sid = w.localStorage.getItem(sidKey);
-      if (!sid) {
-        sid = w.crypto && w.crypto.randomUUID
-          ? w.crypto.randomUUID()
-          : Date.now().toString(36) + Math.random().toString(36).slice(2);
-        w.localStorage.setItem(sidKey, sid);
-      }
-    } catch (e) {
-      sid = Date.now().toString(36) + Math.random().toString(36).slice(2);
-    }
-    swan.sid = sid;
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    script.src = "https://script.getswan.com?pk=cmevnk77u0005l70537an0s07&sid=" + encodeURIComponent(sid);
-    if (swan.eId) { script.src += "&eId=" + encodeURIComponent(swan.eId); }
-    var head = document.getElementsByTagName('head')[0];
-    head.appendChild(script);
-  })();
-</script>
+<!-- Cookie consent + Swan analytics (Swan loads only after consent) -->
+<script src="/assets/consent.js" defer></script>
 ```
 
-Pages currently carrying the snippet: `index.html`, `blog/index.html`,
-`blog/best-linkedin-ghostwriting-agencies-2026.html`, `case-studies/pandadoc.html`.
+**And in the footer**, a link to the privacy policy:
+
+```html
+<a href="/privacy.html" class="hover:text-ru-yellow">privacy policy</a>
+```
+
+Use absolute paths (`/assets/...`, `/privacy.html`) so they resolve from any
+directory depth (`blog/`, `case-studies/`, etc.).
+
+Pages currently wired up: `index.html`, `blog/index.html`,
+`blog/best-linkedin-ghostwriting-agencies-2026.html`, `case-studies/pandadoc.html`,
+`privacy.html`.
+
+## Privacy policy
+
+[privacy.html](privacy.html) discloses the analytics/Swan usage. If you change what
+data is collected or which third parties are used, update that page and its
+"last updated" date.
