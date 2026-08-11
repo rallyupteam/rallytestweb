@@ -29,8 +29,9 @@ Use absolute paths (`/assets/...`, `/privacy.html`) so they resolve from any
 directory depth (`blog/`, `case-studies/`, etc.).
 
 Pages currently wired up: `index.html`, `blog/index.html`,
-`blog/best-linkedin-ghostwriting-agencies-2026.html`, `case-studies/pandadoc.html`,
-`privacy.html`.
+`blog/best-linkedin-ghostwriting-agencies-2026.html`, `case-studies/index.html`,
+`case-studies/pandadoc.html`, `case-studies/deway.html`,
+`case-studies/prettydamnquick.html`, `privacy.html`.
 
 ## Privacy policy
 

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Cookie consent + Swan analytics (Swan loads only after consent) -->
+<script src="/assets/consent.js" defer></script>
+<title>PrettyDamnQuick case study: 20 ABM accounts from LinkedIn content · rallyup</title>
+<meta name="description" content="How PDQ opened 20 new ABM accounts from founder-led LinkedIn content in month one — impressions ~2x and a 3–7% engagement rate versus LinkedIn's 1–2% norm.">
+<link rel="canonical" href="https://rallyup.team/case-studies/prettydamnquick.html">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#3d68f5">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="rallyup">
+<meta property="og:title" content="How PDQ opened 20 new ABM accounts from LinkedIn content, in month one">
+<meta property="og:description" content="Founder-led content built on a rare checkout-data asset drove 20 new ABM accounts and ~2x impressions in the first month — by rallyup.">
+<meta property="og:url" content="https://rallyup.team/case-studies/prettydamnquick.html">
+<meta property="og:image" content="https://rallyup.team/assets/og-image.png?v=2">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How PDQ opened 20 new ABM accounts from LinkedIn content, in month one">
+<meta name="twitter:description" content="20 new ABM accounts and ~2x impressions in the first month, from founder-led content by rallyup.">
+<meta name="twitter:image" content="https://rallyup.team/assets/og-image.png?v=2">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How PDQ opened 20 new ABM accounts from LinkedIn content, in month one",
+  "description": "A founder-led content program by rallyup, built on PDQ's proprietary checkout data and founder narrative, that opened 20 new ABM accounts and roughly doubled impressions in the first month.",
+  "image": "https://rallyup.team/assets/og-image.png?v=2",
+  "author": { "@type": "Organization", "name": "rallyup", "url": "https://rallyup.team/" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "rallyup",
+    "logo": { "@type": "ImageObject", "url": "https://rallyup.team/assets/og-image.png?v=2" }
+  },
+  "mainEntityOfPage": "https://rallyup.team/case-studies/prettydamnquick.html",
+  "about": "LinkedIn audience building for B2B founders and executives"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "rallyup", "item": "https://rallyup.team/" },
+    { "@type": "ListItem", "position": 2, "name": "case studies", "item": "https://rallyup.team/case-studies/" },
+    { "@type": "ListItem", "position": 3, "name": "PrettyDamnQuick case study" }
+  ]
+}
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ru-blue: #3d68f5; --ru-blue-dark: #2a3ad8; --ru-blue-deep: #1e3a8a;
+    --ru-yellow: #DDFF4D; --ru-ink: #0b1020; --ru-gray: #6b7280; --ru-bg-soft: #f7f8fb;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; color: var(--ru-ink); background: #fff; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; }
+  .text-ru-blue { color: var(--ru-blue); }
+  .text-ru-blue-dark { color: var(--ru-blue-dark); }
+  .bg-ru-yellow { background-color: var(--ru-yellow); }
+  .bg-ru-soft { background-color: var(--ru-bg-soft); }
+  .logo-box { width: 36px; height: 36px; border-radius: 9px; background: linear-gradient(135deg, #6a7ff0 0%, #3a4fd8 100%); display: flex; align-items: center; justify-content: center; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; cursor: pointer; white-space: nowrap; }
+  .btn-yellow { background: var(--ru-yellow); color: var(--ru-blue-dark); }
+  .btn-yellow:hover { box-shadow: 0 12px 28px rgba(221,255,77,0.45); transform: translateY(-1px); }
+  .gradient-underline { background-image: linear-gradient(transparent 68%, rgba(221,255,77,0.65) 68%); background-repeat: no-repeat; background-size: 100% 100%; padding: 0 4px; }
+  .dot-pattern { background-image: radial-gradient(circle, rgba(61,104,245,0.12) 1px, transparent 1px); background-size: 22px 22px; }
+  .check-circle { width: 26px; height: 26px; min-width: 26px; border-radius: 50%; background: var(--ru-yellow); display: flex; align-items: center; justify-content: center; color: var(--ru-blue-dark); font-weight: 900; font-size: 13px; margin-top: 2px; }
+  .chip { display: inline-flex; align-items: center; gap: 10px; background: rgba(221,255,77,0.5); border: 1px solid rgba(221,255,77,0.9); color: var(--ru-blue-dark); padding: 7px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+  .chip .plate { display: inline-flex; align-items: center; justify-content: center; height: 22px; width: 22px; border-radius: 6px; background: #fff; overflow: hidden; }
+  .chip .plate img { height: 16px; width: 16px; object-fit: contain; }
+  .tag { display: inline-flex; align-items: center; background: rgba(61,104,245,0.08); border: 1px solid rgba(61,104,245,0.18); color: var(--ru-blue-dark); padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .stat-card { background: #fff; border: 1px solid rgba(11,16,32,0.08); border-radius: 18px; padding: 26px 22px; box-shadow: 0 18px 40px -30px rgba(11,16,32,0.35); }
+  .stat-num { font-size: clamp(30px, 4.2vw, 38px); font-weight: 900; letter-spacing: -0.03em; color: var(--ru-blue); line-height: 1.05; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 22px 36px; }
+  .metrics-table { width: 100%; border-collapse: collapse; }
+  .metrics-table th, .metrics-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid rgba(11,16,32,0.08); font-size: 15px; }
+  .metrics-table th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ru-blue); font-weight: 800; }
+  .metrics-table td:first-child { color: var(--ru-gray); }
+  .metrics-table td.after { font-weight: 700; color: var(--ru-blue-dark); }
+  .video-slot { position: relative; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, #3d68f5 0%, #1e3a8a 100%); display: flex; align-items: center; justify-content: center; }
+  .video-slot .placeholder { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .video-slot .placeholder .plate { height: 84px; width: 84px; border-radius: 20px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 20px 50px -20px rgba(0,0,0,0.5); }
+  .video-slot .placeholder .plate img { height: 60px; width: 60px; object-fit: contain; }
+  .video-slot .placeholder span { color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+  .video-slot iframe, .video-slot video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+</style>
+</head>
+<body>
+<span aria-hidden="true" style="position:fixed;top:2px;right:3px;font-size:6px;line-height:1;color:#ffffff;z-index:9999;pointer-events:none;user-select:text;-webkit-user-select:text;">בס״ד</span>
+
+<!-- ========= NAV (shared sub-page style) ========= -->
+<nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-black/5">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2.5">
+      <div class="logo-box">
+        <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+          <path d="M25 40 L25 60 Q25 63 28 63 L33 63 L33 37 L28 37 Q25 37 25 40 Z" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/>
+          <path d="M33 35 L78 22 Q82 21 82 25 L82 75 Q82 79 78 78 L33 65 Z" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <span class="font-black text-xl tracking-tight text-ru-blue-dark">rallyup</span>
+    </a>
+    <div class="flex items-center gap-5">
+      <a href="./" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-ru-blue">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        all case studies
+      </a>
+      <a href="https://intake.rallyup.team" data-cta="qualify" data-cta-location="case_study_nav" class="btn btn-yellow text-sm py-2.5 px-5">see if you qualify →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ========= HERO ========= -->
+<section class="relative overflow-hidden">
+  <div class="dot-pattern absolute inset-0 opacity-70"></div>
+  <div class="relative max-w-3xl mx-auto px-6 pt-14 pb-10">
+    <div class="chip mb-7"><span class="plate"><img src="../assets/logos/prettydamnquick.jpg" alt="prettydamnquick logo"></span> case study · prettydamnquick</div>
+    <h1 class="text-4xl md:text-6xl font-black leading-[1.04] tracking-tight text-ru-blue-dark mb-6">
+      how pdq opened 20 new abm accounts from <span class="gradient-underline">linkedin content</span>, in month one.
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-500 serif">a founder-led content program built on avi's own story and pdq's proprietary checkout data — content nobody else could credibly make.</p>
+  </div>
+</section>
+
+<!-- ========= HERO STAT ROW ========= -->
+<section class="max-w-3xl mx-auto px-6">
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="stat-card">
+      <div class="stat-num">20</div>
+      <div class="text-sm text-gray-500 leading-snug">new ABM accounts opened in month one</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">~2x</div>
+      <div class="text-sm text-gray-500 leading-snug">average impressions in the first month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3–7%</div>
+      <div class="text-sm text-gray-500 leading-snug">engagement rate, vs. LinkedIn's 1–2% norm</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= VIDEO SLOT (populated later via CASE.videoUrl) ========= -->
+<section class="max-w-3xl mx-auto px-6 pt-10">
+  <div class="video-slot" id="video-slot">
+    <div class="placeholder">
+      <span class="plate"><img src="../assets/logos/prettydamnquick.jpg" alt="prettydamnquick logo"></span>
+      <span>video coming soon</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========= QUOTE BLOCK (hidden until CASE.quote is set) ========= -->
+<section class="max-w-3xl mx-auto px-6 pt-14 hidden" id="quote-section">
+  <div class="rounded-3xl p-10 md:p-12 text-white" style="background: linear-gradient(135deg, #3d68f5 0%, #1e3a8a 100%);">
+    <svg class="text-white/25 mb-6" width="48" height="36" viewBox="0 0 42 32" fill="currentColor"><path d="M0 32V18C0 8 5 2 14 0l2 4C10 6 7 10 7 16h7v16H0zm24 0V18c0-10 5-16 14-18l2 4c-6 2-9 6-9 12h7v16H24z"/></svg>
+    <p class="text-2xl md:text-3xl font-medium leading-snug mb-6" id="quote-text"></p>
+    <div class="flex items-center gap-3">
+      <span class="hidden h-11 w-11 rounded-full overflow-hidden bg-white/10" id="quote-headshot-wrap"><img class="h-full w-full object-cover" id="quote-headshot" alt=""></span>
+      <span class="text-sm font-semibold text-white/70" id="quote-author"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ========= META / CLIENT PROFILE ========= -->
+<section class="max-w-3xl mx-auto px-6 pt-14">
+  <div class="bg-ru-soft border border-black/5 rounded-3xl p-8 meta-grid">
+    <div>
+      <div class="text-[11px] font-extrabold uppercase tracking-widest text-ru-blue mb-1.5">client</div>
+      <div class="text-base font-bold text-ru-blue-dark">prettydamnquick (pdq)</div>
+    </div>
+    <div>
+      <div class="text-[11px] font-extrabold uppercase tracking-widest text-ru-blue mb-1.5">industry</div>
+      <div class="text-base font-bold text-ru-blue-dark">ecommerce checkout / DTC infrastructure</div>
+    </div>
+    <div>
+      <div class="text-[11px] font-extrabold uppercase tracking-widest text-ru-blue mb-1.5">exec</div>
+      <div class="text-base font-bold text-ru-blue-dark">Avi Moskowitz, CEO &amp; Founder</div>
+    </div>
+    <div>
+      <div class="text-[11px] font-extrabold uppercase tracking-widest text-ru-blue mb-1.5">services</div>
+      <div class="text-base font-bold text-ru-blue-dark">LinkedIn ghostwriting, founder-led &amp; data-driven content</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= CHALLENGE ========= -->
+<section class="max-w-3xl mx-auto px-6 py-14 border-b border-black/5">
+  <h2 class="text-3xl md:text-4xl font-black tracking-tight text-ru-blue-dark mb-5">the challenge</h2>
+  <p class="text-lg text-gray-600 leading-relaxed mb-4">pdq sits on a genuinely rare asset: 1 billion+ checkouts of proprietary data. avi's linkedin wasn't turning any of it into content. no system, no consistency, no story.</p>
+  <p class="text-lg text-gray-600 leading-relaxed">most ghostwriters would have written about the product and stopped there. that's not the gap. the gap is context: the founder's real voice, and the data nobody else on earth can talk about credibly.</p>
+</section>
+
+<!-- ========= WHAT WE DID ========= -->
+<section class="max-w-3xl mx-auto px-6 py-14 border-b border-black/5">
+  <h2 class="text-3xl md:text-4xl font-black tracking-tight text-ru-blue-dark mb-7">the solution</h2>
+  <p class="text-lg text-gray-600 leading-relaxed mb-7">rallyup built around two pillars: avi's own founder narrative, and pdq's proprietary checkout data, packaged as content nobody else could make. not generic ecommerce takes. content only pdq could publish.</p>
+  <div class="grid gap-5">
+    <div class="flex gap-4 items-start">
+      <span class="check-circle">✓</span>
+      <p class="text-lg text-gray-700 leading-relaxed"><strong class="text-ru-blue-dark font-bold">the founder's story, front and center.</strong> avi's own narrative reliably drove his highest reach — so we made it a pillar, not an afterthought.</p>
+    </div>
+    <div class="flex gap-4 items-start">
+      <span class="check-circle">✓</span>
+      <p class="text-lg text-gray-700 leading-relaxed"><strong class="text-ru-blue-dark font-bold">data nobody else could publish.</strong> pdq's proprietary checkout data, packaged into content that no competitor could credibly produce.</p>
+    </div>
+    <div class="flex gap-4 items-start">
+      <span class="check-circle">✓</span>
+      <p class="text-lg text-gray-700 leading-relaxed"><strong class="text-ru-blue-dark font-bold">built for the ICP, not the algorithm.</strong> content aimed at a small, highly-qualified audience of DTC and ecommerce leaders — not vanity reach.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========= RESULTS ========= -->
+<section class="max-w-3xl mx-auto px-6 py-14 border-b border-black/5">
+  <h2 class="text-3xl md:text-4xl font-black tracking-tight text-ru-blue-dark mb-5">the results</h2>
+  <p class="text-lg text-gray-600 leading-relaxed mb-8">in the first month, pdq's linkedin content opened 20 new abm accounts.</p>
+  <div class="overflow-x-auto">
+    <table class="metrics-table">
+      <thead>
+        <tr><th>metric</th><th>result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>new ABM accounts opened, month 1</td><td class="after">20</td></tr>
+        <tr><td>avg. impressions, month 1</td><td class="after">~2x lift</td></tr>
+        <tr><td>engagement rate</td><td class="after">3–7% (vs. 1–2% LinkedIn average)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="text-lg text-gray-600 leading-relaxed mt-8">founder-led storytelling consistently outperformed product-only content — proof the audience wasn't just watching. they were qualifying themselves.</p>
+</section>
+
+<!-- ========= FINAL CTA ========= -->
+<section class="relative overflow-hidden py-16 md:py-20" style="background: linear-gradient(135deg, #3d68f5 0%, #2a3ad8 100%);">
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 28px 28px;"></div>
+  <div class="relative max-w-3xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white leading-tight mb-6">the ceo is the most underpriced pipeline driver in b2b.</h2>
+    <p class="text-lg text-white/70 mb-8">see what it looks like for yours.</p>
+    <a href="https://intake.rallyup.team" data-cta="qualify" data-cta-location="case_study_pdq" class="btn btn-yellow text-base py-4 px-8 font-bold">book a call →</a>
+    <p class="text-xs text-white/45 max-w-xl mx-auto mt-8 leading-relaxed">results reflect one client's program and are not a guarantee of future outcomes. figures measured during the program period and shared with pdq's permission.</p>
+  </div>
+</section>
+
+<!-- ========= FOOTER ========= -->
+<footer class="relative overflow-hidden bg-ru-blue-dark text-white py-10" style="background:#2a3ad8;">
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 28px 28px;"></div>
+  <div class="relative max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+    <a href="../index.html" class="flex items-center gap-2.5">
+      <div class="logo-box">
+        <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+          <path d="M25 40 L25 60 Q25 63 28 63 L33 63 L33 37 L28 37 Q25 37 25 40 Z" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/>
+          <path d="M33 35 L78 22 Q82 21 82 25 L82 75 Q82 79 78 78 L33 65 Z" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <span class="font-black text-xl tracking-tight">rallyup</span>
+    </a>
+    <p class="text-white/50 text-xs"><a href="/privacy.html" class="hover:text-ru-yellow">privacy policy</a> · rallyup © 2026. all rights reserved.</p>
+    <a href="../index.html" class="text-white/60 hover:text-ru-yellow text-sm font-medium">← back to rallyup.team</a>
+  </div>
+</footer>
+
+<script>
+/* =========================================================================
+   Case-study content that fills in later — one-line edits, no layout change.
+   Set `quote` (+ author fields) when the PDQ testimonial-form response lands
+   (form: pdq-testimonial.vercel.app). Set `videoUrl` to a Loom/YouTube/Vimeo
+   EMBED url (or a direct .mp4) when the video is ready. Until then: quote block
+   stays hidden, video slot shows the branded placeholder. DO NOT invent a quote.
+   NOTE: the PDQ engagement ended in an offboarding — keep all copy past-tense
+   and do not imply an ongoing relationship.
+   ========================================================================= */
+const CASE = {
+  quote: "You did a really good job of doing what was possible within our own constraints. We have a very specific ICP, and yet you managed to make a real impact — reaching the right people and crafting content that engaged and attracted the people we're trying to get in front of. Overall, I was very impressed.",
+  quoteAuthorName: "Haim Moskowitz",
+  quoteAuthorTitle: "Head of Marketing, PrettyDamnQuick",
+  quoteAuthorHeadshot: null,
+  videoUrl: null
+};
+
+(function () {
+  // Quote: reveal only when a real quote exists.
+  if (CASE.quote) {
+    document.getElementById('quote-text').textContent = '“' + CASE.quote + '”';
+    var author = [CASE.quoteAuthorName, CASE.quoteAuthorTitle].filter(Boolean).join(', ');
+    document.getElementById('quote-author').textContent = author;
+    if (CASE.quoteAuthorHeadshot) {
+      document.getElementById('quote-headshot').src = CASE.quoteAuthorHeadshot;
+      document.getElementById('quote-headshot').alt = CASE.quoteAuthorName || '';
+      document.getElementById('quote-headshot-wrap').classList.remove('hidden');
+    }
+    document.getElementById('quote-section').classList.remove('hidden');
+  }
+
+  // Video: swap the placeholder for a player when a URL exists (same slot, no reflow).
+  if (CASE.videoUrl) {
+    var slot = document.getElementById('video-slot');
+    var isFile = /\.(mp4|webm|ogg)(\?|$)/i.test(CASE.videoUrl);
+    slot.innerHTML = isFile
+      ? '<video controls playsinline preload="metadata" src="' + CASE.videoUrl + '"></video>'
+      : '<iframe src="' + CASE.videoUrl + '" title="PrettyDamnQuick × rallyup" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+  }
+})();
+</script>
+</body>
+</html>
