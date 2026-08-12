@@ -34,6 +34,17 @@ double-load and fire before consent). To change IDs or add a tool, edit
 <a href="/privacy.html" class="hover:text-ru-yellow">privacy policy</a>
 ```
 
+**Favicons** — every page's `<head>` also carries the shared favicon block (built
+from the logo mark; source is [favicon.svg](favicon.svg), rasterized to
+`/favicon.ico`, `/favicon-96x96.png`, `/apple-touch-icon.png`):
+
+```html
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+```
+
 Use absolute paths (`/assets/...`, `/privacy.html`) so they resolve from any
 directory depth (`blog/`, `case-studies/`, etc.).
 
