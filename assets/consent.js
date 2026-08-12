@@ -1,18 +1,20 @@
 /* =========================================================================
-   rallyup.team — cookie consent + Meta Pixel loader
+   rallyup.team — cookie consent + analytics loader
    -------------------------------------------------------------------------
-   The Meta (Facebook) Pixel is only loaded AFTER the visitor accepts. The
-   choice is remembered in localStorage so the banner shows once. Declining
-   prevents the pixel from ever loading for that visitor. There is no
-   <noscript> fallback pixel — a no-JS image beacon can't be consent-gated,
-   so it is intentionally omitted to keep tracking gated behind consent.
+   Analytics/advertising — the Meta (Facebook) Pixel, Google Analytics (GA4),
+   and Microsoft Clarity — load only AFTER the visitor accepts. The choice is
+   remembered in localStorage so the banner shows once. Declining prevents all
+   of them from loading for that visitor. No <noscript> fallback pixels — a
+   no-JS beacon can't be consent-gated, so they are intentionally omitted.
    ========================================================================= */
 (function () {
   var w = window, d = document;
   var CONSENT_KEY = 'ru.cookieConsent';   // 'accepted' | 'declined'
   var META_PIXEL_ID = '1027686310240354';
+  var GA4_ID = 'G-0KD96EK20Z';
+  var CLARITY_ID = 'wfms73p8co';
 
-  /* ---- Meta Pixel loader (fires only with consent) ---- */
+  /* ---- analytics loaders (fire only with consent) ---- */
   function loadMetaPixel() {
     if (w.fbq) return;
     !function (f, b, e, v, n, t, s) {
@@ -26,6 +28,33 @@
     w.fbq('track', 'PageView');
   }
 
+  function loadGA4() {
+    if (w.gtag) return;
+    var s = d.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    (d.getElementsByTagName('head')[0] || d.documentElement).appendChild(s);
+    w.dataLayer = w.dataLayer || [];
+    w.gtag = function () { w.dataLayer.push(arguments); };
+    w.gtag('js', new Date());
+    w.gtag('config', GA4_ID);
+  }
+
+  function loadClarity() {
+    if (w.clarity) return;
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(w, d, 'clarity', 'script', CLARITY_ID);
+  }
+
+  function loadAnalytics() {
+    loadMetaPixel();
+    loadGA4();
+    loadClarity();
+  }
+
   /* ---- consent storage helpers ---- */
   function getConsent() {
     try { return w.localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
@@ -36,7 +65,7 @@
 
   /* ---- decide up front ---- */
   var choice = getConsent();
-  if (choice === 'accepted') { loadMetaPixel(); return; }
+  if (choice === 'accepted') { loadAnalytics(); return; }
   if (choice === 'declined') { return; }
 
   /* ---- otherwise show the banner ---- */
@@ -127,7 +156,7 @@
       }, 300);
     }
     acceptBtn.addEventListener('click', function () {
-      setConsent('accepted'); loadMetaPixel(); dismiss();
+      setConsent('accepted'); loadAnalytics(); dismiss();
     });
     bar.querySelector('.ru-decline').addEventListener('click', function () {
       setConsent('declined'); dismiss();

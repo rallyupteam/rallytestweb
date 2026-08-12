@@ -5,12 +5,14 @@ Hosted on AWS Amplify — every push to `main` auto-deploys.
 
 ## Required on every page: analytics + consent
 
-Analytics/advertising (the Meta/Facebook Pixel) is loaded through a shared,
-consent-gated loader in [assets/consent.js](assets/consent.js). It renders the
-cookie-consent banner and only loads the pixel **after** the visitor clicks
-"accept" (declining keeps it off). Do NOT inline the raw Meta Pixel snippet on
-pages (and no `<noscript>` fallback pixel, which can't be consent-gated) — always
-go through the shared file so consent gating stays uniform.
+Analytics/advertising (the Meta/Facebook Pixel, Google Analytics GA4, and
+Microsoft Clarity) is loaded through a shared, consent-gated loader in
+[assets/consent.js](assets/consent.js). It renders the cookie-consent banner and
+only loads those tools **after** the visitor clicks "accept" (declining keeps them
+off). Do NOT inline raw analytics snippets on pages (and no `<noscript>` fallback
+pixel, which can't be consent-gated) — always go through the shared file so consent
+gating stays uniform. Pages may still contain guarded `typeof gtag`/`typeof clarity`
+event-tracking helpers; those safely no-op until consent loads the libraries.
 
 **Every new HTML page MUST include**, in the `<head>` (right after the
 `<meta charset>` / `<meta viewport>` tags):
