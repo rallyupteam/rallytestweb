@@ -18,9 +18,15 @@ event-tracking helpers; those safely no-op until consent loads the libraries.
 `<meta charset>` / `<meta viewport>` tags):
 
 ```html
-<!-- Cookie consent + Meta Pixel (pixel loads only after consent) -->
+<!-- Cookie consent + analytics: Meta Pixel, GA4 & Clarity (load only after consent) -->
 <script src="/assets/consent.js" defer></script>
 ```
+
+This single include is all a new page needs — it wires up **all three** tools
+(Meta Pixel, GA4, and Microsoft Clarity) plus the consent banner. There is nothing
+else to paste per page; do NOT add separate GA4 or Clarity snippets (they would
+double-load and fire before consent). To change IDs or add a tool, edit
+[assets/consent.js](assets/consent.js) once.
 
 **And in the footer**, a link to the privacy policy:
 
