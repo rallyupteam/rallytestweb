@@ -5,17 +5,18 @@ Hosted on AWS Amplify — every push to `main` auto-deploys.
 
 ## Required on every page: analytics + consent
 
-Analytics (Swan) is loaded through a shared, consent-gated loader in
-[assets/consent.js](assets/consent.js). It renders the cookie-consent banner and
-only loads Swan **after** the visitor clicks "accept" (declining keeps it off).
-Do NOT inline the raw Swan snippet on pages — always go through the shared file so
-consent gating stays uniform.
+Analytics/advertising (the Meta/Facebook Pixel) is loaded through a shared,
+consent-gated loader in [assets/consent.js](assets/consent.js). It renders the
+cookie-consent banner and only loads the pixel **after** the visitor clicks
+"accept" (declining keeps it off). Do NOT inline the raw Meta Pixel snippet on
+pages (and no `<noscript>` fallback pixel, which can't be consent-gated) — always
+go through the shared file so consent gating stays uniform.
 
 **Every new HTML page MUST include**, in the `<head>` (right after the
 `<meta charset>` / `<meta viewport>` tags):
 
 ```html
-<!-- Cookie consent + Swan analytics (Swan loads only after consent) -->
+<!-- Cookie consent + Meta Pixel (pixel loads only after consent) -->
 <script src="/assets/consent.js" defer></script>
 ```
 
@@ -35,6 +36,6 @@ Pages currently wired up: `index.html`, `blog/index.html`,
 
 ## Privacy policy
 
-[privacy.html](privacy.html) discloses the analytics/Swan usage. If you change what
-data is collected or which third parties are used, update that page and its
-"last updated" date.
+[privacy.html](privacy.html) discloses the analytics/advertising (Meta Pixel) usage.
+If you change what data is collected or which third parties are used, update that
+page and its "last updated" date.

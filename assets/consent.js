@@ -1,41 +1,29 @@
 /* =========================================================================
-   rallyup.team — cookie consent + Swan analytics loader
+   rallyup.team — cookie consent + Meta Pixel loader
    -------------------------------------------------------------------------
-   Swan is only loaded AFTER the visitor accepts. The choice is remembered
-   in localStorage so the banner shows once. Declining prevents Swan from
-   ever loading for that visitor.
+   The Meta (Facebook) Pixel is only loaded AFTER the visitor accepts. The
+   choice is remembered in localStorage so the banner shows once. Declining
+   prevents the pixel from ever loading for that visitor. There is no
+   <noscript> fallback pixel — a no-JS image beacon can't be consent-gated,
+   so it is intentionally omitted to keep tracking gated behind consent.
    ========================================================================= */
 (function () {
   var w = window, d = document;
   var CONSENT_KEY = 'ru.cookieConsent';   // 'accepted' | 'declined'
-  var SWAN_PK = 'cmevnk77u0005l70537an0s07';
+  var META_PIXEL_ID = '1027686310240354';
 
-  /* ---- Swan analytics loader (fires only with consent) ---- */
-  function loadSwan() {
-    var swan = (w.swan = w.swan || []);
-    if (swan.isLoaded) return;
-    swan.isLoaded = true;
-    swan.pk = SWAN_PK;
-    var sidKey = 'swan.sid';
-    var sid;
-    try {
-      sid = w.localStorage.getItem(sidKey);
-      if (!sid) {
-        sid = w.crypto && w.crypto.randomUUID
-          ? w.crypto.randomUUID()
-          : Date.now().toString(36) + Math.random().toString(36).slice(2);
-        w.localStorage.setItem(sidKey, sid);
-      }
-    } catch (e) {
-      sid = Date.now().toString(36) + Math.random().toString(36).slice(2);
-    }
-    swan.sid = sid;
-    var s = d.createElement('script');
-    s.type = 'text/javascript';
-    s.async = true;
-    s.src = 'https://script.getswan.com?pk=' + SWAN_PK + '&sid=' + encodeURIComponent(sid);
-    if (swan.eId) { s.src += '&eId=' + encodeURIComponent(swan.eId); }
-    (d.getElementsByTagName('head')[0] || d.documentElement).appendChild(s);
+  /* ---- Meta Pixel loader (fires only with consent) ---- */
+  function loadMetaPixel() {
+    if (w.fbq) return;
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    }(w, d, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    w.fbq('init', META_PIXEL_ID);
+    w.fbq('track', 'PageView');
   }
 
   /* ---- consent storage helpers ---- */
@@ -48,7 +36,7 @@
 
   /* ---- decide up front ---- */
   var choice = getConsent();
-  if (choice === 'accepted') { loadSwan(); return; }
+  if (choice === 'accepted') { loadMetaPixel(); return; }
   if (choice === 'declined') { return; }
 
   /* ---- otherwise show the banner ---- */
@@ -104,7 +92,7 @@
     bar.setAttribute('aria-modal', 'true');
     bar.setAttribute('aria-label', 'cookie consent');
     bar.innerHTML =
-      '<p>we use cookies and analytics (including Swan) to understand site traffic and improve rallyup. ' +
+      '<p>we use cookies for analytics and advertising (including the Meta/Facebook pixel) to understand site traffic and measure our ads. ' +
       'to continue, please choose. see our <a href="/privacy.html">privacy policy</a>.</p>' +
       '<div class="ru-consent-actions">' +
       '<button class="ru-decline" type="button">decline</button>' +
@@ -139,7 +127,7 @@
       }, 300);
     }
     acceptBtn.addEventListener('click', function () {
-      setConsent('accepted'); loadSwan(); dismiss();
+      setConsent('accepted'); loadMetaPixel(); dismiss();
     });
     bar.querySelector('.ru-decline').addEventListener('click', function () {
       setConsent('declined'); dismiss();
