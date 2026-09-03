@@ -200,22 +200,18 @@
   .marquee-xl { overflow: hidden; mask-image: linear-gradient(90deg, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%); }
   .marquee-xl .marquee-item { padding: 0 72px; }
   .marquee-xl .marquee-item img { height: 92px; }
-  .marquee-xl .marquee-item .lm-name { font-size: 34px; font-weight: 800; }
   @media (max-width: 768px) {
     .marquee-xl .marquee-item { padding: 0 36px; }
     .marquee-xl .marquee-item img { height: 56px; }
-    .marquee-xl .marquee-item .lm-name { font-size: 24px; }
   }
   /* Logo marquee */
   .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); }
   .marquee-inline .marquee-item { padding: 0 28px; }
   .marquee-inline .marquee-item img { height: 30px; }
-  .marquee-inline .marquee-item .lm-name { font-size: 15px; }
   .marquee-track { display: flex; width: max-content; animation: marquee-scroll 38s linear infinite; align-items: center; }
   .marquee:hover .marquee-track { animation-play-state: paused; }
   .marquee-item { flex: 0 0 auto; padding: 0 44px; display: flex; align-items: center; gap: 14px; opacity: 0.75; transition: opacity 0.2s ease, transform 0.2s ease; }
   .marquee-item img { height: 42px; width: auto; object-fit: contain; }
-  .marquee-item .lm-name { font-weight: 700; font-size: 18px; letter-spacing: -0.02em; color: rgba(11,16,32,0.7); }
   .marquee-item.clickable { cursor: pointer; }
   .marquee-item.clickable:hover { opacity: 1; transform: translateY(-2px); }
   .marquee-item.clickable::after { content: attr(data-badge); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--ru-yellow); color: var(--ru-blue-dark); padding: 3px 8px; border-radius: 999px; margin-left: 4px; white-space: nowrap; }
