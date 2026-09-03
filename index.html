@@ -834,7 +834,7 @@ function renderLogo(l) {
   const cls = `marquee-item${clickable ? ' clickable' : ''}`;
   const badge = l.badge || 'case study →';
   const badgeAttr = clickable ? ` data-badge="${badge}"` : '';
-  return `<${tag}${href}${badgeAttr} class="${cls}" aria-label="${l.name}"><img src="${l.src}" alt="${l.name} logo" loading="lazy"/><span class="lm-name">${l.name}</span></${tag}>`;
+  return `<${tag}${href}${badgeAttr} class="${cls}" aria-label="${l.name}"><img src="${l.src}" alt="${l.name} logo" loading="lazy"/></${tag}>`;
 }
 if (track) {
   const html = LOGOS.map(renderLogo).join('');
@@ -917,7 +917,7 @@ magnets.forEach((btn) => {
     const logo = e.target.closest('.marquee-item.clickable');
     if (logo) {
       track('case_study_click', {
-        logo: (logo.querySelector('.lm-name') || {}).textContent || 'unknown',
+        logo: logo.getAttribute('aria-label') || 'unknown',
         destination: logo.getAttribute('href') || ''
       });
       return;
