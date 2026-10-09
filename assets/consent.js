@@ -2,10 +2,11 @@
    rallyup.team — cookie consent + analytics loader
    -------------------------------------------------------------------------
    Analytics/advertising — the Meta (Facebook) Pixel, Google Analytics (GA4),
-   and Microsoft Clarity — load only AFTER the visitor accepts. The choice is
-   remembered in localStorage so the banner shows once. Declining prevents all
-   of them from loading for that visitor. No <noscript> fallback pixels — a
-   no-JS beacon can't be consent-gated, so they are intentionally omitted.
+   Microsoft Clarity, and the Snitcher visitor-identification tracker — load
+   only AFTER the visitor accepts. The choice is remembered in localStorage so
+   the banner shows once. Declining prevents all of them from loading for that
+   visitor. No <noscript> fallback pixels — a no-JS beacon can't be
+   consent-gated, so they are intentionally omitted.
    ========================================================================= */
 (function () {
   var w = window, d = document;
@@ -13,6 +14,7 @@
   var META_PIXEL_ID = '1027686310240354';
   var GA4_ID = 'G-0KD96EK20Z';
   var CLARITY_ID = 'wfms73p8co';
+  var SNITCHER_PROFILE_ID = 'sTXBlXu2Ib';
 
   /* ---- analytics loaders (fire only with consent) ---- */
   function loadMetaPixel() {
@@ -49,10 +51,22 @@
     })(w, d, 'clarity', 'script', CLARITY_ID);
   }
 
+  function loadSnitcher() {
+    if (w.Snitcher && (w.Snitcher.initialized || w.Snitcher._loaded)) return;
+    // Snitcher install snippet, verbatim, invoked only after consent.
+    !function(e){"use strict";var t=e&&e.namespace;if(t&&e.profileId&&e.cdn){var i=window[t];if(i&&Array.isArray(i)||(i=window[t]=[]),!i.initialized&&!i._loaded)if(i._loaded)console&&console.warn("[Radar] Duplicate initialization attempted");else{i._loaded=!0;["track","page","identify","company","group","alias","ready","debug","on","off","once","trackClick","trackSubmit","trackLink","trackForm","pageview","screen","reset","register","setAnonymousId","addSourceMiddleware","addIntegrationMiddleware","addDestinationMiddleware","giveCookieConsent","denyCookieConsent"].forEach((function(e){var a;i[e]=(a=e,function(){var e=window[t];if(e.initialized)return e[a].apply(e,arguments);var i=[].slice.call(arguments);return i.unshift(a),e.push(i),e})})),-1===e.apiEndpoint.indexOf("http")&&(e.apiEndpoint="https://"+e.apiEndpoint),i.bootstrap=function(){var t,i=document.createElement("script");i.async=!0,i.type="text/javascript",i.id="__radar__",i.setAttribute("data-settings",JSON.stringify(e)),i.src=[-1!==(t=e.cdn).indexOf("http")?"":"https://",t,"/releases/latest/radar.min.js"].join("");var a=document.scripts[0];a.parentNode.insertBefore(i,a)},i.bootstrap()}}else"undefined"!=typeof console&&console.error("[Radar] Configuration incomplete")}({
+      "apiEndpoint": "radar.snitcher.com",
+      "cdn": "cdn.snitcher.com",
+      "namespace": "Snitcher",
+      "profileId": SNITCHER_PROFILE_ID
+    });
+  }
+
   function loadAnalytics() {
     loadMetaPixel();
     loadGA4();
     loadClarity();
+    loadSnitcher();
   }
 
   /* ---- consent storage helpers ---- */
