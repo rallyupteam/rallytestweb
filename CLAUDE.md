@@ -3,29 +3,32 @@
 Static HTML site (no framework/build step). Each page is a standalone `.html` file.
 Hosted on AWS Amplify — every push to `main` auto-deploys.
 
-## Required on every page: analytics + consent
+## Required on every page: analytics
 
 Analytics/advertising (the Meta/Facebook Pixel, Google Analytics GA4,
 Microsoft Clarity, and the Snitcher visitor-identification tracker) is loaded
-through a shared, consent-gated loader in [assets/consent.js](assets/consent.js). It renders the cookie-consent banner and
-only loads those tools **after** the visitor clicks "accept" (declining keeps them
-off). Do NOT inline raw analytics snippets on pages (and no `<noscript>` fallback
-pixel, which can't be consent-gated) — always go through the shared file so consent
-gating stays uniform. Pages may still contain guarded `typeof gtag`/`typeof clarity`
-event-tracking helpers; those safely no-op until consent loads the libraries.
+through a shared loader in [assets/consent.js](assets/consent.js). There is NO
+cookie-consent banner — the tools load on page load for every visitor (the site
+serves US traffic; disclosures + opt-out live in [privacy.html](privacy.html)).
+Do NOT inline raw analytics snippets on pages — always go through the shared file
+so the tracking stays uniform. Pages may contain guarded `typeof gtag`/`typeof
+clarity` event-tracking helpers; those no-op until the libraries load.
+
+(The file is still named `consent.js` so existing `<script src>` references and
+the published URL stay valid, even though it no longer gates on consent.)
 
 **Every new HTML page MUST include**, in the `<head>` (right after the
 `<meta charset>` / `<meta viewport>` tags):
 
 ```html
-<!-- Cookie consent + analytics: Meta Pixel, GA4 & Clarity (load only after consent) -->
+<!-- Analytics: Meta Pixel, GA4, Clarity & Snitcher -->
 <script src="/assets/consent.js" defer></script>
 ```
 
 This single include is all a new page needs — it wires up **all four** tools
-(Meta Pixel, GA4, Microsoft Clarity, and Snitcher) plus the consent banner. There is nothing
-else to paste per page; do NOT add separate GA4 or Clarity snippets (they would
-double-load and fire before consent). To change IDs or add a tool, edit
+(Meta Pixel, GA4, Microsoft Clarity, and Snitcher). There is nothing else to
+paste per page; do NOT add separate GA4 or Clarity snippets (they would
+double-load). To change IDs or add a tool, edit
 [assets/consent.js](assets/consent.js) once.
 
 **And in the footer**, a link to the privacy policy:
