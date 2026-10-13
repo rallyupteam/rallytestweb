@@ -44,8 +44,55 @@
       if (stored && Object.keys(stored).length) return stored;
     } catch (e) {}
 
-    // Nothing inbound, nothing remembered: this really is a direct site visit.
-    return { utm_source: 'website', utm_medium: 'site_cta', utm_campaign: 'site' };
+    // Nothing inbound and nothing remembered. Classify how they got here from
+    // the referrer, which only exists on arrival — by the time they book, it is
+    // long gone, so this is the one chance to record it.
+    return classifyReferrer();
+  }
+
+  /*
+   * Buckets the referring host into a source we can report on.
+   *
+   * Deliberately coarse. The useful question is "did search, an AI assistant,
+   * or another site send this person", not which of nine search engines.
+   *
+   * Honest limits: document.referrer is empty for a large share of real
+   * traffic — typed URLs, most in-app browsers, anything with a strict
+   * referrer policy — and all of that lands in 'direct' whether or not it
+   * truly was. AI assistants are the worst case: several open links in a way
+   * that strips the referrer, so that bucket undercounts. Treat these as a
+   * floor, not a census.
+   */
+  function classifyReferrer() {
+    var base = { utm_medium: 'site_cta', utm_campaign: 'site' };
+    var host = '';
+    try {
+      if (!document.referrer) return merge(base, { utm_source: 'direct' });
+      host = new URL(document.referrer).hostname.replace(/^www\./, '').toLowerCase();
+    } catch (e) {
+      return merge(base, { utm_source: 'direct' });
+    }
+
+    // Our own pages are not a referrer.
+    if (host === location.hostname.replace(/^www\./, '').toLowerCase()) {
+      return merge(base, { utm_source: 'direct' });
+    }
+
+    var SEARCH = /^(google|bing|duckduckgo|yahoo|ecosia|brave|baidu|yandex|startpage)\./;
+    var AI = /^(chatgpt\.com|chat\.openai\.com|openai\.com|perplexity\.ai|claude\.ai|gemini\.google\.com|copilot\.microsoft\.com|you\.com|phind\.com)$/;
+    var SOCIAL = /^(linkedin|twitter|x|facebook|instagram|t|lnkd|reddit|news\.ycombinator)\./;
+
+    if (AI.test(host)) return merge(base, { utm_source: 'ai', utm_term: host });
+    if (SEARCH.test(host)) return merge(base, { utm_source: 'search', utm_term: host });
+    if (SOCIAL.test(host)) return merge(base, { utm_source: 'social', utm_term: host });
+    return merge(base, { utm_source: 'referral', utm_term: host });
+  }
+
+  function merge(a, b) {
+    var out = {};
+    for (var k in a) if (Object.prototype.hasOwnProperty.call(a, k)) out[k] = a[k];
+    for (var j in b) if (Object.prototype.hasOwnProperty.call(b, j)) out[j] = b[j];
+    return out;
   }
 
   var attr = resolve();
