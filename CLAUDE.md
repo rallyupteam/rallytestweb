@@ -31,6 +31,18 @@ paste per page; do NOT add separate GA4 or Clarity snippets (they would
 double-load). To change IDs or add a tool, edit
 [assets/consent.js](assets/consent.js) once.
 
+**Google Tag Manager** (container `GTM-582JGF2D`, feeds GA4 stream
+`G-E6S7WP4S7L`) is installed **inline on every page** — this is the one exception
+to "don't inline analytics," because GTM requires it. It runs alongside, and
+separately from, `consent.js` (do not move it in there). Two blocks, kept
+verbatim:
+
+- the GTM `<script>` as high in the `<head>` as possible (right after
+  `<meta charset>` / `<meta viewport>`, before the favicons);
+- the GTM `<noscript>` iframe immediately after the opening `<body>` tag.
+
+New pages MUST include both.
+
 **And in the footer**, a link to the privacy policy:
 
 ```html
@@ -51,10 +63,12 @@ from the logo mark; source is [favicon.svg](favicon.svg), rasterized to
 Use absolute paths (`/assets/...`, `/privacy.html`) so they resolve from any
 directory depth (`blog/`, `case-studies/`, etc.).
 
-Pages currently wired up: `index.html`, `blog/index.html`,
+Pages currently wired up: `index.html`, `privacy.html`, `blog/index.html`,
 `blog/best-linkedin-ghostwriting-agencies-2026.html`, `case-studies/index.html`,
 `case-studies/pandadoc.html`, `case-studies/deway.html`,
-`case-studies/prettydamnquick.html`, `privacy.html`.
+`case-studies/prettydamnquick.html`, `alec-on-x/index.html`,
+`book-a-call/index.html`, `lets-connect/index.html`, `lets-talk/index.html`,
+`speak-with-alec/index.html`, `speak-with-matt/index.html`.
 
 ## Privacy policy
 
