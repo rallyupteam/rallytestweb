@@ -136,15 +136,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ========= CARD GRID ========= -->
+<!-- ========= CARD GRID (static HTML so AI crawlers can read it) ========= -->
 <section class="max-w-6xl mx-auto px-6 pb-6">
-  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="cs-grid"></div>
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="cs-grid">
+
+    <a href="pandadoc.html" class="cs-card" aria-label="pandadoc case study">
+      <div class="flex items-center justify-between mb-6">
+        <div class="cs-logo"><img src="../assets/logos/pandadoc.png" alt="pandadoc logo"></div>
+      </div>
+      <div class="flex flex-wrap gap-2 mb-5"><span class="tag">exec-generated content</span></div>
+      <div class="cs-stat mb-1">27K+</div>
+      <div class="text-sm text-gray-500 leading-snug mb-5">impressions on a single exec’s first post</div>
+      <ul class="grid gap-2 mb-6">
+        <li class="flex gap-2 text-sm text-gray-500 leading-snug"><span class="text-ru-blue">•</span><span>1,235 engagements across 3 execs in one month</span></li>
+        <li class="flex gap-2 text-sm text-gray-500 leading-snug"><span class="text-ru-blue">•</span><span>$100M+ ARR B2B SaaS leadership team</span></li>
+      </ul>
+      <div class="mt-auto cs-arrow">read the case study →</div>
+    </a>
+
+    <a href="deway.html" class="cs-card" aria-label="deway case study">
+      <div class="flex items-center justify-between mb-6">
+        <div class="cs-logo"><img src="../assets/logos/deway.svg" alt="deway logo"></div>
+      </div>
+      <div class="flex flex-wrap gap-2 mb-5"><span class="tag">LinkedIn ghostwriting</span> <span class="tag">founder-led content</span></div>
+      <div class="cs-stat mb-1">20,238</div>
+      <div class="text-sm text-gray-500 leading-snug mb-5">impressions in month one — ~4× his pre-rallyup reach</div>
+      <ul class="grid gap-2 mb-6">
+        <li class="flex gap-2 text-sm text-gray-500 leading-snug"><span class="text-ru-blue">•</span><span>3.8% engagement rate — 1.5× his 2.4% baseline</span></li>
+        <li class="flex gap-2 text-sm text-gray-500 leading-snug"><span class="text-ru-blue">•</span><span>4 prospect calls booked in under a month</span></li>
+      </ul>
+      <div class="mt-auto cs-arrow">read the case study →</div>
+    </a>
+
+    <a href="prettydamnquick.html" class="cs-card" aria-label="prettydamnquick case study">
+      <div class="flex items-center justify-between mb-6">
+        <div class="cs-logo"><img src="../assets/logos/prettydamnquick.jpg" alt="prettydamnquick logo"></div>
+      </div>
+      <div class="flex flex-wrap gap-2 mb-5"><span class="tag">LinkedIn ghostwriting</span> <span class="tag">data-driven content</span></div>
+      <div class="cs-stat mb-1">20</div>
+      <div class="text-sm text-gray-500 leading-snug mb-5">new ABM accounts opened in month one</div>
+      <ul class="grid gap-2 mb-6">
+        <li class="flex gap-2 text-sm text-gray-500 leading-snug"><span class="text-ru-blue">•</span><span>~2x average impressions in the first month</span></li>
+        <li class="flex gap-2 text-sm text-gray-500 leading-snug"><span class="text-ru-blue">•</span><span>3–7% engagement rate vs. LinkedIn’s 1–2% norm</span></li>
+      </ul>
+      <div class="mt-auto cs-arrow">read the case study →</div>
+    </a>
+
+  </div>
 </section>
 
-<!-- ========= QUOTE CARDS (hidden until QUOTES has entries) ========= -->
-<section class="max-w-6xl mx-auto px-6 py-10 hidden" id="quotes-section">
+<!-- ========= QUOTE CARDS (static HTML — real, permissioned quotes only) ========= -->
+<section class="max-w-6xl mx-auto px-6 py-10" id="quotes-section">
   <h2 class="text-2xl md:text-3xl font-black tracking-tight text-ru-blue-dark mb-7">in their words</h2>
-  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="quotes-grid"></div>
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="quotes-grid">
+    <figure class="q-card">
+      <blockquote class="text-ru-blue-dark text-lg leading-snug font-medium mb-5">“Give it a try — the investment isn't huge and the upside is substantial. For a lot of companies, social presence is the difference between being known and not, and being known can be a jumping-off point for deals, partnerships, investors. For B2B, it's a no-brainer.”</blockquote>
+      <figcaption class="flex items-center gap-3"><span class="text-sm font-semibold text-gray-600">Haim Moskowitz, Head of Marketing, PrettyDamnQuick</span></figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- ========= FINAL CTA ========= -->
@@ -174,96 +223,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<script>
-/* =========================================================================
-   Case-studies hub — structured content (mirrors the homepage LOGOS pattern).
-   Add a client = one entry in CASE_STUDIES. Add a pull-quote = one entry in
-   QUOTES (the quotes row stays hidden while QUOTES is empty). Never fabricate
-   a quote — only add real, permissioned testimonial responses.
-   ========================================================================= */
-const CASE_STUDIES = [
-  {
-    name: 'pandadoc',
-    logo: '../assets/logos/pandadoc.png',
-    href: 'pandadoc.html',
-    tags: ['exec-generated content'],
-    headline: '27K+',
-    headlineLabel: 'impressions on a single exec’s first post',
-    stats: ['1,235 engagements across 3 execs in one month', '$100M+ ARR B2B SaaS leadership team']
-  },
-  {
-    name: 'deway',
-    logo: '../assets/logos/deway.svg',
-    href: 'deway.html',
-    tags: ['LinkedIn ghostwriting', 'founder-led content'],
-    headline: '20,238',
-    headlineLabel: 'impressions in month one — ~4× his pre-rallyup reach',
-    stats: ['3.8% engagement rate — 1.5× his 2.4% baseline', '4 prospect calls booked in under a month']
-  },
-  {
-    name: 'prettydamnquick',
-    logo: '../assets/logos/prettydamnquick.jpg',
-    href: 'prettydamnquick.html',
-    tags: ['LinkedIn ghostwriting', 'data-driven content'],
-    headline: '20',
-    headlineLabel: 'new ABM accounts opened in month one',
-    stats: ['~2x average impressions in the first month', '3–7% engagement rate vs. LinkedIn’s 1–2% norm']
-  }
-];
-
-// Real, permissioned pull-quotes only. Section stays hidden while empty.
-const QUOTES = [
-  {
-    quote: "Give it a try — the investment isn't huge and the upside is substantial. For a lot of companies, social presence is the difference between being known and not, and being known can be a jumping-off point for deals, partnerships, investors. For B2B, it's a no-brainer.",
-    name: "Haim Moskowitz",
-    title: "Head of Marketing, PrettyDamnQuick",
-    headshot: null
-  }
-];
-
-(function () {
-  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-
-  function renderCard(c) {
-    var tags = (c.tags || []).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join(' ');
-    var stats = (c.stats || []).map(function (s) {
-      return '<li class="flex gap-2 text-sm text-gray-500 leading-snug"><span class="text-ru-blue">•</span><span>' + esc(s) + '</span></li>';
-    }).join('');
-    return '' +
-      '<a href="' + esc(c.href) + '" class="cs-card" aria-label="' + esc(c.name) + ' case study">' +
-        '<div class="flex items-center justify-between mb-6">' +
-          '<div class="cs-logo"><img src="' + esc(c.logo) + '" alt="' + esc(c.name) + ' logo"></div>' +
-        '</div>' +
-        '<div class="flex flex-wrap gap-2 mb-5">' + tags + '</div>' +
-        '<div class="cs-stat mb-1">' + esc(c.headline) + '</div>' +
-        '<div class="text-sm text-gray-500 leading-snug mb-5">' + esc(c.headlineLabel) + '</div>' +
-        '<ul class="grid gap-2 mb-6">' + stats + '</ul>' +
-        '<div class="mt-auto cs-arrow">read the case study →</div>' +
-      '</a>';
-  }
-
-  function renderQuote(q) {
-    var headshot = q.headshot
-      ? '<span class="h-10 w-10 rounded-full overflow-hidden bg-black/5 inline-flex shrink-0"><img class="h-full w-full object-cover" src="' + esc(q.headshot) + '" alt="' + esc(q.name || '') + '"></span>'
-      : '';
-    var author = [q.name, q.title].filter(Boolean).map(esc).join(', ');
-    return '' +
-      '<figure class="q-card">' +
-        '<blockquote class="text-ru-blue-dark text-lg leading-snug font-medium mb-5">“' + esc(q.quote) + '”</blockquote>' +
-        '<figcaption class="flex items-center gap-3">' + headshot +
-          '<span class="text-sm font-semibold text-gray-600">' + author + '</span>' +
-        '</figcaption>' +
-      '</figure>';
-  }
-
-  var grid = document.getElementById('cs-grid');
-  if (grid) grid.innerHTML = CASE_STUDIES.map(renderCard).join('');
-
-  if (QUOTES.length) {
-    document.getElementById('quotes-grid').innerHTML = QUOTES.map(renderQuote).join('');
-    document.getElementById('quotes-section').classList.remove('hidden');
-  }
-})();
-</script>
+<!-- Cards and quotes above are static HTML (crawlable for SEO/AEO). To add a
+     client, copy a <a class="cs-card"> block in the grid; to add a pull-quote,
+     copy a <figure class="q-card"> block — real, permissioned quotes only. -->
 </body>
 </html>

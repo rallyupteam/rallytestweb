@@ -149,6 +149,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       how pdq opened 20 new abm accounts from <span class="gradient-underline">linkedin content</span>, in month one.
     </h1>
     <p class="text-xl md:text-2xl text-gray-500 serif">a founder-led content program built on avi's own story and pdq's proprietary checkout data — content nobody else could credibly make.</p>
+    <p class="text-sm text-gray-400 mt-5">Published August 2026 · Updated October 2026 · by the rallyup team</p>
   </div>
 </section>
 
@@ -180,14 +181,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ========= QUOTE BLOCK (hidden until CASE.quote is set) ========= -->
-<section class="max-w-3xl mx-auto px-6 pt-14 hidden" id="quote-section">
+<!-- ========= QUOTE BLOCK (static HTML — real, permissioned quote) ========= -->
+<section class="max-w-3xl mx-auto px-6 pt-14" id="quote-section">
   <div class="rounded-3xl p-10 md:p-12 text-white" style="background: linear-gradient(135deg, #3d68f5 0%, #1e3a8a 100%);">
     <svg class="text-white/25 mb-6" width="48" height="36" viewBox="0 0 42 32" fill="currentColor"><path d="M0 32V18C0 8 5 2 14 0l2 4C10 6 7 10 7 16h7v16H0zm24 0V18c0-10 5-16 14-18l2 4c-6 2-9 6-9 12h7v16H24z"/></svg>
-    <p class="text-2xl md:text-3xl font-medium leading-snug mb-6" id="quote-text"></p>
+    <blockquote class="text-2xl md:text-3xl font-medium leading-snug mb-6">“You did a really good job of doing what was possible within our own constraints. We have a very specific ICP, and yet you managed to make a real impact — reaching the right people and crafting content that engaged and attracted the people we're trying to get in front of. Overall, I was very impressed.”</blockquote>
     <div class="flex items-center gap-3">
-      <span class="hidden h-11 w-11 rounded-full overflow-hidden bg-white/10" id="quote-headshot-wrap"><img class="h-full w-full object-cover" id="quote-headshot" alt=""></span>
-      <span class="text-sm font-semibold text-white/70" id="quote-author"></span>
+      <span class="text-sm font-semibold text-white/70">Haim Moskowitz, Head of Marketing, PrettyDamnQuick</span>
     </div>
   </div>
 </section>
@@ -267,7 +267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white leading-tight mb-6">the ceo is the most underpriced pipeline driver in b2b.</h2>
     <p class="text-lg text-white/70 mb-8">see what it looks like for yours.</p>
     <a href="https://cal.com/team/rallyup/audience-building-with-rallyup" data-cta="qualify" data-cta-location="case_study_pdq" class="btn btn-yellow text-base py-4 px-8 font-bold">book a call →</a>
-    <p class="text-xs text-white/45 max-w-xl mx-auto mt-8 leading-relaxed">results reflect one client's program and are not a guarantee of future outcomes. figures measured during the program period and shared with pdq's permission.</p>
+    <p class="text-xs text-white/45 max-w-xl mx-auto mt-8 leading-relaxed">results reflect one client's program and are not a guarantee of future outcomes. figures measured during the program period in 2026 and shared with pdq's permission.</p>
   </div>
 </section>
 
@@ -291,36 +291,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 /* =========================================================================
-   Case-study content that fills in later — one-line edits, no layout change.
-   Set `quote` (+ author fields) when the PDQ testimonial-form response lands
-   (form: pdq-testimonial.vercel.app). Set `videoUrl` to a Loom/YouTube/Vimeo
-   EMBED url (or a direct .mp4) when the video is ready. Until then: quote block
-   stays hidden, video slot shows the branded placeholder. DO NOT invent a quote.
+   The testimonial quote above is static HTML (crawlable). Set `videoUrl` below
+   to a Loom/YouTube/Vimeo EMBED url (or a direct .mp4) when the hero video is
+   ready; until then the video slot shows the branded placeholder.
    NOTE: the PDQ engagement ended in an offboarding — keep all copy past-tense
    and do not imply an ongoing relationship.
    ========================================================================= */
 const CASE = {
-  quote: "You did a really good job of doing what was possible within our own constraints. We have a very specific ICP, and yet you managed to make a real impact — reaching the right people and crafting content that engaged and attracted the people we're trying to get in front of. Overall, I was very impressed.",
-  quoteAuthorName: "Haim Moskowitz",
-  quoteAuthorTitle: "Head of Marketing, PrettyDamnQuick",
-  quoteAuthorHeadshot: null,
   videoUrl: null
 };
 
 (function () {
-  // Quote: reveal only when a real quote exists.
-  if (CASE.quote) {
-    document.getElementById('quote-text').textContent = '“' + CASE.quote + '”';
-    var author = [CASE.quoteAuthorName, CASE.quoteAuthorTitle].filter(Boolean).join(', ');
-    document.getElementById('quote-author').textContent = author;
-    if (CASE.quoteAuthorHeadshot) {
-      document.getElementById('quote-headshot').src = CASE.quoteAuthorHeadshot;
-      document.getElementById('quote-headshot').alt = CASE.quoteAuthorName || '';
-      document.getElementById('quote-headshot-wrap').classList.remove('hidden');
-    }
-    document.getElementById('quote-section').classList.remove('hidden');
-  }
-
   // Video: swap the placeholder for a player when a URL exists (same slot, no reflow).
   if (CASE.videoUrl) {
     var slot = document.getElementById('video-slot');
