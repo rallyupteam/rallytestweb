@@ -32,34 +32,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap">
 
 <style>
   :root{
-    --ru-blue:#3d68f5; --ru-blue-dark:#2a3ad8; --ru-blue-deep:#1e3a8a;
-    --ru-yellow:#DDFF4D; --ru-ink:#0b1020; --ru-gray:#6b7280;
-    --ru-bg:#ffffff; --ru-bg-soft:#f7f8fb;
+    --ru-blue:#3d68f5; --ru-blue-dark:#2a3ad8; --ru-yellow:#DDFF4D;
+    --ru-ink:#0b1020; --ru-bg-soft:#f7f8fb;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
     font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-    background:var(--ru-ink); color:#fff;
-    -webkit-font-smoothing:antialiased;
+    background:var(--ru-ink); color:#fff; -webkit-font-smoothing:antialiased;
   }
-  a{color:inherit}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--ru-bg-soft); border-bottom:1px solid #0b102014;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; padding:12px 28px;
+  }
+  .nav .brand{display:flex; align-items:center; gap:11px;}
+  .nav .brand .bx{
+    width:30px; height:30px; background:var(--ru-ink); color:#fff;
+    display:grid; place-items:center; font-size:15px; font-weight:800; line-height:1;
+  }
+  .nav .brand b{font-size:14.5px; font-weight:800; letter-spacing:-.5px; color:var(--ru-ink);}
+  .nav .links{display:flex; align-items:center; gap:22px;}
+  .nav .links a{font-size:13.5px; font-weight:500; color:#4b5468;}
+  .nav .links a:hover{color:var(--ru-ink)}
+  .nav .cta{
+    background:var(--ru-ink); color:#fff; font-size:13.5px; font-weight:700;
+    padding:10px 20px;
+  }
+  .nav .cta:hover{background:var(--ru-blue-dark)}
 
   /* ---------- hero ---------- */
   .hero{
-    min-height:100vh; display:flex; flex-direction:column;
+    min-height:calc(100vh - 55px); display:flex; flex-direction:column;
     align-items:center; justify-content:center;
-    padding:72px 24px 80px; text-align:center;
-    background:var(--ru-blue-dark);
+    padding:64px 24px 72px; text-align:center; background:var(--ru-blue-dark);
   }
   .mark{
     background:#fff; border:4px solid var(--ru-ink);
     box-shadow:12px 12px 0 var(--ru-ink);
-    padding:26px 46px 22px; margin-bottom:44px;
+    padding:26px 46px 22px; margin-bottom:40px;
   }
   .mark .mw{
     font-weight:800; font-size:clamp(28px,5.2vw,46px); letter-spacing:-1.6px;
@@ -69,10 +88,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size:11px; font-weight:500; letter-spacing:6px;
     color:var(--ru-ink); opacity:.55; margin-top:11px;
   }
-  .by{font-size:clamp(13px,2.1vw,16px); font-weight:500; color:#FFFFFFD9; margin-bottom:16px;}
+  .by{font-size:clamp(13px,2.1vw,16px); font-weight:500; color:#FFFFFFD9; margin-bottom:14px;}
   .tag{
     font-size:clamp(17px,2.45vw,25px); font-weight:500; color:#fff;
-    line-height:1.42; letter-spacing:-.5px; max-width:880px; margin-bottom:40px;
+    line-height:1.42; letter-spacing:-.5px; max-width:880px; margin-bottom:38px;
   }
   .formwrap{width:620px; max-width:100%;}
   .formwrap iframe{
@@ -80,43 +99,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background:transparent; color-scheme:light;
   }
   .chip{
-    margin-top:24px; background:var(--ru-yellow); color:var(--ru-ink);
+    margin-top:22px; background:var(--ru-yellow); color:var(--ru-ink);
     font-size:13px; font-weight:700; padding:10px 20px; display:inline-block;
   }
-  .alt{
-    margin-top:24px; font-size:13px; color:#FFFFFFB3;
-    text-decoration:underline; text-underline-offset:4px;
-  }
-  .alt:hover{color:var(--ru-yellow)}
 
   /* ---------- proof band ---------- */
-  .band{background:var(--ru-ink); padding:72px 24px 78px; text-align:center;}
+  .band{background:var(--ru-ink); padding:64px 0 70px; text-align:center;}
   .band h2{
-    font-size:clamp(18px,2.9vw,27px); font-weight:700; line-height:1.4;
-    letter-spacing:-.6px; color:#fff; max-width:36ch; margin:0 auto 14px;
+    font-size:clamp(17px,2.6vw,25px); font-weight:700; line-height:1.45;
+    letter-spacing:-.5px; color:#fff; max-width:44ch; margin:0 auto 10px; padding:0 24px;
   }
-  .band p{
-    font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--ru-yellow); font-weight:700; margin-bottom:42px;
+  .band .sub{
+    font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ru-yellow); font-weight:700; margin-bottom:44px; padding:0 24px;
   }
-
-  .marquee{
-    overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 90px,#000 calc(100% - 90px),transparent 100%);
-    mask-image:linear-gradient(90deg,transparent 0,#000 90px,#000 calc(100% - 90px),transparent 100%);
+  .ticker{
+    overflow:hidden; width:100%;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 110px,#000 calc(100% - 110px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 110px,#000 calc(100% - 110px),transparent 100%);
   }
-  .track{display:flex; width:max-content; align-items:center; animation:scroll 44s linear infinite;}
-  .marquee:hover .track{animation-play-state:paused}
-  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  .item{
-    flex:0 0 auto; display:flex; align-items:center; gap:13px; padding:0 26px;
-    opacity:.92;
+  .track{
+    display:flex; align-items:center; gap:80px; width:max-content;
+    padding-left:80px; animation:slide 46s linear infinite;
   }
-  .item img{
-    width:50px; height:50px; object-fit:cover; display:block;
-    border:2px solid #ffffff1f; background:#fff;
-  }
-  .item span{font-size:14px; font-weight:500; color:#E7EAF3; white-space:nowrap;}
+  .ticker:hover .track{animation-play-state:paused}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* Flatten every mark to white so mismatched brand colours read as one strip. */
+  .track img{flex:none; display:block; filter:brightness(0) invert(1); opacity:.9;}
 
   /* ---------- footer ---------- */
   .foot{
@@ -128,10 +137,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .foot a:hover{color:var(--ru-yellow)}
   .foot .row{display:flex; gap:18px; justify-content:center; flex-wrap:wrap;}
 
-  @media (max-width:560px){
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  @media (max-width:620px){
+    .nav{padding:10px 16px; gap:10px}
+    .nav .links{display:none}
     .mark{padding:20px 22px 18px; box-shadow:8px 8px 0 var(--ru-ink); border-width:3px;}
     .mark .mw{white-space:normal; letter-spacing:-1px;}
     .formwrap iframe{height:132px;}
+    .track{gap:52px; padding-left:52px}
+    .track img{transform:scale(.82); transform-origin:center}
   }
   @media (prefers-reduced-motion:reduce){
     .track{animation:none}
@@ -145,7 +163,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<main class="hero">
+<nav class="nav">
+  <a class="brand" href="/">
+    <span class="bx">f</span>
+    <b>fired to acquired</b>
+  </a>
+  <div class="links">
+    <a href="https://fired2acquired.beehiiv.com/">archive</a>
+    <a href="https://rallyup.team/case-studies/">case studies</a>
+    <a href="https://rallyup.team/">rallyup</a>
+  </div>
+  <a class="cta" href="#subscribe">Subscribe</a>
+</nav>
+
+<main class="hero" id="subscribe">
   <div class="mark">
     <div class="mw">fired to acquired</div>
     <div class="ml">B2B MARKETING</div>
@@ -163,30 +194,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <span class="chip">1,836 readers &nbsp;·&nbsp; 56% of them open it</span>
-
-  <a class="alt" href="https://fired2acquired.beehiiv.com/" target="_blank" rel="noopener">
-    Read a few issues first &rarr;
-  </a>
 </main>
 
 <section class="band">
-  <h2>Read by B2B marketers, founders, operators and investors.</h2>
-  <p>Including the teams RallyUp writes for</p>
+  <h2>Read by the founders, employees, and investors at the top startups and funds.</h2>
+  <p class="sub">Including the teams RallyUp writes for</p>
 
-  <div class="marquee">
-    <div class="track" id="track">
-      <div class="item"><img src="/assets/logos/airwallex.png" alt="Airwallex"><span>Airwallex</span></div>
-      <div class="item"><img src="/assets/logos/raptive.png" alt="Raptive"><span>Raptive</span></div>
-      <div class="item"><img src="/assets/logos/pandadoc.png" alt="PandaDoc"><span>PandaDoc</span></div>
-      <div class="item"><img src="/assets/logos/walnut.jpg" alt="Walnut"><span>Walnut</span></div>
-      <div class="item"><img src="/assets/logos/anchorbrowser.jpg" alt="Anchor Browser"><span>Anchor Browser</span></div>
-      <div class="item"><img src="/assets/logos/letterai.jpg" alt="Letter AI"><span>Letter AI</span></div>
-      <div class="item"><img src="/assets/logos/deway.svg" alt="Deway"><span>Deway</span></div>
-      <div class="item"><img src="/assets/logos/prettydamnquick.jpg" alt="PrettyDamnQuick"><span>PrettyDamnQuick</span></div>
-      <div class="item"><img src="/assets/logos/flexcharge.png" alt="FlexCharge"><span>FlexCharge</span></div>
-      <div class="item"><img src="/assets/logos/boompop.jpg" alt="Boompop"><span>Boompop</span></div>
-      <div class="item"><img src="/assets/logos/neuefische.png" alt="neue fische"><span>neue fische</span></div>
-      <div class="item"><img src="/assets/logos/andel.png" alt="Andel"><span>Andel</span></div>
+  <ul class="sr-only">
+    <li>Airwallex</li><li>Lightbank</li><li>Letter AI</li><li>LetsGo</li>
+    <li>Anchor Browser</li><li>Andel</li><li>Walnut</li>
+  </ul>
+
+  <div class="ticker">
+    <div class="track" id="track" aria-hidden="true">
+      <img src="/assets/wordmarks/airwallex.svg"     alt="" width="175" height="24" style="width:175px;height:24px">
+      <img src="/assets/wordmarks/lightbank.png"     alt="" width="97"  height="40" style="width:97px;height:40px">
+      <img src="/assets/wordmarks/letterai.svg"      alt="" width="101" height="28" style="width:101px;height:28px">
+      <img src="/assets/wordmarks/letsgo.png"        alt="" width="129" height="30" style="width:129px;height:30px">
+      <img src="/assets/wordmarks/anchorbrowser.svg" alt="" width="125" height="28" style="width:125px;height:28px">
+      <img src="/assets/wordmarks/andel.svg"         alt="" width="122" height="26" style="width:122px;height:26px">
+      <img src="/assets/wordmarks/walnut.svg"        alt="" width="150" height="26" style="width:150px;height:26px">
     </div>
   </div>
 </section>
@@ -201,11 +228,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script>
-  // Duplicate the marquee track once so the -50% scroll loops seamlessly.
+  // Repeat the set so the -50% keyframe always lands on an identical copy,
+  // which keeps a wide screen covered at every point in the loop.
   (function () {
     var t = document.getElementById('track');
     if (!t) return;
-    t.innerHTML += t.innerHTML;
+    var one = t.innerHTML;
+    t.innerHTML = one + one + one + one;
   })();
 </script>
 </body>
