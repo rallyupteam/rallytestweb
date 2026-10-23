@@ -107,11 +107,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      the same shape as the real control, so the swap is invisible instead of a
      gap that pops. Removed the moment the form mounts. */
   .skel{
-    position:absolute; inset:0;
+    position:absolute; inset:0; z-index:0;
     display:flex; background:#fff; border:2px solid var(--ru-ink);
     border-radius:999px; padding:5px; pointer-events:none;
-    transition:opacity .16s ease;
   }
+  /* beehiiv's injected container paints over the stand-in. Stacking, not
+     timing: the iframe renders its form with JS, so neither its load event
+     nor any delay reliably says "painted" — and guessing produced a visible
+     empty gap. Covering it instead means there is never a frame with nothing. */
+  .formwrap > div{position:relative; z-index:1;}
   .skel .si{
     flex:1; text-align:left; font-size:16px; color:#6B7280; padding:13px 20px;
   }
@@ -119,10 +123,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background:var(--ru-blue); color:#fff; font-size:16px; font-weight:600;
     padding:13px 28px; border-radius:999px; white-space:nowrap;
   }
-  .formwrap[data-ready] .skel{opacity:0; visibility:hidden;}
-  /* If the loader never arrives, the stand-in becomes a real link. Guarded on
-     :not([data-ready]) so a late timer can never resurrect a hidden control. */
-  .formwrap[data-failed]:not([data-ready]) .skel{pointer-events:auto; cursor:pointer;}
+  /* If the loader never arrives, the stand-in becomes a real link. */
+  .formwrap[data-failed] .skel{pointer-events:auto; cursor:pointer;}
 
   /* ---------- proof band ---------- */
   .band{background:var(--ru-ink); padding:52px 0 76px; text-align:center;}
@@ -256,48 +258,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     t.setAttribute('aria-hidden', 'true');
   })();
 
-  // The stand-in overlays the real control and is faded out only once the
-  // beehiiv iframe has actually LOADED. Hiding it when the loader merely
-  // inserts its container produced a visible flicker — stand-in gone, iframe
-  // not yet painted, empty gap, then the form — which is worse than the pause
-  // it exists to hide.
+  // The stand-in sits behind the real control and is never removed: the themed
+  // beehiiv form is opaque and simply covers it once painted. The only thing
+  // left to handle is the loader never arriving at all, in which case the
+  // stand-in becomes a working link rather than a control that does nothing.
   (function () {
     var wrap = document.getElementById('formwrap');
     var skel = document.getElementById('skel');
     if (!wrap || !skel) return;
 
-    var done = false;
-    function reveal() {
-      if (done) return;
-      done = true;
-      wrap.setAttribute('data-ready', '');
-      clearTimeout(failTimer);
-      if (obs) obs.disconnect();
-    }
-
-    // Nothing arrived at all: let the stand-in work as a plain link rather
-    // than leaving a control that looks real and does nothing.
-    var failTimer = setTimeout(function () {
-      if (done || wrap.querySelector('iframe')) return;
+    setTimeout(function () {
+      if (wrap.querySelector('iframe')) return;
       wrap.setAttribute('data-failed', '');
+      skel.style.pointerEvents = 'auto';
+      skel.style.cursor = 'pointer';
       skel.removeAttribute('aria-hidden');
       skel.removeAttribute('tabindex');
     }, 8000);
-
-    function watchIframe() {
-      var ifr = wrap.querySelector('iframe');
-      if (!ifr) return false;
-      ifr.addEventListener('load', reveal, { once: true });
-      // The iframe is cross-origin, so its readiness cannot be inspected and a
-      // load that fired before this listener attached would be missed. Reveal
-      // shortly after it appears regardless; by then it has painted.
-      setTimeout(reveal, 1200);
-      return true;
-    }
-
-    var obs = new MutationObserver(function () { watchIframe(); });
-    obs.observe(wrap, { childList: true, subtree: true });
-    watchIframe();
   })();
 </script>
 </body>
