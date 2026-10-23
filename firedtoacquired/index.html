@@ -116,15 +116,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      nor any delay reliably says "painted" — and guessing produced a visible
      empty gap. Covering it instead means there is never a frame with nothing. */
   .formwrap > div{position:relative; z-index:1;}
-  .skel .si{flex:1;}
-  /* Shapes only, no text. The stand-in rendered its label in this page's
-     Inter while the cross-origin iframe renders its own, so the glyphs
-     visibly morphed the moment the real form painted over it. Width measured
-     against the live button (120x49) so the silhouette matches; the text
-     simply appears when the real control arrives. */
+  /* NOT Inter. The form iframe declares font-family:Inter but ships no
+     @font-face and loads no font file (verified against its stylesheet), so
+     unless the visitor has Inter installed it renders ui-sans-serif. This
+     page DOES load Inter as a webfont, and a cross-origin iframe cannot
+     inherit it — which is why the glyphs visibly swapped. Matching the
+     iframe's effective stack is what makes the two render alike. */
+  .skel .si{
+    flex:1; display:flex; align-items:center; padding-left:15px;
+    font:400 16px/1 ui-sans-serif, system-ui, -apple-system, sans-serif;
+    letter-spacing:normal; color:#6B7280; white-space:nowrap; overflow:hidden;
+  }
   .skel .sb{
-    background:var(--ru-blue); border-radius:999px;
+    background:var(--ru-blue); color:#fff; border-radius:999px;
     width:120px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    font:600 16px/1 ui-sans-serif, system-ui, -apple-system, sans-serif;
+    letter-spacing:normal;
   }
   /* If the loader never arrives, the stand-in becomes a real link. */
   .formwrap[data-failed] .skel{pointer-events:auto; cursor:pointer;}
@@ -174,7 +182,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   @media (max-width:620px){
     .nav{padding:10px 16px; gap:10px}
-    .formwrap{min-height:112px;}
+    /* No stand-in on phones. The real form's height varies there (its button
+       label wraps at narrow widths), so an absolutely-positioned stand-in
+       sized to the wrapper hangs below the real control as a second pill.
+       A brief gap is far better than two overlapping forms. */
+    .skel{display:none;}
+    .formwrap{min-height:68px;}
     .track{gap:34px; padding-left:34px}
     .track .co b{font-size:18px}
     .track .co img{width:24px;height:24px}
@@ -206,8 +219,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="formwrap" id="formwrap">
     <a class="skel" id="skel" aria-hidden="true" tabindex="-1"
        href="https://fired2acquired.beehiiv.com/subscribe">
-      <span class="si"></span>
-      <span class="sb"></span>
+      <span class="si">Enter your email...</span>
+      <span class="sb">Sign Me Up</span>
     </a>
     <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="ea198d02-7570-4f6a-9cc3-2fc15551a689"></script>
   </div>
