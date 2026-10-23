@@ -16,16 +16,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <title>fired to acquired &middot; the newsletter by Alec Kremins</title>
-<meta name="description" content="B2B marketing insights, stories, and vibes sent to your inbox every Wednesday. Written by Alec Kremins, founder of RallyUp.">
+<meta name="description" content="B2B marketing, tested in public while I build RallyUp. Every other Wednesday, from Alec Kremins.">
 <link rel="canonical" href="https://rallyup.team/firedtoacquired">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rallyup.team/firedtoacquired">
 <meta property="og:title" content="fired to acquired &middot; the newsletter by Alec Kremins">
-<meta property="og:description" content="B2B marketing insights, stories, and vibes sent to your inbox every Wednesday.">
+<meta property="og:description" content="B2B marketing, tested in public while I build RallyUp. Every other Wednesday.">
 <meta property="og:image" content="https://rallyup.team/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="fired to acquired &middot; the newsletter by Alec Kremins">
-<meta name="twitter:description" content="B2B marketing insights, stories, and vibes sent to your inbox every Wednesday.">
+<meta name="twitter:description" content="B2B marketing, tested in public while I build RallyUp. Every other Wednesday.">
 
 <!-- Analytics: Meta Pixel, GA4, Clarity & Snitcher -->
 <script src="/assets/consent.js" defer></script>
@@ -35,9 +35,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@1&display=swap">
 
 <style>
+  /* rallyup.team's own system: Inter 900 display, Instrument Serif italic as the
+     counterpoint, yellow highlighter on the phrase that matters. Deliberately
+     NOT monospace, so this does not read as a Big Desk Energy clone. */
   :root{
     --ru-blue:#3d68f5; --ru-blue-dark:#2a3ad8; --ru-yellow:#DDFF4D;
     --ru-ink:#0b1020; --ru-bg-soft:#f7f8fb;
@@ -45,10 +48,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-    background:var(--ru-ink); color:#fff; -webkit-font-smoothing:antialiased;
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--ru-ink); color:#fff;
+    letter-spacing:-0.01em; -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;text-decoration:none}
+  .serif{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400}
 
   /* ---------- nav ---------- */
   .nav{
@@ -57,63 +62,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     display:flex; align-items:center; justify-content:space-between;
     gap:16px; padding:12px 28px;
   }
-  .nav .brand{display:flex; align-items:center; gap:11px;}
+  .nav .brand{display:flex; align-items:center; gap:10px;}
   .nav .brand .bx{
-    width:30px; height:30px; background:var(--ru-ink); color:#fff;
-    display:grid; place-items:center; font-size:15px; font-weight:800; line-height:1;
+    width:28px; height:28px; border-radius:7px; color:#fff;
+    background:linear-gradient(135deg,#6a7ff0 0%,#3a4fd8 100%);
+    display:grid; place-items:center; font-size:14px; font-weight:800; line-height:1;
   }
-  .nav .brand b{font-size:14.5px; font-weight:800; letter-spacing:-.5px; color:var(--ru-ink);}
+  .nav .brand b{font-size:14.5px; font-weight:800; letter-spacing:-.4px; color:var(--ru-ink);}
   .nav .links{display:flex; align-items:center; gap:22px;}
-  .nav .links a{font-size:13.5px; font-weight:500; color:#4b5468;}
+  .nav .links a{font-size:14px; font-weight:500; color:#4b5468;}
   .nav .links a:hover{color:var(--ru-ink)}
   .nav .cta{
-    background:var(--ru-ink); color:#fff; font-size:13.5px; font-weight:700;
-    padding:10px 20px;
+    background:var(--ru-blue); color:#fff; font-size:14px; font-weight:600;
+    padding:10px 20px; border-radius:999px;
+    transition:background .2s ease, box-shadow .2s ease;
   }
-  .nav .cta:hover{background:var(--ru-blue-dark)}
+  .nav .cta:hover{background:var(--ru-blue-dark); box-shadow:0 10px 24px rgba(61,104,245,.3)}
 
   /* ---------- hero ---------- */
   .hero{
-    display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    padding:52px 24px 56px; text-align:center; background:var(--ru-blue-dark);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:62px 24px 60px; text-align:center; background:var(--ru-blue-dark);
   }
-  .mark{
-    background:#fff; border:4px solid var(--ru-ink);
-    box-shadow:12px 12px 0 var(--ru-ink);
-    padding:22px 42px 19px; margin-bottom:30px;
+  h1{
+    font-size:clamp(38px,6.6vw,74px); font-weight:900; line-height:.94;
+    letter-spacing:-.045em; color:#fff; margin-bottom:8px;
   }
-  .mark .mw{
-    font-weight:800; font-size:clamp(26px,4.4vw,40px); letter-spacing:-1.4px;
-    color:var(--ru-ink); line-height:1; white-space:nowrap;
+  /* RallyUp's gradient-underline, straight off index.html */
+  /* RallyUp uses the highlighter behind DARK text. The headline here is white,
+     and white on #DDFF4D is ~1.2:1, so this sits low enough to read as an
+     underline bar rather than a block behind the glyphs. */
+  .hl{
+    background-image:linear-gradient(transparent 84%, var(--ru-yellow) 84%);
+    background-repeat:no-repeat; padding:0 2px;
   }
-  .mark .ml{
-    font-size:11px; font-weight:500; letter-spacing:6px;
-    color:var(--ru-ink); opacity:.55; margin-top:11px;
+  .kicker{
+    font-size:11.5px; font-weight:700; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--ru-yellow); margin-bottom:22px;
   }
-  .by{font-size:clamp(13px,2.1vw,16px); font-weight:500; color:#FFFFFFD9; margin-bottom:11px;}
+  .by{font-size:15px; font-weight:500; color:#FFFFFFCC; margin:16px 0 10px;}
   .tag{
-    font-size:clamp(16px,2.1vw,22px); font-weight:500; color:#fff;
-    line-height:1.4; letter-spacing:-.5px; max-width:880px; margin-bottom:30px;
+    font-size:clamp(17px,2.2vw,23px); font-weight:400; color:#FFFFFFE8;
+    line-height:1.45; max-width:760px; margin-bottom:32px;
   }
-  /* The beehiiv v3 loader injects the form inline here; min-height reserves
-     its space so the chip below does not jump when the script lands. */
-  .formwrap{width:620px; max-width:100%; min-height:66px;}
+  /* The serif line answers the sans line, the way rallyup.team sets its h1s. */
+  .tag .serif{display:block; margin-top:2px; color:#FFFFFFCC;}
+  /* The beehiiv v3 loader injects the form inline here; min-height reserves its
+     space so the chip below does not jump when the script lands. */
+  .formwrap{width:560px; max-width:100%; min-height:66px;}
   .formwrap iframe{width:100%; border:0; display:block; background:transparent;}
   .chip{
     margin-top:18px; background:var(--ru-yellow); color:var(--ru-ink);
-    font-size:13px; font-weight:700; padding:10px 20px; display:inline-block;
+    font-size:13px; font-weight:700; padding:9px 18px; border-radius:999px;
+    display:inline-block;
   }
 
   /* ---------- proof band ---------- */
-  .band{background:var(--ru-ink); padding:48px 0 54px; text-align:center;}
+  .band{background:var(--ru-ink); padding:50px 0 56px; text-align:center;}
   .band h2{
-    font-size:clamp(17px,2.6vw,25px); font-weight:700; line-height:1.45;
-    letter-spacing:-.5px; color:#fff; max-width:44ch; margin:0 auto 10px; padding:0 24px;
-  }
-  .band .sub{
-    font-size:12px; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--ru-yellow); font-weight:700; margin-bottom:34px; padding:0 24px;
+    font-size:clamp(19px,2.5vw,27px); font-weight:800; line-height:1.3;
+    letter-spacing:-.03em; color:#fff; margin:0 0 30px; padding:0 24px;
   }
   .ticker{
     overflow:hidden; width:100%;
@@ -121,37 +129,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     mask-image:linear-gradient(90deg,transparent 0,#000 110px,#000 calc(100% - 110px),transparent 100%);
   }
   .track{
-    display:flex; align-items:center; gap:80px; width:max-content;
-    padding-left:80px; animation:slide 46s linear infinite;
+    display:flex; align-items:center; gap:52px; width:max-content;
+    padding-left:52px; animation:slide 58s linear infinite;
   }
   .ticker:hover .track{animation-play-state:paused}
   @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  /* Flatten every mark to white so mismatched brand colours read as one strip. */
-  .track img{flex:none; display:block; filter:brightness(0) invert(1); opacity:.9;}
+  .track span{
+    flex:none; font-size:23px; font-weight:700; letter-spacing:-.03em;
+    color:#E9EDF7; white-space:nowrap; opacity:.92;
+  }
 
   /* ---------- footer ---------- */
   .foot{
     background:var(--ru-ink); border-top:1px solid #ffffff14;
     padding:26px 24px 34px; text-align:center;
-    font-size:12px; color:#8A93A8; display:flex; flex-direction:column; gap:10px;
+    font-size:13px; color:#8A93A8; display:flex; flex-direction:column; gap:10px;
   }
   .foot a{text-decoration:underline; text-underline-offset:3px;}
   .foot a:hover{color:var(--ru-yellow)}
   .foot .row{display:flex; gap:18px; justify-content:center; flex-wrap:wrap;}
 
-  .sr-only{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-  }
-
   @media (max-width:620px){
     .nav{padding:10px 16px; gap:10px}
     .nav .links{display:none}
-    .mark{padding:20px 22px 18px; box-shadow:8px 8px 0 var(--ru-ink); border-width:3px;}
-    .mark .mw{white-space:normal; letter-spacing:-1px;}
     .formwrap{min-height:112px;}
-    .track{gap:52px; padding-left:52px}
-    .track img{transform:scale(.82); transform-origin:center}
+    .track{gap:34px; padding-left:34px}
+    .track span{font-size:18px}
   }
   @media (prefers-reduced-motion:reduce){
     .track{animation:none}
@@ -179,39 +182,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <main class="hero" id="subscribe">
-  <div class="mark">
-    <div class="mw">fired to acquired</div>
-    <div class="ml">B2B MARKETING</div>
-  </div>
-
-  <p class="by">Written by Alec Kremins // Founder @ rallyup 📣</p>
-  <p class="tag">B2B marketing insights, stories, and vibes sent to your inbox every Wednesday.</p>
+  <p class="kicker">The newsletter</p>
+  <h1>fired to <span class="hl">acquired</span></h1>
+  <p class="by">Alec Kremins &middot; Founder of RallyUp</p>
+  <p class="tag">
+    B2B marketing, tested in public while I build RallyUp.
+    <span class="serif">Every other Wednesday.</span>
+  </p>
 
   <div class="formwrap">
     <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="ea198d02-7570-4f6a-9cc3-2fc15551a689"></script>
   </div>
 
-  <span class="chip">1,836 readers &nbsp;·&nbsp; 56% of them open it</span>
+  <span class="chip">1,836 readers &nbsp;&middot;&nbsp; 56% of them open it</span>
 </main>
 
 <section class="band">
-  <h2>Read by the founders, employees, and investors at the top startups and funds.</h2>
-  <p class="sub">Including the teams RallyUp writes for</p>
-
-  <ul class="sr-only">
-    <li>Airwallex</li><li>Lightbank</li><li>Letter AI</li><li>LetsGo</li>
-    <li>Anchor Browser</li><li>Andel</li><li>Walnut</li>
-  </ul>
+  <h2>Read by people at</h2>
 
   <div class="ticker">
-    <div class="track" id="track" aria-hidden="true">
-      <img src="/assets/wordmarks/airwallex.svg"     alt="" width="175" height="24" style="width:175px;height:24px">
-      <img src="/assets/wordmarks/lightbank.png"     alt="" width="97"  height="40" style="width:97px;height:40px">
-      <img src="/assets/wordmarks/letterai.svg"      alt="" width="101" height="28" style="width:101px;height:28px">
-      <img src="/assets/wordmarks/letsgo.png"        alt="" width="129" height="30" style="width:129px;height:30px">
-      <img src="/assets/wordmarks/anchorbrowser.svg" alt="" width="125" height="28" style="width:125px;height:28px">
-      <img src="/assets/wordmarks/andel.svg"         alt="" width="122" height="26" style="width:122px;height:26px">
-      <img src="/assets/wordmarks/walnut.svg"        alt="" width="150" height="26" style="width:150px;height:26px">
+    <div class="track" id="track">
+      <span>Meta</span><span>Salesforce</span><span>HubSpot</span><span>Shopify</span>
+      <span>Intuit</span><span>Ramp</span><span>Rivian</span><span>Ripple</span>
+      <span>LinkedIn</span><span>Intercom</span><span>ClickUp</span><span>Vanta</span>
+      <span>Insight Partners</span><span>Lightbank</span><span>Substack</span>
+      <span>beehiiv</span><span>Wix</span><span>John Deere</span>
+      <span>Publicis</span><span>TaskRabbit</span>
     </div>
   </div>
 </section>
@@ -231,8 +227,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function () {
     var t = document.getElementById('track');
     if (!t) return;
-    var one = t.innerHTML;
-    t.innerHTML = one + one + one + one;
+    t.innerHTML = t.innerHTML + t.innerHTML;
+    t.setAttribute('aria-hidden', 'true');
   })();
 </script>
 </body>
