@@ -103,10 +103,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background-image:linear-gradient(transparent 84%, var(--ru-yellow) 84%);
     background-repeat:no-repeat; padding:0 2px;
   }
-  .kicker{
-    font-size:11.5px; font-weight:700; letter-spacing:.24em; text-transform:uppercase;
-    color:var(--ru-yellow); margin-bottom:22px;
-  }
   .by{font-size:15px; font-weight:500; color:#FFFFFFCC; margin:16px 0 10px;}
   .tag{
     font-size:clamp(17px,2.2vw,23px); font-weight:400; color:#FFFFFFE8;
@@ -154,13 +150,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     mask-image:linear-gradient(90deg,transparent 0,#000 110px,#000 calc(100% - 110px),transparent 100%);
   }
   .track{
-    display:flex; align-items:center; gap:52px; width:max-content;
+    display:flex; align-items:center; gap:46px; width:max-content;
     padding-left:52px; animation:slide 58s linear infinite;
   }
   .ticker:hover .track{animation-play-state:paused}
   @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  .track span{
-    flex:none; font-size:23px; font-weight:700; letter-spacing:-.03em;
+  /* Each mark sits on a uniform white tile: the real favicons are a mix of
+     transparent and solid-background, and without the tile they read as an
+     inconsistent jumble. Flattening them to white is not an option - the
+     solid-background ones would become blank squares. */
+  .track .co{
+    flex:none; display:flex; align-items:center; gap:11px;
+  }
+  .track .co img{
+    width:28px; height:28px; object-fit:contain; display:block;
+    background:#fff; border-radius:7px; padding:3px;
+  }
+  .track .co b{
+    font-size:23px; font-weight:700; letter-spacing:-.03em;
     color:#E9EDF7; white-space:nowrap; opacity:.92;
   }
 
@@ -179,7 +186,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .nav .links{display:none}
     .formwrap{min-height:112px;}
     .track{gap:34px; padding-left:34px}
-    .track span{font-size:18px}
+    .track .co b{font-size:18px}
+    .track .co img{width:24px;height:24px}
   }
   @media (prefers-reduced-motion:reduce){
     .track{animation:none}
@@ -207,9 +215,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <main class="hero" id="subscribe">
-  <p class="kicker">The newsletter</p>
   <h1>fired to <span class="hl">acquired</span></h1>
-  <p class="by">Alec Kremins &middot; Founder of RallyUp</p>
+  <p class="by">Written by Alec Kremins // founder @ rallyup 📣</p>
   <p class="tag">
     B2B marketing, tested in public while I build RallyUp.
     <span class="serif">Every other Wednesday.</span>
@@ -228,16 +235,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <section class="band">
-  <h2>Read by people at</h2>
+  <h2>Read by awesome professionals and leaders at:</h2>
 
   <div class="ticker">
     <div class="track" id="track">
-      <span>Meta</span><span>Salesforce</span><span>HubSpot</span><span>Shopify</span>
-      <span>Intuit</span><span>Ramp</span><span>Rivian</span><span>Ripple</span>
-      <span>LinkedIn</span><span>Intercom</span><span>ClickUp</span><span>Vanta</span>
-      <span>Insight Partners</span><span>Lightbank</span><span>Substack</span>
-      <span>beehiiv</span><span>Wix</span><span>John Deere</span>
-      <span>Publicis</span><span>TaskRabbit</span>
+      <span class="co"><img src="/assets/companies/meta.png" alt="" width="28" height="28"><b>Meta</b></span>
+      <span class="co"><img src="/assets/companies/salesforce.png" alt="" width="28" height="28"><b>Salesforce</b></span>
+      <span class="co"><img src="/assets/companies/hubspot.png" alt="" width="28" height="28"><b>HubSpot</b></span>
+      <span class="co"><img src="/assets/companies/shopify.png" alt="" width="28" height="28"><b>Shopify</b></span>
+      <span class="co"><img src="/assets/companies/intuit.png" alt="" width="28" height="28"><b>Intuit</b></span>
+      <span class="co"><img src="/assets/companies/ramp.png" alt="" width="28" height="28"><b>Ramp</b></span>
+      <span class="co"><img src="/assets/companies/rivian.png" alt="" width="28" height="28"><b>Rivian</b></span>
+      <span class="co"><img src="/assets/companies/ripple.png" alt="" width="28" height="28"><b>Ripple</b></span>
+      <span class="co"><img src="/assets/companies/linkedin.png" alt="" width="28" height="28"><b>LinkedIn</b></span>
+      <span class="co"><img src="/assets/companies/intercom.png" alt="" width="28" height="28"><b>Intercom</b></span>
+      <span class="co"><img src="/assets/companies/clickup.png" alt="" width="28" height="28"><b>ClickUp</b></span>
+      <span class="co"><img src="/assets/companies/vanta.png" alt="" width="28" height="28"><b>Vanta</b></span>
+      <span class="co"><img src="/assets/companies/insightpartners.png" alt="" width="28" height="28"><b>Insight Partners</b></span>
+      <span class="co"><img src="/assets/companies/substack.png" alt="" width="28" height="28"><b>Substack</b></span>
+      <span class="co"><img src="/assets/companies/beehiiv.png" alt="" width="28" height="28"><b>beehiiv</b></span>
+      <span class="co"><img src="/assets/companies/wix.png" alt="" width="28" height="28"><b>Wix</b></span>
+      <span class="co"><img src="/assets/companies/publicis.png" alt="" width="28" height="28"><b>Publicis</b></span>
+      <span class="co"><img src="/assets/companies/taskrabbit.png" alt="" width="28" height="28"><b>TaskRabbit</b></span>
+      <span class="co"><img src="/assets/companies/pandadoc.png" alt="" width="28" height="28"><b>PandaDoc</b></span>
+      <span class="co"><img src="/assets/companies/riverside.png" alt="" width="28" height="28"><b>Riverside</b></span>
     </div>
   </div>
 </section>
