@@ -107,8 +107,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      the same shape as the real control, so the swap is invisible instead of a
      gap that pops. Removed the moment the form mounts. */
   .skel{
+    position:absolute; inset:0;
     display:flex; background:#fff; border:2px solid var(--ru-ink);
     border-radius:999px; padding:5px; pointer-events:none;
+    transition:opacity .16s ease;
   }
   .skel .si{
     flex:1; text-align:left; font-size:16px; color:#6B7280; padding:13px 20px;
@@ -117,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background:var(--ru-blue); color:#fff; font-size:16px; font-weight:600;
     padding:13px 28px; border-radius:999px; white-space:nowrap;
   }
-  .formwrap[data-ready] .skel{display:none;}
+  .formwrap[data-ready] .skel{opacity:0; visibility:hidden;}
   /* If the loader never arrives, the stand-in becomes a real link. Guarded on
      :not([data-ready]) so a late timer can never resurrect a hidden control. */
   .formwrap[data-failed]:not([data-ready]) .skel{pointer-events:auto; cursor:pointer;}
@@ -254,37 +256,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     t.setAttribute('aria-hidden', 'true');
   })();
 
-  // Drop the stand-in as soon as beehiiv injects the real form. The loader adds
-  // a sibling <div> next to its own <script> inside .formwrap, so watching for
-  // any added element other than the stand-in is enough.
+  // The stand-in overlays the real control and is faded out only once the
+  // beehiiv iframe has actually LOADED. Hiding it when the loader merely
+  // inserts its container produced a visible flicker — stand-in gone, iframe
+  // not yet painted, empty gap, then the form — which is worse than the pause
+  // it exists to hide.
   (function () {
     var wrap = document.getElementById('formwrap');
     var skel = document.getElementById('skel');
-    if (!wrap || !skel || !('MutationObserver' in window)) return;
+    if (!wrap || !skel) return;
 
-    function mounted() {
-      for (var i = 0; i < wrap.children.length; i++) {
-        var el = wrap.children[i];
-        if (el !== skel && el.tagName !== 'SCRIPT') return true;
-      }
-      return false;
-    }
-    function ready() {
+    var done = false;
+    function reveal() {
+      if (done) return;
+      done = true;
       wrap.setAttribute('data-ready', '');
-      obs.disconnect();
-      clearTimeout(timer);
+      clearTimeout(failTimer);
+      if (obs) obs.disconnect();
     }
-    // Armed before the observer so ready() can always clear it.
-    var timer = setTimeout(function () {
-      if (mounted() || wrap.hasAttribute('data-ready')) return;
+
+    // Nothing arrived at all: let the stand-in work as a plain link rather
+    // than leaving a control that looks real and does nothing.
+    var failTimer = setTimeout(function () {
+      if (done || wrap.querySelector('iframe')) return;
       wrap.setAttribute('data-failed', '');
       skel.removeAttribute('aria-hidden');
       skel.removeAttribute('tabindex');
     }, 8000);
 
-    var obs = new MutationObserver(function () { if (mounted()) ready(); });
+    function watchIframe() {
+      var ifr = wrap.querySelector('iframe');
+      if (!ifr) return false;
+      ifr.addEventListener('load', reveal, { once: true });
+      // The iframe is cross-origin, so its readiness cannot be inspected and a
+      // load that fired before this listener attached would be missed. Reveal
+      // shortly after it appears regardless; by then it has painted.
+      setTimeout(reveal, 1200);
+      return true;
+    }
+
+    var obs = new MutationObserver(function () { watchIframe(); });
     obs.observe(wrap, { childList: true, subtree: true });
-    if (mounted()) ready();
+    watchIframe();
   })();
 </script>
 </body>
