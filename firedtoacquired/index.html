@@ -30,6 +30,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Analytics: Meta Pixel, GA4, Clarity & Snitcher -->
 <script src="/assets/consent.js" defer></script>
 
+<!-- beehiiv subscribe form: warm the connection and start the loader fetch
+     during head parse. The <script> itself lives in the hero, so without this
+     the browser would not begin fetching 30KB until it parsed that far. -->
+<link rel="preconnect" href="https://subscribe-forms.beehiiv.com" crossorigin>
+<link rel="dns-prefetch" href="https://subscribe-forms.beehiiv.com">
+<link rel="preload" as="script" href="https://subscribe-forms.beehiiv.com/v3/loader.js" crossorigin>
+
 <!-- beehiiv subscribe-form attribution -->
 <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
 
@@ -109,8 +116,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .tag .serif{display:block; margin-top:2px; color:#FFFFFFCC;}
   /* The beehiiv v3 loader injects the form inline here; min-height reserves its
      space so the chip below does not jump when the script lands. */
-  .formwrap{width:560px; max-width:100%; min-height:66px;}
+  .formwrap{width:560px; max-width:100%; min-height:66px; position:relative;}
   .formwrap iframe{width:100%; border:0; display:block; background:transparent;}
+  /* Stand-in shown only while the beehiiv loader is in flight (~0.3s). It is
+     the same shape as the real control, so the swap is invisible instead of a
+     gap that pops. Removed the moment the form mounts. */
+  .skel{
+    display:flex; background:#fff; border:2px solid var(--ru-ink);
+    border-radius:999px; padding:5px; pointer-events:none;
+  }
+  .skel .si{
+    flex:1; text-align:left; font-size:16px; color:#6B7280; padding:13px 20px;
+  }
+  .skel .sb{
+    background:var(--ru-blue); color:#fff; font-size:16px; font-weight:600;
+    padding:13px 28px; border-radius:999px; white-space:nowrap;
+  }
+  .formwrap[data-ready] .skel{display:none;}
+  /* If the loader never arrives, the stand-in becomes a real link. */
+  .formwrap[data-failed] .skel{pointer-events:auto; cursor:pointer;}
   .chip{
     margin-top:18px; background:var(--ru-yellow); color:var(--ru-ink);
     font-size:13px; font-weight:700; padding:9px 18px; border-radius:999px;
@@ -190,7 +214,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="serif">Every other Wednesday.</span>
   </p>
 
-  <div class="formwrap">
+  <div class="formwrap" id="formwrap">
+    <a class="skel" id="skel" aria-hidden="true" tabindex="-1"
+       href="https://fired2acquired.beehiiv.com/subscribe">
+      <span class="si">Enter your email...</span>
+      <span class="sb">Subscribe free</span>
+    </a>
     <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="ea198d02-7570-4f6a-9cc3-2fc15551a689"></script>
   </div>
 
@@ -229,6 +258,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!t) return;
     t.innerHTML = t.innerHTML + t.innerHTML;
     t.setAttribute('aria-hidden', 'true');
+  })();
+
+  // Drop the stand-in as soon as beehiiv injects the real form. The loader adds
+  // a sibling <div> next to its own <script> inside .formwrap, so watching for
+  // any added element other than the stand-in is enough.
+  (function () {
+    var wrap = document.getElementById('formwrap');
+    var skel = document.getElementById('skel');
+    if (!wrap || !skel || !('MutationObserver' in window)) return;
+
+    function mounted() {
+      for (var i = 0; i < wrap.children.length; i++) {
+        var el = wrap.children[i];
+        if (el !== skel && el.tagName !== 'SCRIPT') return true;
+      }
+      return false;
+    }
+    function ready() {
+      wrap.setAttribute('data-ready', '');
+      obs.disconnect();
+      clearTimeout(timer);
+    }
+    var obs = new MutationObserver(function () { if (mounted()) ready(); });
+    obs.observe(wrap, { childList: true, subtree: true });
+    if (mounted()) ready();
+
+    // If it never arrives, let the stand-in work as a plain link rather than
+    // leaving a control that looks real and does nothing.
+    var timer = setTimeout(function () {
+      if (!mounted()) {
+        wrap.setAttribute('data-failed', '');
+        skel.removeAttribute('aria-hidden');
+        skel.removeAttribute('tabindex');
+      }
+    }, 8000);
   })();
 </script>
 </body>
