@@ -119,9 +119,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .skel .si{
     flex:1; text-align:left; font-size:16px; color:#6B7280; padding:13px 20px;
   }
+  /* Padding measured against the real beehiiv button on the live page, not
+     guessed: at 13px/28px the stand-in rendered 142x51 against the real
+     120x49, so the control visibly resized when the form painted over it. */
   .skel .sb{
     background:var(--ru-blue); color:#fff; font-size:16px; font-weight:600;
-    padding:13px 28px; border-radius:999px; white-space:nowrap;
+    padding:12px 17px; border-radius:999px; white-space:nowrap;
   }
   /* If the loader never arrives, the stand-in becomes a real link. */
   .formwrap[data-failed] .skel{pointer-events:auto; cursor:pointer;}
