@@ -133,8 +133,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding:13px 28px; border-radius:999px; white-space:nowrap;
   }
   .formwrap[data-ready] .skel{display:none;}
-  /* If the loader never arrives, the stand-in becomes a real link. */
-  .formwrap[data-failed] .skel{pointer-events:auto; cursor:pointer;}
+  /* If the loader never arrives, the stand-in becomes a real link. Guarded on
+     :not([data-ready]) so a late timer can never resurrect a hidden control. */
+  .formwrap[data-failed]:not([data-ready]) .skel{pointer-events:auto; cursor:pointer;}
   .chip{
     margin-top:18px; background:var(--ru-yellow); color:var(--ru-ink);
     font-size:13px; font-weight:700; padding:9px 18px; border-radius:999px;
@@ -280,19 +281,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       obs.disconnect();
       clearTimeout(timer);
     }
+    // Armed before the observer so ready() can always clear it.
+    var timer = setTimeout(function () {
+      if (mounted() || wrap.hasAttribute('data-ready')) return;
+      wrap.setAttribute('data-failed', '');
+      skel.removeAttribute('aria-hidden');
+      skel.removeAttribute('tabindex');
+    }, 8000);
+
     var obs = new MutationObserver(function () { if (mounted()) ready(); });
     obs.observe(wrap, { childList: true, subtree: true });
     if (mounted()) ready();
-
-    // If it never arrives, let the stand-in work as a plain link rather than
-    // leaving a control that looks real and does nothing.
-    var timer = setTimeout(function () {
-      if (!mounted()) {
-        wrap.setAttribute('data-failed', '');
-        skel.removeAttribute('aria-hidden');
-        skel.removeAttribute('tabindex');
-      }
-    }, 8000);
   })();
 </script>
 </body>
