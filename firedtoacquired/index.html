@@ -34,15 +34,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Analytics: Meta Pixel, GA4, Clarity & Snitcher -->
 <script src="/assets/consent.js" defer></script>
 
-<!-- beehiiv subscribe form: warm the connection and start the loader fetch
-     during head parse. The <script> itself lives in the hero, so without this
-     the browser would not begin fetching 30KB until it parsed that far. -->
-<link rel="preconnect" href="https://subscribe-forms.beehiiv.com" crossorigin>
-<link rel="dns-prefetch" href="https://subscribe-forms.beehiiv.com">
-<link rel="preload" as="script" href="https://subscribe-forms.beehiiv.com/v3/loader.js" crossorigin>
-
-<!-- beehiiv subscribe-form attribution -->
-<script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,43 +94,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size:clamp(18px,2.5vw,27px); font-weight:400; color:#FFFFFFE8;
     line-height:1.45; max-width:820px; margin-bottom:40px;
   }
-  /* The beehiiv v3 loader injects the form inline here; min-height reserves its
-     space so the chip below does not jump when the script lands. */
-  .formwrap{width:560px; max-width:100%; min-height:66px; position:relative;}
-  .formwrap iframe{width:100%; border:0; display:block; background:transparent;}
-  /* Stand-in shown only while the beehiiv loader is in flight (~0.3s). It is
-     the same shape as the real control, so the swap is invisible instead of a
-     gap that pops. Removed the moment the form mounts. */
-  .skel{
-    position:absolute; inset:1px; z-index:0;
+  /* Native form. Replaced the beehiiv embed on 2026-10-30: the embed's own
+     submit was 403'd by beehiiv's bot protection, so visitors could type and
+     nothing happened. This posts to track.rallyup.team/api/f2a-subscribe,
+     which subscribes through the beehiiv API. Same pill shape as before. */
+  .formwrap{width:560px; max-width:100%;}
+  .sub{
     display:flex; background:#fff; border:2px solid var(--ru-ink);
-    border-radius:999px; padding:5px; pointer-events:none;
+    border-radius:999px; padding:5px;
   }
-  /* beehiiv's injected container paints over the stand-in. Stacking, not
-     timing: the iframe renders its form with JS, so neither its load event
-     nor any delay reliably says "painted" — and guessing produced a visible
-     empty gap. Covering it instead means there is never a frame with nothing. */
-  .formwrap > div{position:relative; z-index:1;}
-  /* NOT Inter. The form iframe declares font-family:Inter but ships no
-     @font-face and loads no font file (verified against its stylesheet), so
-     unless the visitor has Inter installed it renders ui-sans-serif. This
-     page DOES load Inter as a webfont, and a cross-origin iframe cannot
-     inherit it — which is why the glyphs visibly swapped. Matching the
-     iframe's effective stack is what makes the two render alike. */
-  .skel .si{
-    flex:1; display:flex; align-items:center; padding-left:15px;
-    font:400 16px/1 ui-sans-serif, system-ui, -apple-system, sans-serif;
-    letter-spacing:normal; color:#6B7280; white-space:nowrap; overflow:hidden;
+  .sub input[type=email]{
+    flex:1; min-width:0; border:0; outline:none; background:transparent;
+    font:400 16px/1.2 Inter,system-ui,sans-serif; color:var(--ru-ink);
+    padding:12px 15px; border-radius:999px;
   }
-  .skel .sb{
-    background:var(--ru-blue); color:#fff; border-radius:999px;
-    width:120px; flex:none;
-    display:flex; align-items:center; justify-content:center;
-    font:600 16px/1 ui-sans-serif, system-ui, -apple-system, sans-serif;
-    letter-spacing:normal;
+  .sub input[type=email]::placeholder{color:#6B7280;}
+  .sub button{
+    flex:none; border:0; cursor:pointer; background:var(--ru-blue); color:#fff;
+    font:600 16px/1 Inter,system-ui,sans-serif; border-radius:999px; padding:0 22px;
   }
-  /* If the loader never arrives, the stand-in becomes a real link. */
-  .formwrap[data-failed] .skel{pointer-events:auto; cursor:pointer;}
+  .sub button[disabled]{opacity:.65; cursor:wait;}
+  .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  .sub-msg{min-height:22px; margin-top:10px; font-size:14.5px; color:#FFFFFFE0;}
 
   /* ---------- proof band ---------- */
   .band{background:var(--ru-ink); padding:52px 0 76px; text-align:center;}
@@ -186,12 +162,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   @media (max-width:620px){
     .nav{padding:10px 16px; gap:10px}
-    /* No stand-in on phones. The real form's height varies there (its button
-       label wraps at narrow widths), so an absolutely-positioned stand-in
-       sized to the wrapper hangs below the real control as a second pill.
-       A brief gap is far better than two overlapping forms. */
-    .skel{display:none;}
-    .formwrap{min-height:68px;}
+    .sub button{padding:0 16px;}
     .track{gap:34px; padding-left:34px}
     .track .co b{font-size:18px}
     .track .co img{width:24px;height:24px}
@@ -220,19 +191,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="by">Written by Alec Kremins // founder @ rallyup 📣 (ex-ramp &amp; beehiiv)</p>
   <p class="tag">Storytelling &amp; Startup Building in The Age of AI</p>
 
-  <div class="formwrap" id="formwrap">
-    <a class="skel" id="skel" aria-hidden="true" tabindex="-1"
-       href="https://fired2acquired.beehiiv.com/subscribe">
-      <span class="si">Enter your email...</span>
-      <span class="sb">Sign Me Up</span>
-    </a>
-    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="ea198d02-7570-4f6a-9cc3-2fc15551a689"></script>
+  <div class="formwrap">
+    <form class="sub" id="subForm" novalidate>
+      <input type="email" name="email" id="subEmail" autocomplete="email" placeholder="Enter your email..." aria-label="Email" required>
+      <label class="hp" aria-hidden="true">Leave this empty <input type="text" name="company_website" id="subHp" tabindex="-1" autocomplete="off"></label>
+      <button type="submit" id="subBtn">Sign Me Up</button>
+    </form>
+    <p class="sub-msg" id="subMsg" role="status"></p>
   </div>
 
 </main>
 
 <section class="band">
-  <h2>Read by <span data-sub-count>1,909</span> leaders at</h2>
+  <h2>Read by <span data-sub-count>2,227</span> leaders at</h2>
 
   <div class="ticker">
     <div class="track" id="track">
@@ -278,23 +249,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     t.setAttribute('aria-hidden', 'true');
   })();
 
-  // The stand-in sits behind the real control and is never removed: the themed
-  // beehiiv form is opaque and simply covers it once painted. The only thing
-  // left to handle is the loader never arriving at all, in which case the
-  // stand-in becomes a working link rather than a control that does nothing.
+  // Subscribe through our endpoint, then hand off to the company/role page.
   (function () {
-    var wrap = document.getElementById('formwrap');
-    var skel = document.getElementById('skel');
-    if (!wrap || !skel) return;
-
-    setTimeout(function () {
-      if (wrap.querySelector('iframe')) return;
-      wrap.setAttribute('data-failed', '');
-      skel.style.pointerEvents = 'auto';
-      skel.style.cursor = 'pointer';
-      skel.removeAttribute('aria-hidden');
-      skel.removeAttribute('tabindex');
-    }, 8000);
+    var form = document.getElementById('subForm');
+    if (!form) return;
+    var t0 = Date.now();
+    var q = new URLSearchParams(location.search);
+    var msg = document.getElementById('subMsg');
+    var btn = document.getElementById('subBtn');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('subEmail').value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Please enter a valid email.'; return; }
+      btn.disabled = true; btn.textContent = 'Signing you up...'; msg.textContent = '';
+      fetch('https://track.rallyup.team/api/f2a-subscribe', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email, hp: document.getElementById('subHp').value, ms: Date.now() - t0,
+          utm_source: q.get('utm_source') || '', utm_medium: q.get('utm_medium') || '',
+          utm_campaign: q.get('utm_campaign') || '', referrer: document.referrer || ''
+        })
+      }).then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        if (typeof gtag === 'function') gtag('event', 'f2a_subscribe');
+        location.href = '/firedtoacquired/welcome/?email=' + encodeURIComponent(email);
+      }).catch(function () {
+        btn.disabled = false; btn.textContent = 'Sign Me Up';
+        msg.textContent = 'Something went wrong. Please try again in a moment.';
+      });
+    });
   })();
 </script>
 </body>
