@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-582JGF2D');</script>
+<!-- End Google Tag Manager -->
+<!-- Analytics: Meta Pixel, GA4, Clarity & Snitcher -->
+<script src="/assets/consent.js" defer></script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<title>You're in &middot; fired to acquired</title>
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@1&display=swap">
+
+<style>
+  :root{ --ru-blue:#3d68f5; --ru-blue-dark:#2a3ad8; --ru-yellow:#DDFF4D; --ru-ink:#0b1020; --ru-muted:#5b6275; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--ru-blue-dark); color:#fff;
+       letter-spacing:-0.01em; -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column;}
+  a{color:inherit}
+  .serif{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400}
+  main{flex:1; display:flex; align-items:center; justify-content:center; padding:48px 16px;}
+  .card{width:100%; max-width:480px; background:#fff; color:var(--ru-ink); border-radius:20px; padding:34px 30px;
+        box-shadow:0 24px 60px #0b102040;}
+  .ok{display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#137a3d;
+      background:#e7f7ee; border-radius:999px; padding:6px 12px;}
+  h1{font-size:30px; font-weight:900; line-height:1.05; letter-spacing:-.035em; margin:16px 0 8px;}
+  .hl{background-image:linear-gradient(transparent 62%, var(--ru-yellow) 62%); padding:0 2px;}
+  .sub{font-size:15px; line-height:1.55; color:var(--ru-muted); margin-bottom:22px;}
+  label{display:block; font-size:13.5px; font-weight:700; margin:14px 0 6px;}
+  input, select{width:100%; font:inherit; font-size:16px; color:var(--ru-ink); background:#fff;
+                border:2px solid #0b102026; border-radius:12px; padding:12px 14px; outline:none;}
+  input:focus, select:focus{border-color:var(--ru-blue);}
+  #roleOtherWrap{display:none;}
+  button{width:100%; margin-top:22px; font:inherit; font-size:16px; font-weight:700; color:#fff; background:var(--ru-blue);
+         border:0; border-radius:999px; padding:14px 18px; cursor:pointer;}
+  button[disabled]{opacity:.6; cursor:wait;}
+  .err{display:none; margin-top:12px; font-size:13.5px; color:#b42318;}
+  .fine{font-size:12px; color:var(--ru-muted); margin-top:14px; text-align:center;}
+  .done{display:none;}
+  .done .btn{display:block; text-align:center; text-decoration:none; color:#fff; background:var(--ru-blue);
+             font-weight:700; border-radius:999px; padding:14px 18px; margin-top:18px;}
+  footer{text-align:center; font-size:12.5px; color:#ffffffaa; padding:0 0 24px;}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-582JGF2D"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<main>
+  <div class="card">
+    <section id="ask">
+      <span class="ok">✓ You're subscribed</span>
+      <h1>One last step: <span class="hl">who are you?</span></h1>
+      <p class="sub">Two quick questions so every issue is written for people like you. <span class="serif">Takes 10 seconds.</span></p>
+
+      <form id="f" novalidate>
+        <div id="emailWrap">
+          <label for="email">Your email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com">
+        </div>
+
+        <label for="company">Company</label>
+        <input id="company" name="company" type="text" autocomplete="organization" maxlength="120" placeholder="Where do you work?" required>
+
+        <label for="role">Role</label>
+        <select id="role" name="role" required>
+          <option value="" selected disabled>Pick the closest one</option>
+          <option>Founder / CEO</option>
+          <option>Other C-suite / VP</option>
+          <option>Marketing</option>
+          <option>Sales / RevOps</option>
+          <option>Operator / Individual contributor</option>
+          <option value="__other">Something else</option>
+        </select>
+        <div id="roleOtherWrap">
+          <label for="roleOther">Your role</label>
+          <input id="roleOther" type="text" maxlength="80" placeholder="e.g. Head of Partnerships">
+        </div>
+
+        <button type="submit" id="go">Finish signing up</button>
+        <p class="err" id="err"></p>
+        <p class="fine">Saved to your newsletter profile. Never shared.</p>
+      </form>
+    </section>
+
+    <section class="done" id="done">
+      <span class="ok">✓ All set</span>
+      <h1>Thanks. <span class="hl">Check your inbox</span> to confirm.</h1>
+      <p class="sub">While you wait, here's the free worksheet: the 10 things I check on every LinkedIn assessment, ready to run on yourself.</p>
+      <a class="btn" href="/firedtoacquired/linkedin-checklist/?utm_source=newsletter&utm_medium=welcome_page&utm_campaign=f2a-welcome">Get the 15-minute self-assessment</a>
+    </section>
+  </div>
+</main>
+
+<footer><a href="/privacy.html" class="hover:text-ru-yellow">privacy policy</a></footer>
+
+<script>
+(function(){
+  var ENDPOINT = 'https://track.rallyup.team/api/f2a-profile';
+  var q = new URLSearchParams(location.search);
+  var email = (q.get('email') || '').trim();
+  var $ = function(id){ return document.getElementById(id); };
+  // beehiiv appends ?email= to the success redirect. Only ask for it when it's missing.
+  if (email) $('emailWrap').style.display = 'none';
+
+  $('role').addEventListener('change', function(){
+    var other = this.value === '__other';
+    $('roleOtherWrap').style.display = other ? 'block' : 'none';
+    if (other) $('roleOther').focus();
+  });
+
+  function fail(msg){ var e = $('err'); e.textContent = msg; e.style.display = 'block'; }
+
+  $('f').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    $('err').style.display = 'none';
+    var em = email || $('email').value.trim();
+    var company = $('company').value.trim();
+    var role = $('role').value === '__other' ? $('roleOther').value.trim() : $('role').value;
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) return fail('Please enter the email you just subscribed with.');
+    if (!company) return fail('Please add your company.');
+    if (!role) return fail('Please pick your role.');
+
+    var btn = $('go'); btn.disabled = true; btn.textContent = 'Saving...';
+    fetch(ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'},
+                      body: JSON.stringify({ email: em, company: company, role: role }) })
+      .then(function(r){ return r.json().then(function(j){ return { ok: r.ok, status: r.status, j: j }; }); })
+      .then(function(res){
+        if (!res.ok) {
+          btn.disabled = false; btn.textContent = 'Finish signing up';
+          return fail(res.status === 404
+            ? 'We couldn’t find that email on the list yet. Give it a few seconds and try again.'
+            : 'Something went wrong saving that. Please try again.');
+        }
+        if (typeof gtag === 'function') gtag('event', 'f2a_profile_completed', { role: role });
+        $('ask').style.display = 'none'; $('done').style.display = 'block';
+      })
+      .catch(function(){ btn.disabled = false; btn.textContent = 'Finish signing up'; fail('Network hiccup. Please try again.'); });
+  });
+})();
+</script>
+</body>
+</html>
