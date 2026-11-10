@@ -81,7 +81,7 @@ page and its "last updated" date.
 Vite/React bundle, originally built by our ads contractor (Shimi, Aurum Media), with copy, logo
 and visuals reworked by RallyUp on 2026-11-10 (he cleared copy/visual changes; form, calendar,
 consent lines, GTM and payload are his and unchanged). Served files:
-`audience-building/index.html`, `/assets/index-DIaRfoBg.js`, `/assets/index-ByrvZwEy.css` and the
+`audience-building/index.html`, `/assets/index-CQHdPE0U.js`, `/assets/index-Dyof1xTF.css` and the
 two `.woff2` fonts in `/assets/` (the bundle uses root paths). Result cards load the existing
 `/assets/logos/*` and `/assets/wordmarks/lightbank.png`. Editable source lives in the
 rallyupcontext repo at `landing-pages/audience-building/`: edit there, `npx vite build`, replace
