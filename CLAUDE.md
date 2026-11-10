@@ -78,10 +78,12 @@ page and its "last updated" date.
 
 ## Exception: `audience-building/` (LinkedIn ads landing page)
 
-Built by our ads contractor (Shimi, Aurum Media) as a Vite/React bundle and hosted **as
-supplied**: `audience-building/index.html` plus `/assets/index-BnL0acTm.js`,
-`/assets/index-ZXw0xyyE.css`, the two `.woff2` fonts in `/assets/`, and `/rallyup-logo.jpg`
-(the bundle uses root paths). It deliberately carries GTM only, without `consent.js`, at the
-contractor's request to avoid double-counting ad traffic. It is `noindex,nofollow` and kept
-out of `sitemap.xml`. Do not edit the copy, consent lines or form; any change is rebuilt by the
-contractor and the new `dist/` replaces these files.
+Vite/React bundle, originally built by our ads contractor (Shimi, Aurum Media), with copy, logo
+and visuals reworked by RallyUp on 2026-11-10 (he cleared copy/visual changes; form, calendar,
+consent lines, GTM and payload are his and unchanged). Served files:
+`audience-building/index.html`, `/assets/index-DIaRfoBg.js`, `/assets/index-ByrvZwEy.css` and the
+two `.woff2` fonts in `/assets/` (the bundle uses root paths). Result cards load the existing
+`/assets/logos/*` and `/assets/wordmarks/lightbank.png`. Editable source lives in the
+rallyupcontext repo at `landing-pages/audience-building/`: edit there, `npx vite build`, replace
+these files. It deliberately carries GTM only, without `consent.js`, at the contractor's request
+to avoid double-counting ad traffic. It is `noindex,nofollow` and kept out of `sitemap.xml`.
