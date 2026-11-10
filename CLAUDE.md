@@ -75,3 +75,13 @@ Pages currently wired up: `index.html`, `privacy.html`, `blog/index.html`,
 [privacy.html](privacy.html) discloses the analytics/advertising (Meta Pixel) usage.
 If you change what data is collected or which third parties are used, update that
 page and its "last updated" date.
+
+## Exception: `audience-building/` (LinkedIn ads landing page)
+
+Built by our ads contractor (Shimi, Aurum Media) as a Vite/React bundle and hosted **as
+supplied**: `audience-building/index.html` plus `/assets/index-BnL0acTm.js`,
+`/assets/index-ZXw0xyyE.css`, the two `.woff2` fonts in `/assets/`, and `/rallyup-logo.jpg`
+(the bundle uses root paths). It deliberately carries GTM only, without `consent.js`, at the
+contractor's request to avoid double-counting ad traffic. It is `noindex,nofollow` and kept
+out of `sitemap.xml`. Do not edit the copy, consent lines or form; any change is rebuilt by the
+contractor and the new `dist/` replaces these files.
