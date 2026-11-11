@@ -229,6 +229,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* Reveal on scroll */
+  /* proof section: proposal-style receipt cards (same set as /audience-building) */
+  .rx-receipts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .rx-receipt { min-width:0; overflow-wrap:break-word; display:flex; flex-direction:column; gap:18px; padding:24px; border-radius:22px; background:var(--ru-blue); color:#fff; }
+  .rx-feature, .rx-cta { grid-column:1/-1; }
+  .rx-tag { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.75); }
+  .rx-who { display:flex; align-items:center; gap:12px; }
+  .rx-who > div { min-width:0; }
+  .rx-who img { width:40px; height:40px; border-radius:10px; object-fit:cover; background:#fff; flex:none; }
+  .rx-who img.rx-wide { width:auto; height:40px; padding:7px 9px; object-fit:contain; }
+  .rx-who b { display:block; font-size:17px; font-weight:800; line-height:1.2; }
+  .rx-who small { display:block; font-size:13px; color:rgba(255,255,255,.75); }
+  .rx-stats { display:flex; flex-wrap:wrap; gap:12px 28px; margin-top:auto; }
+  .rx-stats strong { display:block; font-size:46px; line-height:1; font-weight:900; letter-spacing:-.04em; }
+  .rx-stats small { display:block; margin-top:8px; font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.75); }
+  .rx-receipt blockquote { margin:0; padding-top:16px; border-top:1px solid rgba(255,255,255,.25); font-size:17px; font-weight:600; line-height:1.4; }
+  .rx-cta { background:var(--ru-yellow); color:var(--ru-ink); }
+  .rx-cta .rx-tag { color:var(--ru-blue-dark); }
+  .rx-cta h3 { font-size:26px; line-height:1.2; font-weight:900; letter-spacing:-.02em; }
+  .rx-btn { background:var(--ru-ink); color:#fff; align-self:flex-start; }
+  @media(min-width:600px) { .rx-receipts { gap:16px; } .rx-feature { grid-column:span 2; } .rx-cta { flex-direction:row; align-items:center; gap:24px; padding:28px 32px; } .rx-cta h3 { flex:1; } .rx-btn { align-self:center; } }
+  @media(min-width:1024px) { .rx-receipts { grid-template-columns:repeat(4,minmax(0,1fr)); } .rx-stats strong { font-size:42px; } }
+  @media(max-width:599px) { .rx-receipt { padding:16px; gap:12px; border-radius:16px; } .rx-who { gap:8px; } .rx-who img { width:30px; height:30px; border-radius:8px; } .rx-who img.rx-wide { height:30px; padding:5px 6px; } .rx-who b { font-size:14px; } .rx-who small { font-size:11px; } .rx-stats strong { font-size:28px; } .rx-stats small { font-size:10px; letter-spacing:.06em; } .rx-tag { font-size:9px; letter-spacing:.1em; } .rx-cta h3 { font-size:20px; } .rx-receipt blockquote { font-size:15px; } }
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.8,.2,1); }
   .reveal.in { opacity: 1; transform: translateY(0); }
   .reveal[data-delay="1"] { transition-delay: 0.08s; }
@@ -682,47 +704,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </h2>
     </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-      <!-- andel -->
-      <div class="bg-ru-soft rounded-3xl p-5 md:p-8 border border-black/5 flex flex-col reveal" data-delay="0">
-        <img src="assets/logos/andel.png" alt="andel" class="h-8 md:h-9 w-auto max-w-[130px] object-contain object-left rounded-md mb-4 md:mb-6">
-        <div class="text-4xl md:text-6xl font-black tracking-tight text-ru-blue-dark leading-none mb-3">422k</div>
-        <p class="text-sm md:text-lg font-semibold text-gray-800 leading-snug mb-4">impressions in the first 2 months</p>
-        <div class="mt-auto pt-4 border-t border-black/5 text-sm text-gray-500">andel · founder &amp; ceo</div>
+    <div class="rx-receipts">
+      <!-- anchor browser -->
+      <div class="rx-receipt rx-feature reveal" data-delay="0">
+        <span class="rx-tag">inbound from linkedin</span>
+        <div class="rx-who"><img src="assets/logos/anchorbrowser.jpg" alt=""><div><b>anchor browser</b><small>ceo</small></div></div>
+        <div class="rx-stats"><div><strong>$550k</strong><small>deal landed</small></div></div>
+        <blockquote>"is this normal? 100 connection requests off one post."</blockquote>
       </div>
       <!-- lightbank -->
-      <div class="bg-ru-soft rounded-3xl p-5 md:p-8 border border-black/5 flex flex-col reveal" data-delay="1">
-        <img src="assets/wordmarks/lightbank.png" alt="lightbank" class="h-8 md:h-9 w-auto max-w-[130px] object-contain object-left rounded-md mb-4 md:mb-6">
-        <div class="text-4xl md:text-6xl font-black tracking-tight text-ru-blue-dark leading-none mb-3">405k</div>
-        <p class="text-sm md:text-lg font-semibold text-gray-800 leading-snug mb-4">impressions in 2 months, from near-zero, and +33% followers</p>
-        <div class="mt-auto pt-4 border-t border-black/5 text-sm text-gray-500">lightbank · vc partner</div>
+      <div class="rx-receipt reveal" data-delay="1">
+        <span class="rx-tag">2 months, from near-zero</span>
+        <div class="rx-who"><img class="rx-wide" src="assets/wordmarks/lightbank.png" alt="lightbank"><div><small>vc partner</small></div></div>
+        <div class="rx-stats"><div><strong>405k</strong><small>impressions</small></div><div><strong>+33%</strong><small>followers</small></div></div>
       </div>
-      <!-- pandadoc -->
-      <div class="bg-ru-soft rounded-3xl p-5 md:p-8 border border-black/5 flex flex-col reveal" data-delay="2">
-        <img src="assets/logos/pandadoc.png" alt="pandadoc" class="h-8 md:h-9 w-auto max-w-[130px] object-contain object-left rounded-md mb-4 md:mb-6">
-        <div class="text-4xl md:text-6xl font-black tracking-tight text-ru-blue-dark leading-none mb-3">27k+</div>
-        <p class="text-sm md:text-lg font-semibold text-gray-800 leading-snug mb-4">impressions on one exec's first post</p>
-        <div class="mt-auto pt-4 border-t border-black/5 text-sm text-gray-500">pandadoc · leadership</div>
+      <!-- airwallex -->
+      <div class="rx-receipt reveal" data-delay="2">
+        <span class="rx-tag">every month</span>
+        <div class="rx-who"><img src="assets/logos/airwallex.png" alt=""><div><b>airwallex</b><small>head of startups</small></div></div>
+        <div class="rx-stats"><div><strong>16+</strong><small>calls booked</small></div></div>
       </div>
-      <!-- prettydamnquick -->
-      <div class="bg-ru-soft rounded-3xl p-5 md:p-8 border border-black/5 flex flex-col reveal" data-delay="0">
-        <img src="assets/logos/prettydamnquick.jpg" alt="prettydamnquick" class="h-8 md:h-9 w-auto max-w-[130px] object-contain object-left rounded-md mb-4 md:mb-6">
-        <div class="text-4xl md:text-6xl font-black tracking-tight text-ru-blue-dark leading-none mb-3">20</div>
-        <p class="text-sm md:text-lg font-semibold text-gray-800 leading-snug mb-4">new abm accounts opened in month one</p>
-        <div class="mt-auto pt-4 border-t border-black/5 text-sm text-gray-500">prettydamnquick · ceo</div>
+      <!-- andel -->
+      <div class="rx-receipt reveal" data-delay="0">
+        <span class="rx-tag">first 2 months</span>
+        <div class="rx-who"><img src="assets/logos/andel.png" alt=""><div><b>andel</b><small>founder &amp; ceo</small></div></div>
+        <div class="rx-stats"><div><strong>422k</strong><small>impressions</small></div></div>
       </div>
       <!-- deway -->
-      <div class="bg-ru-soft rounded-3xl p-5 md:p-8 border border-black/5 flex flex-col reveal" data-delay="1">
-        <img src="assets/logos/deway.svg" alt="deway" class="h-8 md:h-9 w-auto max-w-[130px] object-contain object-left rounded-md mb-4 md:mb-6">
-        <div class="text-4xl md:text-6xl font-black tracking-tight text-ru-blue-dark leading-none mb-3">4</div>
-        <p class="text-sm md:text-lg font-semibold text-gray-800 leading-snug mb-4">prospect calls in the first month, at 4x their old reach</p>
-        <div class="mt-auto pt-4 border-t border-black/5 text-sm text-gray-500">deway · ceo</div>
+      <div class="rx-receipt reveal" data-delay="1">
+        <span class="rx-tag">month one</span>
+        <div class="rx-who"><img src="assets/logos/deway.svg" alt=""><div><b>deway</b><small>ceo</small></div></div>
+        <div class="rx-stats"><div><strong>4</strong><small>prospect calls</small></div><div><strong>4x</strong><small>reach</small></div></div>
       </div>
-      <!-- anchor browser -->
-      <div class="bg-ru-soft rounded-3xl p-5 md:p-8 border border-black/5 flex flex-col reveal" data-delay="2">
-        <img src="assets/logos/anchorbrowser.jpg" alt="anchor browser" class="h-8 md:h-9 w-auto max-w-[130px] object-contain object-left rounded-md mb-4 md:mb-6">
-        <p class="text-base md:text-2xl leading-snug text-ru-blue-dark font-bold mb-4">"is this normal? <span class="gradient-underline">100 connection requests</span> off one post."</p>
-        <div class="mt-auto pt-4 border-t border-black/5 text-sm text-gray-500">anchor browser · ceo</div>
+      <!-- prettydamnquick -->
+      <div class="rx-receipt reveal" data-delay="2">
+        <span class="rx-tag">month one</span>
+        <div class="rx-who"><img src="assets/logos/prettydamnquick.jpg" alt=""><div><b>prettydamnquick</b><small>ceo</small></div></div>
+        <div class="rx-stats"><div><strong>20</strong><small>new abm accounts</small></div></div>
+      </div>
+      <!-- pandadoc -->
+      <div class="rx-receipt reveal" data-delay="0">
+        <span class="rx-tag">one exec's first post</span>
+        <div class="rx-who"><img src="assets/logos/pandadoc.png" alt=""><div><b>pandadoc</b><small>leadership</small></div></div>
+        <div class="rx-stats"><div><strong>27k+</strong><small>impressions</small></div></div>
+      </div>
+      <!-- your turn -->
+      <div class="rx-receipt rx-cta reveal">
+        <span class="rx-tag">your turn</span>
+        <h3>what would this look like for you?</h3>
+        <a href="https://cal.com/team/rallyup/audience-building-with-rallyup" data-cta="qualify" data-cta-location="proof" class="btn rx-btn"><span class="btn-label">book a 20 minute call →</span></a>
       </div>
     </div>
   </div>
