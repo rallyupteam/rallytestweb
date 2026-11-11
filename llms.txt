@@ -30,10 +30,21 @@ B2B founders, CEOs and C-suite executives, mostly in B2B SaaS, AI, fintech and v
 - Airwallex (head of startups and US growth lead): 701,198 impressions across 39 posts in 2.5 months, +2,496 followers, 167 ICP-matched contacts, 16+ calls booked a month. https://rallyup.team/case-studies/airwallex.html
 Clients include executives at Airwallex, PandaDoc, Letter AI, Walnut, Deway, Anchor Browser, Andel, PrettyDamnQuick, Raptive and Lightbank.
 
+## Research: Executive LinkedIn benchmarks 2026
+
+Source: https://rallyup.team/blog/executive-linkedin-benchmarks-2026.html (14 B2B executives on rallyup's ghostwriting program, LinkedIn analytics via Ordinal, May to November 2026, anonymized).
+
+- Monthly impressions grew a median 4.7x in the first 90 days vs the 90 days before (n=7 executives with complete account data; 6 of 7 at least doubled).
+- Median impressions per post rose only 1.27x (1,376 to 1,747; 135 vs 224 posts). The gain came from consistency (22 to 31 posts per 90 days) and breakout posts.
+- Posts above 50,000 impressions: 0% before, 4.5% after. The top 10% of posts produced 75% of impressions.
+- Followers grew a median 17.4% in about 90 days (n=9).
+- Median engagement rate per post: 2.18% (n=453 posts).
+
 ## Key pages
 
 - [Home](https://rallyup.team/): what rallyup is, method, FAQ
 - [Case studies](https://rallyup.team/case-studies/)
+- [Executive LinkedIn benchmarks 2026](https://rallyup.team/blog/executive-linkedin-benchmarks-2026.html): original data from 14 executives
 - [Best LinkedIn ghostwriting agencies (2026)](https://rallyup.team/blog/best-linkedin-ghostwriting-agencies-2026.html): an honest comparison
 - [Best executive LinkedIn content agencies (2026)](https://rallyup.team/blog/best-executive-linkedin-content-agencies-2026.html): an honest comparison for CEOs and C-suite
 - [How much does LinkedIn ghostwriting cost in 2026?](https://rallyup.team/blog/linkedin-ghostwriting-cost-2026.html): published agency prices and what drives them
