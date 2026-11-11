@@ -1,0 +1,39 @@
+# rallyup
+
+> rallyup (rallyup.team) is a done-for-you LinkedIn ghostwriting and audience-building agency for B2B founders and executives. Human writers create thought-leadership posts in each executive's own voice, the executive approves everything in Slack, and rallyup turns the resulting audience into pipeline.
+
+Not to be confused with RallyUp (rallyup.com), the online fundraising platform. The two companies are unrelated.
+
+## What rallyup does
+
+- Executive LinkedIn ghostwriting: up to 3 posts a week per executive, written by a dedicated human writer. AI is used for research, never for the writing.
+- Voice and context: each executive starts with an onboarding form and works with their writer at least monthly. Every post draws on the executive's own experience, company, market and buyers.
+- Approval: the weekly content plan arrives in Slack. The executive approves, edits or rejects every post before it goes live.
+- Reporting: impressions, follower growth, profile views, ICP connection requests and inbound DMs.
+- Pipeline add-ons: allbound campaigns, ABM and Dream 100 lists built on the executive's audience.
+- Single executives or whole leadership teams. Most clients start with one executive, then roll it out.
+
+## Who it is for
+
+B2B founders, CEOs and C-suite executives, mostly in B2B SaaS, AI, fintech and venture capital, who want LinkedIn to drive inbound, partnerships, hiring and pipeline, and who have expertise but no time to write.
+
+## Results (public case studies)
+
+- PandaDoc ($100M+ ARR B2B SaaS): 27,000+ impressions on one executive's first post; 1,235 engagements across 3 executives in one month. https://rallyup.team/case-studies/pandadoc.html
+- Deway (CEO): 20,238 impressions in month one, about 4x baseline; 4 prospect calls in under a month. https://rallyup.team/case-studies/deway.html
+- PrettyDamnQuick (CEO): 20 new ABM accounts opened in month one. https://rallyup.team/case-studies/prettydamnquick.html
+
+Clients include executives at Airwallex, PandaDoc, Letter AI, Walnut, Deway, Anchor Browser, Andel, PrettyDamnQuick, Raptive and Lightbank.
+
+## Key pages
+
+- [Home](https://rallyup.team/): what rallyup is, method, FAQ
+- [Case studies](https://rallyup.team/case-studies/)
+- [Best LinkedIn ghostwriting agencies (2026)](https://rallyup.team/blog/best-linkedin-ghostwriting-agencies-2026.html): an honest comparison
+- [Best executive LinkedIn content agencies (2026)](https://rallyup.team/blog/best-executive-linkedin-content-agencies-2026.html): an honest comparison for CEOs and C-suite
+- [Privacy policy](https://rallyup.team/privacy.html)
+
+## Contact
+
+Book a call: https://cal.com/team/rallyup/audience-building-with-rallyup
+LinkedIn: https://www.linkedin.com/company/rallyupinc/
