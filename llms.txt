@@ -12,7 +12,7 @@ Not to be confused with RallyUp (rallyup.com), the online fundraising platform. 
 - Pricing: from $5,000 per executive per month. Guarantee: 100k organic impressions in 90 days, or you don't pay (for B2B founders and executives with $5m+ in ARR or funding).
 - Voice and context: each executive starts with a 25-minute onboarding form and a 30-minute alignment session on the first drafts, then a story interview with their writer twice a month. Every post draws on the executive's own experience, company, market and buyers.
 - Approval: the weekly content plan arrives in Slack. The executive approves, edits or rejects every post before it goes live.
-- Reporting: impressions, follower growth, profile views, ICP connection requests and inbound DMs.
+- Reporting: a monthly progress report covering impressions, follower growth, profile views, ICP connection requests and inbound DMs.
 - Pipeline add-ons: allbound campaigns, ABM and Dream 100 lists built on the executive's audience.
 - Single executives or whole leadership teams. Most clients start with one executive, then roll it out.
 
