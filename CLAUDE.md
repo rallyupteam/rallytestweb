@@ -81,7 +81,7 @@ page and its "last updated" date.
 Vite/React bundle, originally built by our ads contractor (Shimi, Aurum Media), with copy, logo
 and visuals reworked by RallyUp on 2026-11-10 (he cleared copy/visual changes; form, calendar,
 consent lines, GTM and payload are his and unchanged). Served files:
-`audience-building/index.html`, `/assets/index-BGD07Dou.js`, `/assets/index-BhzpJgsD.css` and the
+`audience-building/index.html`, `/assets/index-C0NPREZy.js`, `/assets/index-Bxa2nGHJ.css` and the
 two `.woff2` fonts in `/assets/` (the bundle uses root paths). The hero logo strip and result cards
 load the existing `/assets/logos/*` and `/assets/wordmarks/lightbank.png`; the hero "backed by" row
 also loads `/assets/wordmarks/verissimo.png` (Verissimo Ventures, from verissimo.vc, added 2026-11-11).
