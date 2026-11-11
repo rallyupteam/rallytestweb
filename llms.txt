@@ -35,7 +35,7 @@ Clients include executives at Airwallex, PandaDoc, Letter AI, Walnut, Deway, Anc
 Source: https://rallyup.team/blog/executive-linkedin-benchmarks-2026.html (14 B2B executives on rallyup's ghostwriting program, LinkedIn analytics via Ordinal, May to November 2026, anonymized).
 
 - Monthly impressions grew a median 4.7x in the first 90 days vs the 90 days before (n=7 executives with complete account data; 6 of 7 at least doubled).
-- Median impressions per post rose only 1.27x (1,376 to 1,747; 135 vs 224 posts). The gain came from consistency (22 to 31 posts per 90 days) and breakout posts.
+- Median impressions per post rose 1.27x (1,376 to 1,747; 135 vs 224 posts). The bigger gains came from consistency (22 to 31 posts per 90 days) and breakout posts.
 - Posts above 50,000 impressions: 0% before, 4.5% after. The top 10% of posts produced 75% of impressions.
 - Followers grew a median 17.4% in about 90 days (n=9).
 - Median engagement rate per post: 2.18% (n=453 posts).
