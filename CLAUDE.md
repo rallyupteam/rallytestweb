@@ -81,9 +81,10 @@ page and its "last updated" date.
 Vite/React bundle, originally built by our ads contractor (Shimi, Aurum Media), with copy, logo
 and visuals reworked by RallyUp on 2026-11-10 (he cleared copy/visual changes; form, calendar,
 consent lines, GTM and payload are his and unchanged). Served files:
-`audience-building/index.html`, `/assets/index-CQHdPE0U.js`, `/assets/index-Dyof1xTF.css` and the
-two `.woff2` fonts in `/assets/` (the bundle uses root paths). Result cards load the existing
-`/assets/logos/*` and `/assets/wordmarks/lightbank.png`. Editable source lives in the
-rallyupcontext repo at `landing-pages/audience-building/`: edit there, `npx vite build`, replace
+`audience-building/index.html`, `/assets/index-D-WsBtMX.js`, `/assets/index-DRQ7FBsT.css` and the
+two `.woff2` fonts in `/assets/` (the bundle uses root paths). The hero logo strip and result cards
+load the existing `/assets/logos/*` and `/assets/wordmarks/lightbank.png`; the hero "backed by" row
+also loads `/assets/wordmarks/verissimo.png` (Verissimo Ventures, from verissimo.vc, added 2026-11-11).
+Editable source lives in the rallyupcontext repo at `landing-pages/audience-building/`: edit there, `npx vite build`, replace
 these files. It deliberately carries GTM only, without `consent.js`, at the contractor's request
 to avoid double-counting ad traffic. It is `noindex,nofollow` and kept out of `sitemap.xml`.
