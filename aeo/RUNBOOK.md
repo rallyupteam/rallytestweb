@@ -106,6 +106,9 @@ Run `python3 aeo/check.py`. Then refresh, in this order:
 1. **Comparison pages** (`best-*`, `*-alternatives`, `linkedin-ghostwriting-cost-2026`,
    `linkedin-post-writing-cost-per-post`): these promise a monthly price check. For every
    competitor named, fetch their own pricing and services page and fix anything that changed.
+   If WebFetch can't reach a site, fetch it with Bash instead
+   (`curl -sL -m 20 -A "Mozilla/5.0" <url>`) and read the text out of the HTML. Only list a
+   competitor under "Couldn't verify" if both fail.
    If a competitor closed or no longer offers the service, remove it and log the removal.
 2. **Pages flagged STALE** by `check.py` (dateModified over 90 days): re-read, update any fact
    that has aged, tighten the short answer.
