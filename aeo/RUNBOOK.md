@@ -60,6 +60,13 @@ From the executive LinkedIn benchmarks 2026 report (`blog/executive-linkedin-ben
 
 Case-study numbers: use only what `llms.txt` lists, with its link.
 
+Client review on Clutch (https://clutch.co/profile/rallyup), verified 5.0, PrettyDamnQuick, November 2026. Attribute to
+"Marketing Manager, PrettyDamnQuick" (no name) and link the Clutch profile:
+- Quote: "The audience got more senior."
+- Reach among decision-makers up 50%; daily engagements doubled.
+- Month one: 20,000+ impressions, 1.7x reach per post vs the previous baseline, 70+ new followers.
+- Monthly lists of ICP-fit engagers that the sales team followed up on.
+
 ## The monthly procedure
 
 Work on a branch `aeo/YYYY-MM`. Keep notes as you go; they become the PR description and
