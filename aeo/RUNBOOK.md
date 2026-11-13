@@ -74,6 +74,18 @@ For each prompt under "Tracking prompts" in `aeo/backlog.md`, run a web search a
 Write a table to `aeo/log/YYYY-MM.md`: prompt, rallyup page found (or none), top cited domains.
 Compare with last month's log if one exists and note what moved.
 
+### 1b. Mine buyer questions from sales calls (Granola)
+
+Using the Granola connector, search the last 30 days of meetings for discovery and sales calls,
+and pull out the questions prospects asked about LinkedIn ghostwriting: price, results, time
+commitment, voice, ghostwriter vs agency, what happens in month one, and so on.
+
+- Record **only the question, rewritten in generic words**, under "Page ideas" in
+  `aeo/backlog.md`, tagged `(from calls)`. Note in the log how many calls asked something similar.
+- **Never** write down a name, company, deal detail, number or quote from a call, in any file,
+  the PR or Slack. Call content is private; the repo and the PR are public.
+- If Granola is unavailable, skip this step and say so in the PR.
+
 ### 2. Refresh what exists
 
 Run `python3 aeo/check.py`. Then refresh, in this order:
