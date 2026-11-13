@@ -1,0 +1,11 @@
+# Phrases that must never appear on a public page (one per line, case-insensitive).
+# Unsupported claims and figures we chose not to publish.
+5x baseline
+0.6x
+0.63x
+range 0.6x
+One went down
+# AI-slop words from the house style
+game-changer
+delve
+in today's fast-paced

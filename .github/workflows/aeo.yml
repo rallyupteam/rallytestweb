@@ -1,0 +1,26 @@
+# Runs on every push to main (Amplify deploys the same push).
+# 1. check: blocks nothing, but a red run means a page shipped broken. PRs get the same check first.
+# 2. indexnow: waits for Amplify, then pings IndexNow for the .html files that changed.
+name: aeo
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 aeo/check.py
+  indexnow:
+    if: github.event_name == 'push'
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Wait for Amplify to deploy
+        run: sleep 150
+      - name: Ping changed pages
+        run: python3 aeo/indexnow.py $(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- '*.html')

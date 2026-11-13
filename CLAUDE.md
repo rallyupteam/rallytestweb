@@ -88,3 +88,12 @@ also loads `/assets/wordmarks/verissimo.png` (Verissimo Ventures, from verissimo
 Editable source lives in the rallyupcontext repo at `landing-pages/audience-building/`: edit there, `npx vite build`, replace
 these files. It deliberately carries GTM only, without `consent.js`, at the contractor's request
 to avoid double-counting ad traffic. It is `noindex,nofollow` and kept out of `sitemap.xml`.
+
+## AEO pipeline (`aeo/`)
+
+Blog answer pages are built and maintained by a monthly cloud routine that follows
+[aeo/RUNBOOK.md](aeo/RUNBOOK.md) and opens a PR (it never pushes to `main`).
+- `python3 aeo/build_page.py aeo/specs/<slug>.json` builds a page and wires sitemap, llms.txt, blog index.
+- `python3 aeo/check.py` validates every blog page (tags, schema, FAQ match, links, forbidden phrases). Must pass.
+- `.github/workflows/aeo.yml` runs the check on PRs and pushes, and pings IndexNow for changed pages after deploy.
+- Phrases that must never appear publicly go in `aeo/forbidden.txt`.
