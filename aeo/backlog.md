@@ -34,25 +34,24 @@ Read and updated by the monthly run (`aeo/RUNBOOK.md`). Add ideas anywhere under
 
 ## Page ideas
 
-From the Otterly AI report, 2026-11-14 (prompts where rallyup has zero citations and no page answers them):
-- PUBLISHED 2026-11-15 (blog/done-for-you-linkedin-content-for-founders.html, executive-linkedin-audience-building-services, book-sales-calls-from-linkedin-for-founders, turn-founder-into-linkedin-creator, b2b-executive-social-presence-agencies). Was: done-for-you founder LinkedIn content: who does it end to end (prompts 21, 22). Strongest gap: it's literally our service.
-- best services for executive LinkedIn audience building (prompt 23). "Audience building" is our own term.
-- how founders book sales calls from LinkedIn: content plus ICP connection requests (prompts 24, 25). Use the Airwallex calls-booked and Anchor Browser deal facts from llms.txt.
-- turning a founder into a LinkedIn creator: options compared (prompt 26).
-- best agencies for B2B executive social presence (prompt 27).
-- Improve, don't add: Otterly says `best-linkedin-ghostwriting-agency-b2b-saas` and `best-executive-linkedin-content-agencies-2026` rank on Google but no AI engine cites them. Tighten their short answers to match prompts 2 and 1, and add the 2026 benchmark numbers.
+From the Otterly AI report, 2026-11-14: all five gap pages published 2026-11-15 (see Published). Still open:
+- Improve, don't add: Otterly says `best-linkedin-ghostwriting-agency-b2b-saas` and `best-executive-linkedin-content-agencies-2026` rank on Google but no AI engine cites them. Benchmark and Clutch proof added 2026-11-15; recheck AI citations in December.
 - Skip: "B2B storytelling agencies for SaaS" (not our category).
 
 - what is executive ghostwriting (definitional)
-- do CEOs write their own LinkedIn posts?
 - how to measure LinkedIn ROI for executives
 - Understory alternatives
-- LinkedIn ghostwriting for leadership teams (several executives at one company)
-- how often should a CEO post on LinkedIn?
-- LinkedIn ghostwriting agency with a results guarantee: what guarantees exist and what they cover
 - how to brief a LinkedIn ghostwriter (what to prepare, what the first month looks like)
 - LinkedIn ghostwriting in the UK vs US: prices and differences
 - is it ethical to use a LinkedIn ghostwriter? (disclosure, authenticity)
+- do CEOs write their own LinkedIn posts? (partly covered by the worth-it page FAQ on authenticity)
+
+From sales calls, 2026-11 (generic wording only):
+- (from calls) LinkedIn or X first: where should a founder start, and is ghostwriting on X different?
+- (from calls) founder profile vs company page: where should B2B content go?
+- (from calls) who comes up with the post ideas, the writer or the founder? (FAQ candidate)
+- (from calls) is LinkedIn ghostwriting a substitute for a sales hire? (FAQ or limits line)
+- (from calls) is commenting on other people's posts worth it, and does the service do it? (FAQ candidate)
 
 ## Published
 
@@ -67,3 +66,9 @@ From the Otterly AI report, 2026-11-14 (prompts where rallyup has zero citations
 - executive LinkedIn benchmarks 2026
 - Windmill Growth alternatives
 - Kurogo alternatives
+- done-for-you LinkedIn content for founders; executive LinkedIn audience building services; how founders book sales calls from LinkedIn; turning a founder into a LinkedIn creator; best agencies for B2B executive social presence (2026-11-15, Otterly gaps)
+- LinkedIn ghostwriting agencies with a results guarantee (2026-11-15)
+- how to get your CEO posting on LinkedIn consistently, incl. how often a CEO should post (2026-11-15)
+- LinkedIn ghostwriter vs AI writing tools (2026-11-15, from calls)
+- LinkedIn ghostwriting for leadership teams (2026-11-15)
+- is LinkedIn ghostwriting worth it for a CEO (2026-11-15)
