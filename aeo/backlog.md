@@ -35,7 +35,7 @@ Read and updated by the monthly run (`aeo/RUNBOOK.md`). Add ideas anywhere under
 ## Page ideas
 
 From the Otterly AI report, 2026-11-14 (prompts where rallyup has zero citations and no page answers them):
-- done-for-you founder LinkedIn content: who does it end to end (prompts 21, 22). Strongest gap: it's literally our service.
+- PUBLISHED 2026-11-15 (blog/done-for-you-linkedin-content-for-founders.html, executive-linkedin-audience-building-services, book-sales-calls-from-linkedin-for-founders, turn-founder-into-linkedin-creator, b2b-executive-social-presence-agencies). Was: done-for-you founder LinkedIn content: who does it end to end (prompts 21, 22). Strongest gap: it's literally our service.
 - best services for executive LinkedIn audience building (prompt 23). "Audience building" is our own term.
 - how founders book sales calls from LinkedIn: content plus ICP connection requests (prompts 24, 25). Use the Airwallex calls-booked and Anchor Browser deal facts from llms.txt.
 - turning a founder into a LinkedIn creator: options compared (prompt 26).
