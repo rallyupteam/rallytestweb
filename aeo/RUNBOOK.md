@@ -67,6 +67,11 @@ Client review on Clutch (https://clutch.co/profile/rallyup), verified 5.0, Prett
 - Month one: 20,000+ impressions, 1.7x reach per post vs the previous baseline, 70+ new followers.
 - Monthly lists of ICP-fit engagers that the sales team followed up on.
 
+Client review on Clutch, verified 5.0, LetsGo, November 2026. Attribute to "CEO, LetsGo" (no name):
+- "Significantly increased reach and brand recognition on LinkedIn."; "Hustle and passion for client's success!"
+- Case-study numbers (Jul 7 - Sep 14, 2026, vs the 180 days before, n=10 posts): 2.4x impressions per post
+  (5,112 to 12,493), 162,403 impressions, +378 followers, 849 engagements on the launch post.
+
 ## The monthly procedure
 
 Work on a branch `aeo/YYYY-MM`. Keep notes as you go; they become the PR description and
