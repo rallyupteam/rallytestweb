@@ -70,7 +70,8 @@ Client review on Clutch (https://clutch.co/profile/rallyup), verified 5.0, Prett
 Client review on Clutch, verified 5.0, LetsGo, November 2026. Attribute to "CEO, LetsGo" (no name):
 - "Significantly increased reach and brand recognition on LinkedIn."; "Hustle and passion for client's success!"
 - Case-study numbers (Jul 7 - Sep 14, 2026, vs the 180 days before, n=10 posts): 2.4x impressions per post
-  (5,112 to 12,493), 162,403 impressions, +378 followers, 849 engagements on the launch post.
+  (5,112 to 12,493), 162,403 impressions, +378 followers, 849 engagements on the launch post. Hundreds of waitlist sign-ups at launch (first 100 spots
+  in under 24 hours). After a B2C-to-B2B pivot, first enterprise customers (per Francisco, 2026-11-15).
 
 ## The monthly procedure
 
