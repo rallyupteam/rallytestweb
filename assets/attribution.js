@@ -22,6 +22,24 @@
   var KEY = 'ru_attr';
   var PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
 
+  var LAST_TOUCH = 'ru_attr_last'; // localStorage: last non-direct arrival
+  var LAST_TOUCH_DAYS = 30;
+
+  // AI assistants that tag their own outbound links. ChatGPT appends
+  // utm_source=chatgpt.com to every link it cites; left alone, that reads as a
+  // tagged campaign with no name and lands in 'unattributed' on the report.
+  var AI_SOURCE = /^(chatgpt(\.com)?|chat\.openai\.com|openai(\.com)?|perplexity(\.ai)?|claude(\.ai)?|gemini(\.google\.com)?|copilot(\.microsoft\.com)?|you\.com|phind(\.com)?)$/;
+
+  function save(store, key, value) {
+    try { store.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+  function load(store, key) {
+    try {
+      var v = JSON.parse(store.getItem(key) || '{}');
+      return v && Object.keys(v).length ? v : null;
+    } catch (e) { return null; }
+  }
+
   function resolve() {
     var found = {};
     try {
@@ -32,22 +50,59 @@
       });
     } catch (e) {}
 
+    // An AI assistant's own tag is an AI visit, not a campaign.
+    if (found.utm_source && !found.utm_campaign &&
+        AI_SOURCE.test(String(found.utm_source).toLowerCase())) {
+      found = { utm_medium: 'site_cta', utm_campaign: 'site', utm_source: 'ai',
+                utm_term: String(found.utm_source).toLowerCase(), landing: landingPath() };
+    }
+
     // Inbound tags win and are remembered for the rest of the visit, so the
     // attribution survives a click through to the case studies and back.
     if (Object.keys(found).length) {
-      try { sessionStorage.setItem(KEY, JSON.stringify(found)); } catch (e) {}
+      save(sessionStorage, KEY, found);
+      if (found.utm_campaign === 'site') save(localStorage, LAST_TOUCH, stamp(found));
       return found;
     }
 
-    try {
-      var stored = JSON.parse(sessionStorage.getItem(KEY) || '{}');
-      if (stored && Object.keys(stored).length) return stored;
-    } catch (e) {}
+    var stored = load(sessionStorage, KEY);
+    if (stored) return stored;
 
-    // Nothing inbound and nothing remembered. Classify how they got here from
-    // the referrer, which only exists on arrival — by the time they book, it is
-    // long gone, so this is the one chance to record it.
-    return classifyReferrer();
+    // Nothing inbound and nothing remembered: this is the first page of the
+    // visit. Classify the referrer now (it only exists on arrival) and KEEP
+    // it for the visit. Before 2026-11-16 this was recomputed on every page,
+    // so someone who landed on a blog post from ChatGPT and booked from the
+    // homepage was counted as 'direct' (page two's referrer is our own site).
+    var arrived = classifyReferrer();
+
+    // A direct arrival within 30 days of an AI, search, list or other
+    // referral keeps that earlier source: buyers often read an answer, leave,
+    // and type the URL back in days later. Tagged campaigns are unaffected.
+    if (arrived.utm_source === 'direct') {
+      var last = load(localStorage, LAST_TOUCH);
+      if (last && last.ts && Date.now() - last.ts < LAST_TOUCH_DAYS * 86400000) {
+        delete last.ts;
+        arrived = last;
+      }
+    } else {
+      save(localStorage, LAST_TOUCH, stamp(arrived));
+    }
+
+    save(sessionStorage, KEY, arrived);
+    return arrived;
+  }
+
+  function stamp(a) {
+    var out = merge(a, {});
+    out.ts = Date.now();
+    return out;
+  }
+
+  // The page the visitor first landed on, e.g. /blog/linkedin-ghostwriting-cost-2026.
+  // It travels to Cal inside utm_content, so the report shows which answer page
+  // brought the booking in.
+  function landingPath() {
+    try { return location.pathname.replace(/\.html$/, '').slice(0, 80) || '/'; } catch (e) { return ''; }
   }
 
   /*
@@ -64,7 +119,7 @@
    * floor, not a census.
    */
   function classifyReferrer() {
-    var base = { utm_medium: 'site_cta', utm_campaign: 'site' };
+    var base = { utm_medium: 'site_cta', utm_campaign: 'site', landing: landingPath() };
     var host = '';
     try {
       if (!document.referrer) return merge(base, { utm_source: 'direct' });
@@ -80,9 +135,13 @@
 
     var SEARCH = /^(google|bing|duckduckgo|yahoo|ecosia|brave|baidu|yandex|startpage)\./;
     var AI = /^(chatgpt\.com|chat\.openai\.com|openai\.com|perplexity\.ai|claude\.ai|gemini\.google\.com|copilot\.microsoft\.com|you\.com|phind\.com)$/;
+    // The "best agency" lists and directories rallyup is on. These are the
+    // pages AI engines cite, so a click from one is counted as AEO.
+    var LISTING = /^(ghostwriterindex\.com|getaob\.com|tryordinal\.com|clutch\.co|goodfirms\.co|sortlist\.com|sortlist\.co\.uk)$/;
     var SOCIAL = /^(linkedin|twitter|x|facebook|instagram|t|lnkd|reddit|news\.ycombinator)\./;
 
     if (AI.test(host)) return merge(base, { utm_source: 'ai', utm_term: host });
+    if (LISTING.test(host)) return merge(base, { utm_source: 'listing', utm_term: host });
     if (SEARCH.test(host)) return merge(base, { utm_source: 'search', utm_term: host });
     if (SOCIAL.test(host)) return merge(base, { utm_source: 'social', utm_term: host });
     return merge(base, { utm_source: 'referral', utm_term: host });
@@ -105,8 +164,11 @@
         if (attr[k] && !u.searchParams.has(k)) u.searchParams.set(k, attr[k]);
       });
       var where = a.getAttribute('data-cta-location') || a.getAttribute('data-cta');
-      if (where && !u.searchParams.has('utm_content')) {
-        u.searchParams.set('utm_content', where);
+      if (!u.searchParams.has('utm_content')) {
+        // CTA label, plus the landing page for website traffic:
+        // "blog_callout@/blog/linkedin-ghostwriting-cost-2026".
+        var content = (where || '') + (attr.landing ? '@' + attr.landing : '');
+        if (content) u.searchParams.set('utm_content', content.slice(0, 120));
       }
       a.href = u.toString();
     } catch (e) {}
