@@ -12,8 +12,8 @@ agent that starts with no context: everything it needs is in this folder and in 
 rallyup (rallyup.team) is a done-for-you LinkedIn ghostwriting agency for B2B founders and
 executives. A dedicated human writer per executive, 3 posts a week, a story interview twice a
 month, approvals in Slack, profile rewrite, ICP connection requests, monthly report. From $5,000
-per executive per month. Guarantee: 100k organic impressions in 90 days or you don't pay (for B2B
-founders and executives with $5m+ in ARR or funding). Not to be confused with RallyUp
+per executive per month. Guarantee: 100k organic impressions in 90 days, or we keep working for
+free until you get there (for B2B founders and executives with $5m+ in ARR or funding). Not to be confused with RallyUp
 (rallyup.com), the fundraising platform. Read `llms.txt` for the full public summary.
 
 ## Rules (every page, every edit)
@@ -49,14 +49,38 @@ founders and executives with $5m+ in ARR or funding). Not to be confused with Ra
 From the executive LinkedIn benchmarks 2026 report (`blog/executive-linkedin-benchmarks-2026.html`,
 14 executives at 11 B2B companies, May to November 2026, anonymized). Always cite the sample size.
 
-- Monthly impressions: median 4.7x in the first 90 days vs the 90 days before (7 executives with
-  complete account data); 6 of 7 at least doubled; up to 15.3x.
+- Monthly impressions: median 4.7x in the first 90 days vs the 90 days before, measured as the
+  median of each executive's own before-and-after ratio, across the 7 executives with complete
+  account data; 6 of 7 at least doubled; up to 15.3x. Always attach that sample: write "In our 2026
+  benchmark (14 executives), the 7 with complete account data grew monthly impressions a median
+  4.7x", never "14 executives grew 4.7x".
+- Group medians: 27,640 monthly impressions before and 88,243 after are the median of the before
+  group and the median of the after group. Label them "group median" or "typical month across the
+  group". Never present them as "a 4.7x increase" or place them so 4.7x reads as their ratio (their
+  ratio is about 3.2x, a different measure).
+- Impressions per post: the median post went from 1,376 impressions before to 1,747 after (1.27x).
+  Label it as the median post before and after.
 - Followers: median +17.4% in about 90 days (9 executives); +21.7% from kickoff to November 2026
   (14 executives); all 14 grew.
 - Posts above 50,000 impressions: 0% before, 4.5% after. Top 10% of posts produced 75% of impressions.
 - Cadence: 22 to 31 posts per 90 days (median).
 - Median engagement rate per post: 2.18% (453 posts).
 - New presences: one executive reached 145,071 impressions in 71 days, another 407,799 in 56 days.
+
+The guarantee, monthly report and pipeline (use exactly this):
+
+- Guarantee, one line: "100k organic impressions in 90 days, or we keep working for free until you
+  get there", for B2B founders and executives with $5m+ in ARR or funding. Never "or you don't pay",
+  never a refund, and no claim about paid promotion beyond the word "organic".
+- Guarantee, full terms (when a page explains what it covers): organic impressions on the
+  executive's personal LinkedIn profile (not the company page), as reported by LinkedIn's own
+  analytics; the first 90 days; B2B founders and executives with $5m+ in ARR or funding; the
+  executive completes the onboarding form, joins the 30-minute story interview twice a month, and
+  approves posts so they publish on the agreed schedule; if it is missed, we keep writing and
+  publishing at no charge until the account reaches 100k.
+- Monthly report: covers impressions, followers, profile views, ICP connection requests and
+  inbound DMs. It does not include meetings. Meetings, deals and closed revenue are tracked in the
+  client's own CRM. Pipeline can be named as the goal, never as something our report measures.
 
 Case-study numbers: use only what `llms.txt` lists, with its link.
 
