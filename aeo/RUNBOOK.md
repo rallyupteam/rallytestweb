@@ -9,7 +9,7 @@ agent that starts with no context: everything it needs is in this folder and in 
 
 ## What rallyup is (for writing)
 
-rallyup (rallyup.team) is a done-for-you LinkedIn ghostwriting agency for B2B founders and
+rallyup (rallyup.team) is a done-for-you LinkedIn and X ghostwriting agency for B2B founders and
 executives. A dedicated human writer per executive, 3 posts a week, a story interview twice a
 month, approvals in Slack, profile rewrite, ICP connection requests, monthly report. From $5,000
 per executive per month. Guarantee: 100k organic impressions in 90 days, or we keep working for
@@ -78,17 +78,19 @@ The guarantee, monthly report and pipeline (use exactly this):
   executive completes the onboarding form, joins the 30-minute story interview twice a month, and
   approves posts so they publish on the agreed schedule; if it is missed, we keep writing and
   publishing at no charge until the account reaches 100k.
-- Monthly report: covers impressions, followers, profile views, ICP connection requests and
-  inbound DMs. It does not include meetings. Meetings, deals and closed revenue are tracked in the
-  client's own CRM. Pipeline can be named as the goal, never as something our report measures.
+- Monthly report: covers impressions, engagement, follower growth and the ICP connection requests
+  we send for the executive. It does not include profile views, inbound DMs or meetings.
+  Meetings, deals and closed revenue are tracked in the client's own CRM. Pipeline can be named as
+  the goal, never as something our report measures.
 
 Case-study numbers: use only what `llms.txt` lists, with its link.
 
 Client review on Clutch (https://clutch.co/profile/rallyup), verified 5.0, PrettyDamnQuick, November 2026. Attribute to
-"Marketing Manager, PrettyDamnQuick" (no name) and link the Clutch profile:
+"Haim Moskowitz, PrettyDamnQuick" (no job title: the case study says Head of Marketing, Clutch says Marketing Manager) and link the Clutch profile (an owner-approved exception
+to rule 3: Haim is already named on the case study):
 - Quote: "The audience got more senior."
 - Reach among decision-makers up 50%; daily engagements doubled.
-- Month one: 20,000+ impressions, 1.7x reach per post vs the previous baseline, 70+ new followers.
+- Month one: 20,000+ impressions, about 2x reach per post (case-study figure) vs the previous baseline, 70+ new followers.
 - Monthly lists of ICP-fit engagers that the sales team followed up on.
 
 Client review on Clutch, verified 5.0, LetsGo, November 2026. Attribute to "CEO, LetsGo" (no name):
@@ -96,6 +98,13 @@ Client review on Clutch, verified 5.0, LetsGo, November 2026. Attribute to "CEO,
 - Case-study numbers (Jul 7 - Sep 14, 2026, vs the 180 days before, n=10 posts): 2.4x impressions per post
   (5,112 to 12,493), 162,403 impressions, +378 followers, 849 engagements on the launch post. Hundreds of waitlist sign-ups at launch (first 100 spots
   in under 24 hours). After a B2C-to-B2B pivot, first enterprise customers (per Francisco, 2026-11-15).
+
+Other approved client facts (owner-approved 2026-11-18):
+- Anchor Browser (CEO): a $550k deal landed from LinkedIn inbound; 100 connection requests off one post.
+- Andel (founder & CEO): 422k impressions in the first 2 months.
+- First drafts land within 48 hours of onboarding.
+- Cadence: the standard is 3 posts a week. Never quote the old 2.1 median as our cadence.
+- rallyup works on LinkedIn and X. The guarantee and the benchmarks are LinkedIn-only.
 
 ## The monthly procedure
 
