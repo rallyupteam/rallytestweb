@@ -53,6 +53,10 @@ From sales calls, 2026-11 (generic wording only):
 - (from calls) is LinkedIn ghostwriting a substitute for a sales hire? (FAQ or limits line)
 - (from calls) is commenting on other people's posts worth it, and does the service do it? (FAQ candidate)
 
+- (from calls, 2026-11-19) can an outside ghostwriting agency understand a deeply technical business well enough to write for a CTO or technical founder? Raised in 2 of 9 calls; no page covers it.
+- (from calls, 2026-11-19) which executive should start first, the CEO only or several executives? (4 of 9 calls)
+- (from calls, 2026-11-19) can you trial a ghostwriting agency on one executive before committing? (3 of 9 calls)
+
 ## Published
 
 - best LinkedIn ghostwriting agencies (2026)
