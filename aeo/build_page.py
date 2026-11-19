@@ -24,6 +24,10 @@ BODY_TOP = cut("</head>", "</nav>")
 FOOTER = TPL[TPL.index("<!-- FOOTER -->"):]
 
 EXTRA_CSS = """
+  .author-box { display: flex; gap: 16px; align-items: flex-start; border: 1px solid rgba(11,16,32,0.1); border-radius: 16px; padding: 22px 24px; margin: 40px 0 0; background: #fff; }
+  .author-box .avatar { flex: none; width: 48px; height: 48px; border-radius: 999px; background: var(--ru-blue); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .author-box .kicker { margin: 0 0 4px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ru-blue); }
+  .author-box p { font-size: 16px; margin: 0 0 8px; }
   .limits { border: 1px solid rgba(11,16,32,0.1); background: #f7f8fb; border-radius: 16px; padding: 22px 26px; margin: 32px 0; }
   .limits h3 { margin: 0 0 12px; font-size: 20px; color: var(--ru-ink); }
   .limits ul { margin: 0; }
@@ -40,6 +44,9 @@ AUTHORS = {
         "slug": "francisco-gost-scagliarini",
         "sameAs": "https://www.linkedin.com/in/franciscogost",
         "byline": "francisco gost scagliarini", "role": "partner",
+        "box_role": "partner at rallyup", "initials": "FG", "first": "francisco",
+        "bio": "Francisco Gost Scagliarini is a partner at rallyup, a done-for-you LinkedIn and X ghostwriting agency for B2B founders and executives. He ghostwrites for founders backed by Y Combinator, a16z and Sequoia, across accounts with more than 100,000 combined followers, and runs the same playbook on his own profile in public.",
+        "knowsAbout": ["LinkedIn ghostwriting", "Executive thought leadership", "LinkedIn content strategy", "Cold outreach on LinkedIn"],
     },
     "alec": {
         "id": "https://rallyup.team/authors/alec-kremins.html#person",
@@ -48,8 +55,29 @@ AUTHORS = {
         "slug": "alec-kremins",
         "sameAs": "https://www.linkedin.com/in/aleckremins",
         "byline": "alec kremins", "role": "ceo",
+        "box_role": "founder and CEO of rallyup", "initials": "AK", "first": "alec",
+        "bio": "Alec Kremins is the founder and CEO of rallyup, a done-for-you LinkedIn and X ghostwriting agency for B2B founders and executives. Before rallyup he worked at beehiiv and Ramp. He runs his own LinkedIn as the live demo of the method: more than 24,000 followers and over 7 million organic impressions (November 2026).",
+        "knowsAbout": ["LinkedIn ghostwriting", "Executive personal branding", "B2B audience building", "Founder-led growth"],
     },
 }
+
+AUTHOR_COMPANY = ("rallyup writes for executives at Airwallex, PandaDoc, Lightbank, Letter AI and other B2B companies, "
+                  "and publishes its own data in the "
+                  '<a href="/blog/executive-linkedin-benchmarks-2026.html">executive LinkedIn benchmarks 2026</a> report.')
+
+def author_box(a):
+    """E-E-A-T: who wrote this and why they know (added 2026-11-19, after the AEO expert call)."""
+    return (f'    <div class="author-box">\n'
+            f'      <div class="avatar" aria-hidden="true">{a["initials"]}</div>\n'
+            f'      <div>\n'
+            f'        <p class="kicker">about the author</p>\n'
+            f'        <p><strong><a href="/authors/{a["slug"]}.html">{a["name"].lower()}</a></strong>, {a["box_role"]}</p>\n'
+            f'        <p>{a["bio"]}</p>\n'
+            f'        <p>{AUTHOR_COMPANY}</p>\n'
+            f'        <p><a href="{a["sameAs"]}" rel="noopener">{a["first"]} on linkedin →</a> · '
+            f'<a href="/authors/{a["slug"]}.html">all articles by {a["first"]}</a></p>\n'
+            f'      </div>\n'
+            f'    </div>\n')
 
 def visible_words(body_html):
     t = re.sub(r"<!--.*?-->", " ", body_html, flags=re.S)
@@ -80,7 +108,8 @@ def build(p):
                 "dateModified": p["date"],
                 "image": "https://rallyup.team/assets/og-image.png?v=2",
                 "author": {"@type": "Person", "@id": a["id"], "name": a["name"], "jobTitle": a["jobTitle"],
-                           "url": a["url"], "sameAs": [a["sameAs"]], "worksFor": {"@id": "https://rallyup.team/#organization"}},
+                           "url": a["url"], "sameAs": [a["sameAs"]], "worksFor": {"@id": "https://rallyup.team/#organization"},
+                           "description": a["bio"], "knowsAbout": a["knowsAbout"]},
                 "publisher": {"@id": "https://rallyup.team/#organization"},
                 "mainEntityOfPage": url,
                 "wordCount": words,
@@ -142,7 +171,7 @@ def build(p):
   <p class="text-sm text-gray-400 mb-10">last updated: {month}</p>
   <div class="prose">
 {body_inner}
-  </div>
+{author_box(a)}  </div>
 </article>
 
 """

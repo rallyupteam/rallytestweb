@@ -35,6 +35,11 @@ free until you get there (for B2B founders and executives with $5m+ in ARR or fu
    - A `.changelog` box: "what changed on this page", one dated line per change.
    - An FAQ whose visible questions match the FAQPage JSON-LD exactly.
    - Internal links to 2+ related pages, including the benchmark report where relevant.
+   - An "about the author" box at the end (`.author-box`), plus `description` and `knowsAbout` on
+     the Article's author in JSON-LD. `aeo/build_page.py` adds both from `AUTHORS`; never write a
+     page without them. Author authority (E-E-A-T) is the cheapest ranking edge over the AI-written,
+     author-less pages most competitors publish (AEO expert call, 2026-11-18). Bios use only facts
+     on the author pages: write them with conviction, but never inflate a number.
 6. **Authors**: alternate Francisco Gost Scagliarini (Partner) and Alec Kremins (CEO). Comparison
    and data pages go to Francisco; "how to" and cost pages to Alec.
 7. **House style**: lowercase headings like the existing pages, no em dashes, plain words, short
@@ -119,6 +124,16 @@ For each prompt under "Tracking prompts" in `aeo/backlog.md`, run a web search a
 
 Write a table to `aeo/log/YYYY-MM.md`: prompt, rallyup page found (or none), top cited domains.
 Compare with last month's log if one exists and note what moved.
+
+Also record, from the bookings dashboard, the month's bookings tagged `website_ai` (visitors who
+arrived from ChatGPT, Perplexity, Claude, Gemini or Copilot) and total inbound bookings. Report AI's
+influence two ways, and label them:
+- **tracked:** the `website_ai` count, which is verified.
+- **estimated:** tracked × 3, which is an assumption. It rests on the AEO expert's rule of thumb
+  (2026-11-18) that about 30% of people click the link in an AI answer and about 70% Google the
+  brand instead, and we haven't verified it. Always print the word "estimated" next to it.
+Track total inbound bookings against the November 2026 baseline, so growth isn't credited to AEO
+alone.
 
 ### 1b. Mine buyer questions and objections from sales calls
 
