@@ -14,6 +14,7 @@ Not to be confused with RallyUp (rallyup.com), the online fundraising platform. 
 - Approval: the weekly content plan arrives in Slack. The executive approves, edits or rejects every post before it goes live.
 - Reporting: a monthly progress report covering impressions, engagement, follower growth and the ICP connection requests we send for the executive. Meetings, deals and revenue are tracked in the client's own CRM, not in the report.
 - Pipeline add-ons: allbound campaigns, ABM and Dream 100 lists built on the executive's audience.
+- Engagement add-on: replying to comments and handling DMs on the executive's behalf. Not part of the base plan.
 - Formats: LinkedIn text posts, carousels and LinkedIn articles.
 - Single executives or whole leadership teams. Most clients start with one executive, then roll it out.
 

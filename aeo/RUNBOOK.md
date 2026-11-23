@@ -109,6 +109,8 @@ Other approved client facts (owner-approved 2026-11-18):
 - Andel (founder & CEO): 422k impressions in the first 2 months.
 - First drafts land within 48 hours of onboarding.
 - Cadence: the standard is 3 posts a week. Never quote the old 2.1 median as our cadence.
+- Engagement (replying to comments, handling DMs) is NOT in the base plan; it is an add-on (decided
+  2026-11-23). Never say engagement is included.
 - rallyup works on LinkedIn and X. The guarantee and the benchmarks are LinkedIn-only.
 
 ## The monthly procedure
