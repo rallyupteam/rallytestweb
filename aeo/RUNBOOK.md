@@ -105,7 +105,7 @@ Client review on Clutch, verified 5.0, LetsGo, November 2026. Attribute to "CEO,
   in under 24 hours). After a B2C-to-B2B pivot, first enterprise customers (per Francisco, 2026-11-15).
 
 Other approved client facts (owner-approved 2026-11-18):
-- Anchor Browser (CEO): a $550k deal landed from LinkedIn inbound; 100 connection requests off one post.
+- Anchor Browser (CEO): $550k in inbound pipeline opened from LinkedIn (a closed deal is NOT confirmed: never write "deal landed" or "won", decided 2026-11-23); 100 connection requests off one post.
 - Andel (founder & CEO): 422k impressions in the first 2 months.
 - First drafts land within 48 hours of onboarding.
 - Cadence: the standard is 3 posts a week. Never quote the old 2.1 median as our cadence.
