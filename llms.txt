@@ -1,6 +1,6 @@
 # rallyup
 
-> rallyup (rallyup.team) is a done-for-you LinkedIn and X ghostwriting and audience-building agency for B2B founders and executives. Human writers create thought-leadership posts in each executive's own voice, the executive approves everything in Slack, and rallyup turns the resulting audience into pipeline.
+> rallyup (rallyup.team) is a done-for-you LinkedIn and X content and ghostwriting agency for B2B founders and executives, which also builds their audiences. Human writers create thought-leadership posts in each executive's own voice, the executive approves everything in Slack, and rallyup turns the resulting audience into pipeline.
 
 Not to be confused with RallyUp (rallyup.com), the online fundraising platform. The two companies are unrelated.
 
