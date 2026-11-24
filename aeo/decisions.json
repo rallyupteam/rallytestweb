@@ -1,0 +1,353 @@
+{
+  "note": "Buyer decision map (Granola AEO method, adopted 2026-11-24). One entry per decision a buyer makes before hiring an executive LinkedIn ghostwriter. Each decision has a Google keyword (measured in Search Console) and AI prompts (measured in answer engines). `prompts` holds every phrasing we track; the first is canonical, the rest are aliases so older citation exports still match. `pages` lists the rallyup page(s) that should win the decision. Replaces the separate 'Tracking prompts' list in backlog.md and data/aeo-outreach/prompts.json (rallyupcontext) as the source of truth. Edit here, then let `aeo/diagnose.py` use it.",
+  "stages": {
+    "1-why": "Should our executive do LinkedIn at all, and will it make money?",
+    "2-how": "Which way: agency, freelancer, in-house, AI tool? Which exec, which platform?",
+    "3-shortlist": "Who are the providers worth considering?",
+    "4-evaluate": "Price, guarantee, timeline, proof, risk: is this provider safe to pick?",
+    "5-contest": "Named alternatives and our own brand"
+  },
+  "decisions": [
+    {
+      "id": "worth-it",
+      "stage": "1-why",
+      "decision": "Is LinkedIn ghostwriting worth it for our CEO?",
+      "keyword": "is linkedin ghostwriting worth it",
+      "prompts": [
+        "is LinkedIn ghostwriting worth it for a CEO"
+      ],
+      "pages": [
+        "blog/is-linkedin-ghostwriting-worth-it-for-ceos.html"
+      ]
+    },
+    {
+      "id": "pipeline",
+      "stage": "1-why",
+      "decision": "Will executive LinkedIn create pipeline or only impressions?",
+      "keyword": "linkedin content pipeline b2b",
+      "prompts": [
+        "will executive LinkedIn content actually generate B2B pipeline and meetings, or just impressions?",
+        "Which providers focus on building pipelines from executive LinkedIn?",
+        "What services help founders book sales calls from LinkedIn?"
+      ],
+      "pages": [
+        "blog/book-sales-calls-from-linkedin-for-founders.html",
+        "blog/linkedin-views-but-no-leads.html",
+        "case-studies/airwallex.html"
+      ]
+    },
+    {
+      "id": "consistency",
+      "stage": "1-why",
+      "decision": "How do we get our CEO posting consistently?",
+      "keyword": "ceo posting on linkedin consistently",
+      "prompts": [
+        "how to get a CEO posting on LinkedIn consistently"
+      ],
+      "pages": [
+        "blog/how-to-get-ceo-posting-on-linkedin-consistently.html"
+      ]
+    },
+    {
+      "id": "vs-agency",
+      "stage": "2-how",
+      "decision": "Ghostwriter, freelancer, agency or in-house?",
+      "keyword": "linkedin ghostwriter vs agency",
+      "prompts": [
+        "LinkedIn ghostwriter vs agency",
+        "should I hire a LinkedIn ghostwriting agency, a freelancer, or someone in-house for our executives?"
+      ],
+      "pages": [
+        "blog/linkedin-ghostwriter-vs-agency.html"
+      ]
+    },
+    {
+      "id": "vs-ai",
+      "stage": "2-how",
+      "decision": "Why pay a ghostwriter if AI can write the posts?",
+      "keyword": "linkedin ghostwriter vs ai",
+      "prompts": [
+        "why hire a LinkedIn ghostwriter if AI can already write posts in my voice?"
+      ],
+      "pages": [
+        "blog/linkedin-ghostwriter-vs-ai-writing-tools.html"
+      ]
+    },
+    {
+      "id": "leadership-team",
+      "stage": "2-how",
+      "decision": "One executive or the whole leadership team?",
+      "keyword": "linkedin ghostwriting leadership team",
+      "prompts": [
+        "agency to write LinkedIn posts for my leadership team"
+      ],
+      "pages": [
+        "blog/linkedin-ghostwriting-for-leadership-teams.html"
+      ]
+    },
+    {
+      "id": "x-too",
+      "stage": "2-how",
+      "decision": "Does the agency also cover X, and where should we start?",
+      "keyword": "ghostwriting linkedin and x for executives",
+      "prompts": [
+        "do LinkedIn ghostwriting agencies also handle X (Twitter) for executives?"
+      ],
+      "pages": [
+        "blog/done-for-you-linkedin-content-for-founders.html"
+      ],
+      "answered_by": "FAQ added 2026-11-24 (fix existing before new)"
+    },
+    {
+      "id": "creator",
+      "stage": "2-how",
+      "decision": "How do we turn our founder into a LinkedIn creator?",
+      "keyword": "turn founder into linkedin creator",
+      "prompts": [
+        "What are the best options for turning founders into LinkedIn creators?"
+      ],
+      "pages": [
+        "blog/turn-founder-into-linkedin-creator.html"
+      ]
+    },
+    {
+      "id": "best-general",
+      "stage": "3-shortlist",
+      "decision": "Which LinkedIn ghostwriting agencies are worth shortlisting?",
+      "keyword": "best linkedin ghostwriting agency",
+      "prompts": [
+        "best LinkedIn ghostwriting agency 2026",
+        "best linkedin content agencies"
+      ],
+      "pages": [
+        "blog/best-linkedin-ghostwriting-agencies-2026.html"
+      ]
+    },
+    {
+      "id": "best-exec",
+      "stage": "3-shortlist",
+      "decision": "Which agencies do executive LinkedIn content?",
+      "keyword": "executive linkedin content agency",
+      "prompts": [
+        "best executive LinkedIn content agencies",
+        "LinkedIn ghostwriting for CEOs",
+        "LinkedIn thought leadership agency for B2B",
+        "LinkedIn ghostwriting agency for B2B founders"
+      ],
+      "pages": [
+        "blog/best-executive-linkedin-content-agencies-2026.html"
+      ]
+    },
+    {
+      "id": "done-for-you",
+      "stage": "3-shortlist",
+      "decision": "Who handles founder LinkedIn end to end?",
+      "keyword": "done for you linkedin content",
+      "prompts": [
+        "Which companies specialise in done-for-you founder LinkedIn content?",
+        "Which services handle end-to-end LinkedIn posting for leaders?",
+        "done-for-you LinkedIn content for executives"
+      ],
+      "pages": [
+        "blog/done-for-you-linkedin-content-for-founders.html"
+      ]
+    },
+    {
+      "id": "audience-building",
+      "stage": "3-shortlist",
+      "decision": "Who builds an executive's LinkedIn audience?",
+      "keyword": "executive linkedin audience building",
+      "prompts": [
+        "What are the best services for executive LinkedIn audience building?",
+        "What are the best agencies for B2B executive social presence?"
+      ],
+      "pages": [
+        "blog/executive-linkedin-audience-building-services.html",
+        "blog/b2b-executive-social-presence-agencies.html"
+      ]
+    },
+    {
+      "id": "niche-saas",
+      "stage": "3-shortlist",
+      "decision": "Best agency for a B2B SaaS executive?",
+      "keyword": "linkedin ghostwriting agency b2b saas",
+      "prompts": [
+        "best LinkedIn ghostwriting agency for B2B SaaS"
+      ],
+      "pages": [
+        "blog/best-linkedin-ghostwriting-agency-b2b-saas.html"
+      ]
+    },
+    {
+      "id": "niche-fintech",
+      "stage": "3-shortlist",
+      "decision": "Best agency for a fintech executive?",
+      "keyword": "linkedin ghostwriting fintech",
+      "prompts": [
+        "best LinkedIn ghostwriting agency for fintech executives"
+      ],
+      "pages": [
+        "blog/best-linkedin-ghostwriting-agency-fintech.html",
+        "case-studies/airwallex.html"
+      ]
+    },
+    {
+      "id": "niche-ai",
+      "stage": "3-shortlist",
+      "decision": "Best agency for an AI startup founder?",
+      "keyword": "linkedin ghostwriting ai startup",
+      "prompts": [
+        "best LinkedIn ghostwriting agency for AI startup founders"
+      ],
+      "pages": [
+        "blog/best-linkedin-ghostwriting-agency-ai-startups.html"
+      ]
+    },
+    {
+      "id": "niche-vc",
+      "stage": "3-shortlist",
+      "decision": "Best agency for a VC partner?",
+      "keyword": "linkedin ghostwriting venture capital",
+      "prompts": [
+        "LinkedIn ghostwriting for venture capital partners"
+      ],
+      "pages": [
+        "blog/best-linkedin-ghostwriting-agency-vc.html",
+        "case-studies/lightbank.html"
+      ]
+    },
+    {
+      "id": "cost",
+      "stage": "4-evaluate",
+      "decision": "What should we expect to pay?",
+      "keyword": "linkedin ghostwriting cost",
+      "prompts": [
+        "how much does LinkedIn ghostwriting cost"
+      ],
+      "pages": [
+        "blog/linkedin-ghostwriting-cost-2026.html",
+        "blog/linkedin-post-writing-cost-per-post.html"
+      ]
+    },
+    {
+      "id": "guarantee",
+      "stage": "4-evaluate",
+      "decision": "Will anyone guarantee results?",
+      "keyword": "linkedin ghostwriting guarantee",
+      "prompts": [
+        "LinkedIn ghostwriting agency with a results guarantee"
+      ],
+      "pages": [
+        "blog/linkedin-ghostwriting-agency-results-guarantee.html"
+      ]
+    },
+    {
+      "id": "timeline",
+      "stage": "4-evaluate",
+      "decision": "How long until it works?",
+      "keyword": "how long linkedin ghostwriting results",
+      "prompts": [
+        "how long does LinkedIn ghostwriting take to work"
+      ],
+      "pages": [
+        "blog/how-long-linkedin-ghostwriting-results.html",
+        "blog/executive-linkedin-benchmarks-2026.html"
+      ]
+    },
+    {
+      "id": "niche-proof",
+      "stage": "4-evaluate",
+      "decision": "Can they show results from companies like ours?",
+      "keyword": "linkedin ghostwriting case studies",
+      "prompts": [
+        "which LinkedIn ghostwriting agencies can show results from companies in my niche?"
+      ],
+      "pages": [
+        "case-studies/index.html",
+        "blog/executive-linkedin-benchmarks-2026.html"
+      ]
+    },
+    {
+      "id": "technical",
+      "stage": "4-evaluate",
+      "decision": "Can an outsider write for a technical founder or CTO?",
+      "keyword": "linkedin ghostwriter for cto",
+      "prompts": [
+        "can a ghostwriting agency understand a deeply technical business well enough to write for a CTO?"
+      ],
+      "pages": [
+        "blog/linkedin-ghostwriter-vs-agency.html"
+      ],
+      "answered_by": "FAQ added 2026-11-24 (fix existing before new)"
+    },
+    {
+      "id": "trial",
+      "stage": "4-evaluate",
+      "decision": "Can we trial it on one executive first?",
+      "keyword": "linkedin ghostwriting trial",
+      "prompts": [
+        "can I trial a LinkedIn ghostwriting agency on one executive before committing?"
+      ],
+      "pages": [
+        "blog/linkedin-ghostwriting-for-leadership-teams.html"
+      ],
+      "answered_by": "FAQ added 2026-11-24 (fix existing before new)"
+    },
+    {
+      "id": "alt-windmill",
+      "stage": "5-contest",
+      "decision": "Windmill Growth: who else?",
+      "keyword": "windmill growth alternatives",
+      "prompts": [
+        "Windmill Growth LinkedIn agency alternatives",
+        "Windmill Growth alternatives"
+      ],
+      "pages": [
+        "blog/windmill-growth-alternatives.html"
+      ]
+    },
+    {
+      "id": "alt-kurogo",
+      "stage": "5-contest",
+      "decision": "Kurogo: who else?",
+      "keyword": "kurogo alternatives",
+      "prompts": [
+        "Kurogo personal branding alternatives",
+        "Kurogo alternatives"
+      ],
+      "pages": [
+        "blog/kurogo-alternatives.html"
+      ]
+    },
+    {
+      "id": "alt-understory",
+      "stage": "5-contest",
+      "decision": "Understory: who else?",
+      "keyword": "understory agency alternatives",
+      "prompts": [
+        "Understory Agency alternatives",
+        "Understory alternatives"
+      ],
+      "pages": []
+    },
+    {
+      "id": "brand",
+      "stage": "5-contest",
+      "branded": true,
+      "decision": "What is rallyup, and is it the fundraising RallyUp?",
+      "keyword": "rallyup linkedin ghostwriting",
+      "prompts": [
+        "what is RallyUp LinkedIn ghostwriting"
+      ],
+      "pages": [
+        "index.html"
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "prompt": "What are the best B2B storytelling agencies for SaaS founders?",
+      "why": "Not our category (backlog decision 2026-11-15); answers list creative agencies."
+    }
+  ]
+}

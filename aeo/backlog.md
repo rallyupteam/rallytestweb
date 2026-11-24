@@ -4,33 +4,31 @@ Read and updated by the monthly run (`aeo/RUNBOOK.md`). Add ideas anywhere under
 
 ## Tracking prompts
 
-1. best executive LinkedIn content agencies
-2. best LinkedIn ghostwriting agency 2026
-3. LinkedIn ghostwriting for CEOs
-4. LinkedIn ghostwriting agency for B2B founders
-5. best LinkedIn ghostwriting agency for B2B SaaS
-6. best LinkedIn ghostwriting agency for fintech executives
-7. best LinkedIn ghostwriting agency for AI startup founders
-8. LinkedIn ghostwriting for venture capital partners
-9. how much does LinkedIn ghostwriting cost
-10. is LinkedIn ghostwriting worth it for a CEO
-11. done-for-you LinkedIn content for executives
-12. agency to write LinkedIn posts for my leadership team
-13. LinkedIn thought leadership agency for B2B
-14. how to get a CEO posting on LinkedIn consistently
-15. LinkedIn ghostwriter vs agency
-16. Windmill Growth alternatives
-17. Kurogo alternatives
-18. Understory alternatives
-19. what is RallyUp LinkedIn ghostwriting (brand recall; check it isn't confused with rallyup.com)
-20. LinkedIn ghostwriting agency with a results guarantee
-21. Which companies specialise in done-for-you founder LinkedIn content? (Otterly)
-22. Which services handle end-to-end LinkedIn posting for leaders? (Otterly)
-23. What are the best services for executive LinkedIn audience building? (Otterly)
-24. What services help founders book sales calls from LinkedIn? (Otterly)
-25. Which providers focus on building pipelines from executive LinkedIn? (Otterly)
-26. What are the best options for turning founders into LinkedIn creators? (Otterly)
-27. What are the best agencies for B2B executive social presence? (Otterly)
+Moved to `aeo/decisions.json` on 2026-11-24: one entry per buyer decision, with its stage, Google
+keyword, AI prompts and the page that should win it. Edit the list there. Two old prompts were
+reworded so they stop returning unrelated products ("Windmill Growth LinkedIn agency alternatives",
+"Kurogo personal branding alternatives", "Understory Agency alternatives"); one was dropped
+(B2B storytelling agencies, not our category).
+
+## Open from the 2026-11-24 diagnosis (`aeo/log/2026-11-diagnosis.md`)
+
+- CONTEST: Understory alternatives has no page, and Understory is among the top three agencies
+  named instead of us on 12 of the 13 decisions where engines named anyone. Next new page.
+- CLAIM: the shortlist decisions (best-exec, done-for-you, niche-vc) are CITED-NOT-NAMED; their data
+  predates the 2026-11-15 proof additions, so retest in December before editing again.
+- NOT-RETRIEVED: "which agencies can show results from companies in my niche" goes to the case
+  studies index, which no engine cited. Give `case-studies/index.html` a short answer that groups
+  results by industry (fintech, SaaS, AI, VC) using only llms.txt numbers.
+- Where buyers talk: engines cite r/linkedin "is ghostwriting still worth a try in 2026",
+  r/SaaS "I paid $2,400 for a LinkedIn ghostwriter" and "would you pay $500/month", and r/sales
+  "95% of the meetings I book are from LinkedIn". Candidates for Francisco or Alec to answer.
+- Where buyers talk: LinkedIn posts and articles are cited a lot (452 rows), including a Windmill
+  Growth post listing "best LinkedIn ghostwriting agencies for B2B". A LinkedIn article from Francisco
+  or Alec on the cost and the ghostwriter-vs-agency questions would put our answer where engines
+  already look.
+- Technical: www.rallyup.team serves a 200 instead of a 301 to rallyup.team, so AI citations are
+  split between two hosts. Canonical tags point to the bare domain, which limits the damage. Fix is
+  an Amplify domain setting (redirect www to apex), not a file in this repo.
 
 ## Page ideas
 
