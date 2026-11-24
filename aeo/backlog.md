@@ -12,7 +12,7 @@ reworded so they stop returning unrelated products ("Windmill Growth LinkedIn ag
 
 ## Open from the 2026-11-24 diagnosis (`aeo/log/2026-11-diagnosis.md`)
 
-- CONTEST: Understory alternatives has no page, and Understory is among the top three agencies
+- DONE 2026-11-24 (blog/understory-agency-alternatives.html). CONTEST: Understory alternatives had no page, and Understory is among the top three agencies
   named instead of us on 12 of the 13 decisions where engines named anyone. Next new page.
 - CLAIM: the shortlist decisions (best-exec, done-for-you, niche-vc) are CITED-NOT-NAMED; their data
   predates the 2026-11-15 proof additions, so retest in December before editing again.
@@ -38,7 +38,6 @@ From the Otterly AI report, 2026-11-14: all five gap pages published 2026-11-15 
 
 - what is executive ghostwriting (definitional)
 - how to measure LinkedIn ROI for executives
-- Understory alternatives
 - how to brief a LinkedIn ghostwriter (what to prepare, what the first month looks like)
 - LinkedIn ghostwriting in the UK vs US: prices and differences
 - is it ethical to use a LinkedIn ghostwriter? (disclosure, authenticity)

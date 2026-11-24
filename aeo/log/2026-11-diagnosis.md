@@ -213,3 +213,21 @@ Source: otterly-2026-11-18.json, claude-2026-11-18.json, claude-2026-11-19.json,
 | trial | NO-PAGE | FAQ: start with one executive before a team rollout | blog/linkedin-ghostwriting-for-leadership-teams.html |
 | technical | NO-PAGE | FAQ: can an agency write for a technical founder or CTO | blog/linkedin-ghostwriter-vs-agency.html |
 | best-general | CITED-NOT-NAMED | quick answer now states price, guarantee and benchmark result; dropped the "here's the deal" paragraph | blog/best-linkedin-ghostwriting-agencies-2026.html |
+
+## Google side and the four numbers (baseline, pulled 2026-11-24)
+
+GA4 property 534101849, default channel groups (Nov is month to date, through Nov 23):
+
+| month | new users from AI Assistant | AI sessions | new users from Organic Search | organic sessions |
+|---|---|---|---|---|
+| 2026-09 | 2 | 3 | 25 | 62 |
+| 2026-10 | 6 | 14 | 112 | 175 |
+| 2026-11 (to 23rd) | 5 | 9 | 100 | 148 |
+
+Search Console, 2026-10-26 to 2026-11-22: 38 clicks, about 4,600 impressions; the homepage took 36 of the clicks. Most blog pages already sit around Google position 2 to 5 with almost no clicks. Three decision pages rank poorly on Google as well as in AI answers: cost (position 32), ghostwriter vs agency (29) and is-it-worth-it (33). For those three, the problem is not AI-specific: retitle and add internal links next month if they haven't moved.
+
+## Actions taken (continued)
+
+| decision | bucket | what changed | page |
+|---|---|---|---|
+| alt-understory | NO-PAGE (CONTEST) | new page, Understory facts checked on its site 2026-11-24 | blog/understory-agency-alternatives.html |
