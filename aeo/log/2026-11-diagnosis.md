@@ -231,3 +231,5 @@ Search Console, 2026-10-26 to 2026-11-22: 38 clicks, about 4,600 impressions; th
 | decision | bucket | what changed | page |
 |---|---|---|---|
 | alt-understory | NO-PAGE (CONTEST) | new page, Understory facts checked on its site 2026-11-24 | blog/understory-agency-alternatives.html |
+| cost | Google position 32 | title now "LinkedIn Ghostwriter Cost and Pricing (2026)" to match the searches reaching it ("linkedin ghostwriter cost", "linkedin ghostwriting pricing") | blog/linkedin-ghostwriting-cost-2026.html |
+| worth-it | Google position 33, 4 internal links | "Related" link added from 5 pages (how-long, vs-agency, views-no-leads, vs-AI, best-exec) | blog/is-linkedin-ghostwriting-worth-it-for-ceos.html |
