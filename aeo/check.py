@@ -50,6 +50,22 @@ def check(rel, sitemap, llms, index, today):
             if age > STALE_DAYS: notes.append(f"STALE: dateModified {mod} ({age} days)")
         else:
             errs.append("Article has no dateModified")
+        # Date honesty (Google: don't change a page's date unless the content substantially changed).
+        # dateModified must equal the newest .changelog line, so every date move has a written reason,
+        # ("Minor:" lines don't count), and the visible "updated" date and sitemap <lastmod> must agree with it.
+        if mod:
+            mod = mod[:10]
+            logged = [datetime.datetime.strptime(f"{mo} {d} {y}", "%B %d %Y").date().isoformat()
+                      for mo, d, y in re.findall(r"<li><strong>([A-Z][a-z]+) (\d{1,2}), (\d{4}):</strong>(?!\s*Minor:)",
+                                                 s.split('class="changelog"', 1)[-1])]
+            if not logged: errs.append("no dated .changelog lines")
+            elif max(logged) != mod: errs.append(f"dateModified {mod} != newest changelog line {max(logged)}")
+            shown = re.search(r"updated:? ([a-z]+) (\d{1,2}), (\d{4})", visible(s).lower())
+            if shown:
+                shown = datetime.datetime.strptime(" ".join(shown.groups()), "%B %d %Y").date().isoformat()
+                if shown != mod: errs.append(f"visible updated date {shown} != dateModified {mod}")
+            lm = re.search(re.escape(url) + r"</loc>\s*<lastmod>([\d-]+)</lastmod>", sitemap)
+            if lm and lm.group(1) != mod: errs.append(f"sitemap lastmod {lm.group(1)} != dateModified {mod}")
     faq = next((g for g in graph if g.get("@type") == "FAQPage"), None)
     if faq:
         sec = re.search(r'<h2 id="faq">(.*?)</article>', s, re.S)

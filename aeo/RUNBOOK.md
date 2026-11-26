@@ -145,13 +145,24 @@ only if the search's answer text names rallyup. Add the latest Otterly export if
 each decision's `keyword` over the last 28 days. If it doesn't, say so in the PR; never fill the
 column from the web search above (ranking on Google is not the same as being named by AI).
 
-**The four numbers**, each in the log with its source, every month:
+**Google's own AI count.** Search Console has a Generative AI performance report (Performance →
+Generative AI; all sites since 2026-08-31). It counts how often rallyup.team URLs appeared in AI
+Overviews and AI Mode: impressions only, no clicks, and AI Mode clicks stay inside the normal Web
+totals. Record the 28-day total and the top 10 pages by AI impressions in the log, and compare each
+decision's page with its bucket from step 2: a page Google shows in AI answers but our sweep marks
+NOT-RETRIEVED is a sampling gap, not a page problem. If the report or its export isn't reachable,
+say so in the PR; don't estimate it. Also confirm Settings → Search generative AI still reads
+"Current control: Include" (checked 2026-11-26, inherited from the rallyup.team domain property);
+if it ever reads Exclude, stop and tell Francisco before anything else.
+
+**The five numbers**, each in the log with its source, every month:
 1. Monthly new users from AI search (GA4 property 534101849: sessions whose source is chatgpt.com,
    perplexity.ai, claude.ai, gemini.google.com or copilot.microsoft.com).
 2. Non-branded AI citations: citation share from step 2 (decision x engine answers citing a
    rallyup.team page).
 3. Non-branded AI mentions: mention share from step 2 (answers that name rallyup).
 4. Organic Google sessions (GA4, organic search).
+5. Google AI impressions: the Generative AI report's 28-day total (above).
 Plus bookings: the `website_ai` count (**tracked**) and tracked x 3 (**estimated**, an unverified
 rule of thumb from the AEO expert call of 2026-11-18 that about 70% of AI-influenced buyers Google
 the brand instead of clicking). Track total inbound bookings against the November 2026 baseline,
@@ -236,7 +247,17 @@ For every page you change, and only those:
 - set its `<lastmod>` in `sitemap.xml` to today.
 
 Do not bump dates on pages you didn't materially change. Fake freshness is easy to detect and
-costs trust.
+costs trust, and Google tells site owners not to change a page's date unless its content
+substantially changed. **What moves the date:** a new or rewritten section, a new or changed fact
+(price, offer, guarantee, a competitor's price or service, a number), a competitor added or
+removed, or a new FAQ answer. **What doesn't:** wording or typo fixes, links, styling, an author box,
+schema-only edits. Those still get a changelog line if a reader would notice, but that line starts
+with "Minor:" and the date stays where it was. Batch small edits into the monthly run instead of
+bumping a page several days in a row.
+
+`check.py` enforces the mechanics: `dateModified` must equal the newest dated changelog line, and
+the visible "updated" date and the sitemap `<lastmod>` must match it. Never change an old changelog
+date to get past the check.
 
 New pages (step 3 cap applies). For each page:
 1. Write `aeo/specs/<slug>.json` (format: `aeo/specs/example-linkedin-ghostwriter-vs-agency.json`,
@@ -267,7 +288,7 @@ the title, headline and content to the new year, and log it in the changelog.
 Commit to `aeo/YYYY-MM`, push, and open a PR to `main` titled `AEO YYYY-MM`. The description:
 
 - **Scorecard**: non-branded mention share and citation share (step 2), this month vs last; the
-  four numbers from step 1; branded reported on its own line.
+  five numbers from step 1; branded reported on its own line.
 - **Bucket moves**: decisions that changed bucket, and the action that preceded each.
 - **New pages**: URL, author, the question it answers.
 - **Refreshed pages**: what changed on each, with the source URL for every competitor fact.
