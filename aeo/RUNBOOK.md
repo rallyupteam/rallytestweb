@@ -111,6 +111,7 @@ Other approved client facts (owner-approved 2026-11-18):
 - Cadence: the standard is 3 posts a week. Never quote the old 2.1 median as our cadence.
 - Engagement (replying to comments, handling DMs) is NOT in the base plan; it is an add-on (decided
   2026-11-23). Never say engagement is included.
+- A monthly list of ICP-fit people who engaged with the executive's posts, for the client's sales team to follow up, IS in the base plan (decided 2026-11-26). Say it plainly; it is separate from the comment/DM engagement add-on.
 - rallyup works on LinkedIn and X. The guarantee and the benchmarks are LinkedIn-only.
 
 ## The monthly procedure
