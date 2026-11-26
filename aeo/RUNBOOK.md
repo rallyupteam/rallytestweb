@@ -148,7 +148,11 @@ column from the web search above (ranking on Google is not the same as being nam
 **Google's own AI count.** Search Console has a Generative AI performance report (Performance →
 Generative AI; all sites since 2026-08-31). It counts how often rallyup.team URLs appeared in AI
 Overviews and AI Mode: impressions only, no clicks, and AI Mode clicks stay inside the normal Web
-totals. Record the 28-day total and the top 10 pages by AI impressions in the log, and compare each
+totals. The Search Console API does not expose it (checked 2026-11-26 against API revision
+20261124: no AI search type, and `searchAppearance` returns nothing), so only Francisco can read it,
+in the UI; step 7 asks him for it. Traffic numbers never go in this public repo: they live in
+`rallyupcontext/data/aeo-metrics/YYYY-MM.md`.
+Record the 28-day total and the top 10 pages by AI impressions there, and compare each
 decision's page with its bucket from step 2: a page Google shows in AI answers but our sweep marks
 NOT-RETRIEVED is a sampling gap, not a page problem. If the report or its export isn't reachable,
 say so in the PR; don't estimate it. Also confirm Settings → Search generative AI still reads
@@ -301,6 +305,10 @@ Commit to `aeo/YYYY-MM`, push, and open a PR to `main` titled `AEO YYYY-MM`. The
 
 Send a Slack DM to Francisco (user ID `U0A0TKY82D8`): the PR link, the scorecard line, the number
 of new and refreshed pages, and anything that needs his decision. Keep it under 8 lines.
+End the DM with this request, every month, until the API exposes the report:
+"Please send screenshots of Search Console → Performance → Generative AI, last 28 days: the total
+impressions and every row of the Pages tab." When they arrive, add the total and the page list to
+`rallyupcontext/data/aeo-metrics/YYYY-MM.md` and compare with last month.
 
 ### Quarterly (February, May, August, November)
 
