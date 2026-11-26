@@ -155,7 +155,13 @@ in the UI; step 7 asks him for it. Traffic numbers never go in this public repo:
 Record the 28-day total and the top 10 pages by AI impressions there, and compare each
 decision's page with its bucket from step 2: a page Google shows in AI answers but our sweep marks
 NOT-RETRIEVED is a sampling gap, not a page problem. If the report or its export isn't reachable,
-say so in the PR; don't estimate it. Also confirm Settings → Search generative AI still reads
+say so in the PR; don't estimate it. **Check for tracker traffic before comparing months.** AEO
+tracking tools (Otterly, or any vendor running our prompts) make AI engines run Google searches, and
+those inflate both this report and ordinary Search Console impressions while the tool runs. The
+signature is long prompt-like queries with zero clicks, mostly desktop, spread across many European
+countries, which vanish when the tool stops. November 2026's 1.47K was mostly this (Otterly trial,
+Nov 11 to 19); the real baseline was about 10 to 20 a day. Note in the log whether a tracker ran
+that month, and compare like with like. Also confirm Settings → Search generative AI still reads
 "Current control: Include" (checked 2026-11-26, inherited from the rallyup.team domain property);
 if it ever reads Exclude, stop and tell Francisco before anything else.
 
